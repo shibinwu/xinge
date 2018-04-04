@@ -11,7 +11,7 @@
 			<li><a href="{:U('Auctionadmin/auctionindex')}">{:L('AUCTION_INDEX')}</a></li>
 			<li class="active"><a href="{:U('Auctionadmin/auctionadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_ADD')}</a></li>
 		</ul>
-		<form action="{:U('Auctionadmin/auctionadd')}" method="post" class="form-horizontal " enctype="multipart/form-data">
+		<form action="{:U('Auctionadmin/auctionadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
@@ -81,24 +81,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th><b>起拍时间</b></th>
-						</tr>
-						<tr>
-							<td><input type="text" name="post[start_time]" id="start_time" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;"></td>
-						</tr>
-						<tr>
-							<th><b>结束时间</b></th>
-						</tr>
-						<tr>
-							<td><input type="text" name="post[end_time]" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;"></td>
-						</tr>
-						<tr>
 							<th><b>状态</b></th>
 						</tr>
 						<tr>
 							<td>
-								<label class="radio"><input type="radio" name="post[show]" value="0" checked>隐藏</label>
-								<label class="radio"><input type="radio" name="post[show]" value="1">显示</label>
+								<label class="radio"><input type="radio" name="post[cn_show]" value="0" checked>隐藏</label>
+								<label class="radio"><input type="radio" name="post[cn_show]" value="1">显示</label>
 							</td>
 						</tr>
 						<tr>
@@ -123,7 +111,7 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<button class="btn btn-primary " type="submit">提交</button>
+				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
 				<a class="btn" href="{:U('Auctionadmin/index')}">返回</a>
 			</div>
 		</form>

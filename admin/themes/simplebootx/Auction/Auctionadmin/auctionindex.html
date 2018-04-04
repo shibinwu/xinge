@@ -10,8 +10,8 @@
 			{:L('STATUS')}： 
 			<select name="status" style="width: 120px;">
 				<option value=''>全部</option>
-				<option value='0' <if condition="$_REQUEST['status'] eq '0'">selected</if>>显示</option>
-				<option value='1' <if condition="$_REQUEST['status'] eq '1'">selected</if>>隐藏</option>
+				<option value='1' <if condition="$_REQUEST['status'] eq '1'">selected</if>>显示</option>
+				<option value='0' <if condition="$_REQUEST['status'] eq '0'">selected</if>>隐藏</option>
 			</select> &nbsp;&nbsp;
 			{:L('KEYWORD')}：
 			<input type="text" name="keyword" style="width: 200px;" value="{$_REQUEST.keyword|default=''}" placeholder="{:L('KEYWORDS')}">

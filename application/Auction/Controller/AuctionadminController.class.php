@@ -38,12 +38,13 @@ class AuctionadminController extends AdminbaseController
         $where = array();
         $request = I('request.');
         if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
+            $where['cn_show'] = $request['status'];
         }
         if (!empty($request['keyword'])) {
             $keyword = $request['keyword'];
-            $where['title'] = array('like', "%$keyword%");
+            $where['tname'] = array('like', "%$keyword%");
         }
+
         $where['l'] = LANG_SET;
         $count = $this->pmzt_model->where($where)->count();
         $page = $this->page($count, 20);
@@ -76,17 +77,6 @@ class AuctionadminController extends AdminbaseController
             $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
             $article = I("post.post");
             $article['content'] = htmlspecialchars_decode($article['content']);
-            //把时间转换成时间戳
-            $t = strtotime($article['start_time']);
-            $et = strtotime($article['start_time']);
-            //根据北京时间添加荷兰和英国时间
-            $article['en_start_time'] = $t - 28800;
-            $article['hl_start_time'] = $t - 21600;
-            $article['en_end_time'] = $et - 28800;
-            $article['hl_end_time'] = $et - 21600;
-            $article['start_time'] = $t;
-            $article['end_time'] = $et;
-            dump($article);die;
             $result = $this->pmzt_model->add($article);
             if ($result) {
                 $this->success("添加成功！");
