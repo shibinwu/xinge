@@ -67,9 +67,10 @@
 						</if>
 						</td>
 						<td align="center">
-							<a href="{:U('Auctionadmin/changciindex',array('id'=>$vo['id']))}" >{:L('AUCTION_XINGE_GUANLI')}</a>
 							<a href="{:U('Auctionadmin/auctionedit',array('id'=>$vo['id']))}" >{:L('EDIT')}</a>
 							<a href="{:U('Auctionadmin/auctiondelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+							<a href="{:U('Auctionadmin/changciadd',array('id'=>$vo['id'],'num'=>$vo['num']))}" >{:L('AUCTION_CHANGCI_ADD')}</a>
+							<a href="{:U('Auctionadmin/changciindex',array('id'=>$vo['id']))}" >{:L('AUCTION_CHANGCI_INDEX')}</a>
 						</td>
 					</tr>
 					</foreach>

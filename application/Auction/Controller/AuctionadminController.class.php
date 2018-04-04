@@ -160,7 +160,9 @@ class AuctionadminController extends AdminbaseController
             $keyword = $request['keyword'];
             $where['title'] = array('like', "%$keyword%");
         }
-        $id =
+        $id = I('get.id');
+
+        $where['cid'] = $id;
         $where['l'] = LANG_SET;
         $count = $this->changci_model->where($where)->count();
         $page = $this->page($count, 20);
@@ -206,8 +208,11 @@ class AuctionadminController extends AdminbaseController
             }
             exit;
         }
-        $info = $this->pmzt_model->getField('id,tname');
+        $arr = I('get.');
+        $num = $arr["num"]+1;
+        $info = $this->pmzt_model->where(array('id' => $arr['id']))->field('id,tname')->find();
         $this->assign('post', $info);
+        $this->assign('num', $num);
         $this->display();
     }
 

@@ -9,28 +9,23 @@
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
 			<li><a href="{:U('Auctionadmin/changciindex')}">{:L('AUCTION_CHANGCI_INDEX')}</a></li>
-			<li class="active"><a href="{:U('Auctionadmin/changciadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_CHANGCI_ADD')}</a></li>
+			<!--<li class="active"><a href="{:U('Auctionadmin/changciadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_CHANGCI_ADD')}</a></li>-->
 		</ul>
-		<form action="{:U('Auctionadmin/changciadd')}" method="post" class="form-horizontal " enctype="multipart/form-data">
+		<form action="{:U('Auctionadmin/changciadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
 						<tr style="height: 60px">
 							<th width="80">所属目录</th>
 							<td>
-								<input type="hidden" name="post[id]" value="{$post.id}">
-								<select name="post[cid]" style="width:415px;">
-									<foreach name="post" item="vo" >
-										<option value="{$key}" <if condition="$post[cid] == $key"> selected="selected" </if>>{$vo}</option>
-									</foreach>
-								</select>
-
+									<input type="hidden" name="post[cid]" value="{$post[id]}">
+									<input type="text" name="post[tname]" value="{$post.tname}" style="width: 500px" readonly="readonly">
 							</td>
 						</tr>
 						<tr style="height: 60px">
 							<th width="80">场次名称</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[name]" id="1" required value="" placeholder="请输入场次名称"/>
+								<input type="text" style="width:500px;" name="post[name]" required value="" placeholder="请输入场次名称"/>
 								<span class="form-required">*</span>
 							</td>
 						</tr>
@@ -38,7 +33,7 @@
 						<tr style="height: 60px">
 							<th>场次</th>
 							<td>
-								<input type="text" name="post[seq]" style="width: 400px" placeholder="请输入场次排序">
+								<input type="text" name="post[seq]" style="width: 500px" required value="{$num}" readonly="readonly" placeholder="请输入场次排序">
 							</td>
 						</tr>
 					</table>
@@ -63,7 +58,7 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<button class="btn btn-primary " type="submit">提交</button>
+				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
 				<a class="btn" href="{:U('Auctionadmin/index')}">返回</a>
 			</div>
 		</form>
@@ -254,7 +249,7 @@
 											}, {
 												name : '返回列表页',
 												callback : function() {
-													location = "{:U('Auctionadmin/changciindex')}";
+													location = "{:U('Auctionadmin/changciindex',array('id'=>$post['id']))}";
 													return true;
 												}
 											} ]

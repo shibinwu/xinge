@@ -4,7 +4,7 @@
 	<div class="wrap">
 		<ul class="nav nav-tabs">
 			<li class="active"><a>{:L('AUCTION_CHANGCI_INDEX')}</a></li>
-			<li><a href="{:U('Auction/Auctionadmin/changciadd')}">{:L('AUCTION_CHANGCI_ADD')}</a></li>
+			<!--<li><a href="{:U('Auction/Auctionadmin/changciadd')}">{:L('AUCTION_CHANGCI_ADD')}</a></li>-->
 		</ul>
 		<form class="well form-search" method="post" action="{:U('Auctionadmin/changciindex')}">
 			{:L('KEYWORD')}：
@@ -30,7 +30,7 @@
 					<foreach name="list" item="vo">
 					<tr>
 						<td align="center">{$vo.id}</td>
-						<td>{$vo.tname}</td>
+						<td>{$vo.name}</td>
 						<td>{$vo.seq}</td>
 						<td>{$vo[start_time] | date='Y-m-d H:i:s',###}</td>
 						<td>{$vo[end_time] | date='Y-m-d H:i:s',###}</td>
