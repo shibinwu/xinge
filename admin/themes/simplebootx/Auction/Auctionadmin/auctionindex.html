@@ -26,8 +26,7 @@
 						<th>{:L('AUCTION_NUM')}</th>
 						<th>{:L('ORDER')}</th>
 						<th>{:L('AUCTION_NAME')}</th>
-						<th>{:L('START_TIME')}</th>
-						<th>{:L('END_TIME')}</th>
+						<th>{:L('CHANGCI_NUM')}</th>
 						<th>{:L('GEZI_NUM')}</th>
 						<th>{:L('TOTAL_PRICE')}</th>
 						<th>{:L('AUCTION_SHOW')}</th>
@@ -42,11 +41,9 @@
 						<td align="center">{$vo.id}</td>
 						<td>{$vo.seq}</td>
 						<td>{$vo.tname}</td>
-						<td>{$vo[start_time] | date='Y-m-d H:i:s',###}</td>
-						<td>{$vo[end_time] | date='Y-m-d H:i:s',###}</td>
+						<td>{$vo.num}场</td>
 						<td>{$vo.nums}只</td>
 						<td>{$vo.totals}</td>
-						<!--<td>{$vo['name']|default=$vo['created_by']}</td>-->
 						<td>
 							<if condition="$vo.cn_show eq 1">
 								<a data-toggle="tooltip" title="显示"><i class="fa fa-check"></i></a>
@@ -70,8 +67,8 @@
 						</if>
 						</td>
 						<td align="center">
+							<a href="{:U('Auctionadmin/changciindex',array('id'=>$vo['id']))}" >{:L('AUCTION_XINGE_GUANLI')}</a>
 							<a href="{:U('Auctionadmin/auctionedit',array('id'=>$vo['id']))}" >{:L('EDIT')}</a>
-							|
 							<a href="{:U('Auctionadmin/auctiondelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 						</td>
 					</tr>
@@ -83,8 +80,7 @@
 					<th>{:L('AUCTION_NUM')}</th>
 					<th>{:L('ORDER')}</th>
 					<th>{:L('AUCTION_NAME')}</th>
-					<th>{:L('START_TIME')}</th>
-					<th>{:L('END_TIME')}</th>
+					<th>{:L('CHANGCI_NUM')}</th>
 					<th>{:L('GEZI_NUM')}</th>
 					<th>{:L('TOTAL_PRICE')}</th>
 					<th>{:L('AUCTION_SHOW')}</th>

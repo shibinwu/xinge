@@ -11,13 +11,36 @@ return array(
         "AUCTION_NUM" => '专题编号',
         "ORDER" => '排序',
         "AUCTION_NAME" => '拍卖专题名称',
-        "START_TIME" => '开始时间',
-        "END_TIME" => '结束时间',
+        "CHANGCI_NUM" => '场数',
         "GEZI_NUM" => '鸽子数量',
         "TOTAL_PRICE" => '总价',
         "AUCTION_SHOW" => '拍卖显示',
         "AUCTION_GEZI_SHOW" => '拍卖鸽显示',
         "COMMEND" => '首页推荐',
+
+        //场次管理
+        "AUCTION_XINGE_GUANLI" => '场次管理',
+        "AUCTION_CHANGCI_INDEX" => '场次列表',
+        "AUCTION_CHANGCI_ADD" => '添加场次',
+        "AUCTION_CHANGCI_EDIT" => '编辑场次',
+        "CHANGCI_NAME" => '场次名称',
+        "CHANGCI_ORDER" => '场次顺序',
+        "START_TIME" => '开始时间',
+        "END_TIME" => '结束时间',
+        "START_PRICE" => '起始价格',
+        "NOW_PRICE" => '当前价格',
+        "MEMBER_ID" => '出价人ID',
+
+
+        //鸽子管理
+        "AUCTION_GEZI_INDEX" => '鸽子列表',
+        "AUCTION_GEZI_ADD" => '添加鸽子',
+        "AUCTION_GEZI_EDIT" => '编辑鸽子',
+        "GEZI_NAME" => '鸽子名称',
+        "HUANHAO" => '环号',
+        "ZHUANGTAI" => '状态',
+        "FENLEI" => '分类',
+
 
         //拍卖管理
         "AUCTION_XINGE_INDEX" => '拍卖管理列表',

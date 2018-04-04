@@ -14,6 +14,8 @@ class AuctionadminController extends AdminbaseController
     protected $user_model;
     protected $product_model;
     protected $zhanshou_model;
+    protected $changci_model;
+    protected $gezi_model;
 
     function _initialize()
     {
@@ -26,6 +28,8 @@ class AuctionadminController extends AdminbaseController
         $this->user_model = M("Users");
         $this->product_model = M("Product");
         $this->zhanshou_model = M("Zhanshou");
+        $this->changci_model = M("Changci");
+        $this->gezi_model = M("Gezi");
     }
 
     // 后台拍卖专题列表
@@ -52,6 +56,7 @@ class AuctionadminController extends AdminbaseController
         foreach ($list as $k => $val) {
             $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
             $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+            $list[$k]['num'] = $this->changci_model->where(array('cid' => $val['id']))->count();
             $nums= $this->pmjilu_model->where(array('cid' => $val['id']))->getField('pmprice',true);
             $list[$k]['totals']=array_sum($nums);
 
@@ -152,8 +157,9 @@ class AuctionadminController extends AdminbaseController
         }
     }
 
-    // 后台拍卖管理列表
-    public function xingeindex()
+
+    // 后台拍卖场次列表
+    public function changciindex()
     {
         $where = array();
         $request = I('request.');
@@ -163,6 +169,136 @@ class AuctionadminController extends AdminbaseController
         if (!empty($request['keyword'])) {
             $keyword = $request['keyword'];
             $where['title'] = array('like', "%$keyword%");
+        }
+        $id =
+        $where['l'] = LANG_SET;
+        $count = $this->changci_model->where($where)->count();
+        $page = $this->page($count, 20);
+        $list = $this->changci_model
+            ->where($where)
+            ->order("id DESC")
+            ->limit($page->firstRow . ',' . $page->listRows)
+            ->select();
+        foreach ($list as $k => $val) {
+            $list[$k]['num'] = $this->pmzt_model->where(array('id' => $val['cid']))->count();
+            $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
+            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+            $nums= $this->pmjilu_model->where(array('cid' => $val['id']))->getField('pmprice',true);
+            $list[$k]['totals']=array_sum($nums);
+
+        }
+        $this->assign('list', $list);
+        $this->assign("page", $page->show('Admin'));
+
+        $this->display();
+    }
+
+    // 后台拍卖场次添加
+    public function changciadd()
+    {
+        if (IS_POST) {
+            $article = I("post.post");
+            //把时间转换成时间戳
+            $t = strtotime($article['start_time']);
+            $et = strtotime($article['start_time']);
+            //根据北京时间添加荷兰和英国时间
+            $article['en_start_time'] = $t - 28800;
+            $article['hl_start_time'] = $t - 21600;
+            $article['en_end_time'] = $et - 28800;
+            $article['hl_end_time'] = $et - 21600;
+            $article['start_time'] = $t;
+            $article['end_time'] = $et;
+            $result = $this->changci_model->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $info = $this->pmzt_model->getField('id,tname');
+        $this->assign('post', $info);
+        $this->display();
+    }
+
+    // 后台拍卖专题编辑
+    public function changciedit()
+    {
+        if (IS_POST) {
+            $post_id = intval($_POST['post']['id']);
+            $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
+            unset($_POST['post']['post_author']);
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $result = $this->pmzt_model->save($article);
+            if ($result !== false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where = array();
+        $id = I('get.id');
+        $where['id'] = $id;
+        $info = $this->pmzt_model->where($where)->find();
+        $a = $info['country'];
+        $arr = explode(",",$a);
+        foreach ($arr as $k => $val) {
+            if($val == 1){
+                $info['country1'] =1;
+            }elseif($val == 2){
+                $info['country2'] =2;
+            }else{
+                $info['country3'] =3;
+            }
+        }
+        $this->assign('post', $info);
+        $this->display();
+    }
+
+    // 后台展售专题删除
+    public function changcidelete()
+    {
+        if (isset($_GET['id'])) {
+            $id = I("get.id", 0, 'intval');
+            if ($this->pmzt_model->where(array('id' => $id))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+        if (isset($_POST['ids'])) {
+            $ids = I('post.ids/a');
+
+            if ($this->pmzt_model->where(array('id' => array('in', $ids)))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+    }
+
+    // 后台拍卖管理列表
+    public function xingeindex()
+    {
+        $where = array();
+        $request = I('post.');
+        if (($request['status'] == '0') || ($request['status'] == 1)) {
+            $where['hiden'] = $request['status'];
+        }
+//        if (!empty($request['keyword'])) {
+//            $keyword = $request['keyword'];
+//            $where['title'] = array('like', "%$keyword%");
+//        }
+        if ($request['keyword'] ) {
+//            $keyword = $request['keyword'];
+            $where['title'] = array('like', "%".$request['keyword']."%");
+        }
+        if ($request['zhuangtai'] ) {
+//            $keyword = $request['keyword'];
+            $where['zhuangtai'] = array('like', "%".$request['zhuangtai']."%");
         }
         $where['l'] = LANG_SET;
         $count = $this->pmproduct_model->where($where)->count();
@@ -242,6 +378,106 @@ class AuctionadminController extends AdminbaseController
         $this->assign('post', $info);
         $this->display();
     }
+
+    // 后台拍卖鸽子列表
+    public function geziindex()
+    {
+        $where = array();
+        $request = I('request.');
+        if (($request['status'] == '0') || ($request['status'] == 1)) {
+            $where['hiden'] = $request['status'];
+        }
+        if (!empty($request['keyword'])) {
+            $keyword = $request['keyword'];
+            $where['title']  = array('like', "%$keyword%");
+        }
+        if (!empty($request['huanhao'])) {
+            $huanhao = $request['huanhao'];
+            $where['huanhao']  = array('like', "%$huanhao%");
+        }
+        if (!empty($request['zhuangtai'])) {
+            $zhuangtai = $request['zhuangtai'];
+            $where['zhuangtai'] = array('like', "%$zhuangtai%");
+        }
+        $where['l'] = LANG_SET;
+        $count = $this->gezi_model->where($where)->count();
+        $page = $this->page($count, 20);
+        $list = $this->gezi_model
+            ->where($where)
+            ->order("id ASC")
+            ->limit($page->firstRow . ',' . $page->listRows)
+            ->select();
+        $this->assign('list', $list);
+        $this->assign("page", $page->show('Admin'));
+        $this->display();
+    }
+
+
+    // 后台拍卖鸽子添加
+    public function geziadd()
+    {
+        if (IS_POST) {
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['addtime'] = time();
+            $result = $this->gezi_model->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $this->display();
+    }
+
+    // 后台拍卖鸽子编辑
+    public function geziedit()
+    {
+        if (IS_POST) {
+            $post_id = intval($_POST['post']['id']);
+            unset($_POST['post']['post_author']);
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $result = $this-> gezi_model->save($article);
+            if ($result !== false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where = array();
+        $id = I('get.id');
+        $where['id'] = $id;
+        $info = $this-> gezi_model->where($where)->find();
+        $this->assign('post', $info);
+        $this->display();
+    }
+
+    // 后台拍卖鸽子删除
+    public function gezidelete()
+    {
+        if (isset($_GET['id'])) {
+            $id = I("get.id", 0, 'intval');
+            if ($this->gezi_model->where(array('id' => $id))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+        if (isset($_POST['ids'])) {
+            $ids = I('post.ids/a');
+
+            if ($this->gezi_model->where(array('id' => array('in', $ids)))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+    }
+
     // 后台拍卖信鸽添加
     public function xingeadd()
     {
