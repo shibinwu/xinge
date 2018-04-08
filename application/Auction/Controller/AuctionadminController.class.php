@@ -153,12 +153,9 @@ class AuctionadminController extends AdminbaseController
     {
         $where = array();
         $request = I('request.');
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
         if (!empty($request['keyword'])) {
             $keyword = $request['keyword'];
-            $where['title'] = array('like', "%$keyword%");
+            $where['name'] = array('like', "%$keyword%");
         }
         $id = I('get.id');
 
@@ -192,7 +189,7 @@ class AuctionadminController extends AdminbaseController
             $article = I("post.post");
             //把时间转换成时间戳
             $t = strtotime($article['start_time']);
-            $et = strtotime($article['start_time']);
+            $et = strtotime($article['end_time']);
             //根据北京时间添加荷兰和英国时间
             $article['en_start_time'] = $t - 28800;
             $article['hl_start_time'] = $t - 21600;
@@ -216,17 +213,23 @@ class AuctionadminController extends AdminbaseController
         $this->display();
     }
 
-    // 后台拍卖专题编辑
+    // 后台拍卖场次编辑
     public function changciedit()
     {
         if (IS_POST) {
             $post_id = intval($_POST['post']['id']);
-            $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
-            $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
-            unset($_POST['post']['post_author']);
             $article = I("post.post");
-            $article['content'] = htmlspecialchars_decode($article['content']);
-            $result = $this->pmzt_model->save($article);
+            //把时间转换成时间戳
+            $t = strtotime($article['start_time']);
+            $et = strtotime($article['end_time']);
+            //根据北京时间添加荷兰和英国时间
+            $article['en_start_time'] = $t - 28800;
+            $article['hl_start_time'] = $t - 21600;
+            $article['en_end_time'] = $et - 28800;
+            $article['hl_end_time'] = $et - 21600;
+            $article['start_time'] = $t;
+            $article['end_time'] = $et;
+            $result = $this->changci_model->save($article);
             if ($result !== false) {
                 $this->success("保存成功！");
             } else {
@@ -237,28 +240,19 @@ class AuctionadminController extends AdminbaseController
         $where = array();
         $id = I('get.id');
         $where['id'] = $id;
-        $info = $this->pmzt_model->where($where)->find();
-        $a = $info['country'];
-        $arr = explode(",",$a);
-        foreach ($arr as $k => $val) {
-            if($val == 1){
-                $info['country1'] =1;
-            }elseif($val == 2){
-                $info['country2'] =2;
-            }else{
-                $info['country3'] =3;
-            }
-        }
+        $info = $this->changci_model->where($where)->find();
+        $info['tname'] = $this->pmzt_model->where(array('id' => $info['cid']))->getField('tname');
+
         $this->assign('post', $info);
         $this->display();
     }
 
-    // 后台展售专题删除
+    // 后台拍卖场次删除
     public function changcidelete()
     {
         if (isset($_GET['id'])) {
             $id = I("get.id", 0, 'intval');
-            if ($this->pmzt_model->where(array('id' => $id))->delete()) {
+            if ($this->changci_model->where(array('id' => $id))->delete()) {
                 $this->success("删除成功！");
             } else {
                 $this->error("删除失败！");
@@ -267,7 +261,7 @@ class AuctionadminController extends AdminbaseController
         if (isset($_POST['ids'])) {
             $ids = I('post.ids/a');
 
-            if ($this->pmzt_model->where(array('id' => array('in', $ids)))->delete()) {
+            if ($this->changci_model->where(array('id' => array('in', $ids)))->delete()) {
                 $this->success("删除成功！");
             } else {
                 $this->error("删除失败！");

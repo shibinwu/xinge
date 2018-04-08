@@ -8,54 +8,34 @@
 <body>
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
-			<li><a href="{:U('Auctionadmin/auctionindex')}">{:L('AUCTION_INDEX')}</a></li>
-			<li><a href="{:U('Auctionadmin/auctionadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_ADD')}</a></li>
-			<li class="active"><a href="#">{:L('AUCTION_EDIT')}</a></li>
+			<li><a href="{:U('Auctionadmin/changciindex')}">{:L('AUCTION_CHANGCI_INDEX')}</a></li>
+			<li><a href="{:U('Auctionadmin/changciadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_CHANGCI_ADD')}</a></li>
+			<li class="active"><a href="#">{:L('AUCTION_CHANGCI_EDIT')}</a></li>
 		</ul>
-		<form action="{:U('Auctionadmin/auctionedit')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+		<form action="{:U('Auctionadmin/changciedit')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
 						<input type="hidden" name="post[id]" value="{$post.id}">
-						<tr>
-							<th width="80">专题名称</th>
+						<tr style="height: 60px">
+							<th width="80">所属目录</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[tname]"  required value="{$post.tname}" placeholder="请修改专题名称"/>
-								<span class="form-required">*</span>
+								<input type="hidden" name="post[cid]" value="{$post[cid]}">
+								<input type="text" name="post[tname]" value="{$post.tname}" style="width: 500px" readonly="readonly">
 							</td>
 						</tr>
-						<tr>
-							<th width="100">手机专题名称</th>
+						<tr style="height: 60px">
+							<th width="80">场次名称</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[ptname]" id="" required value="{$post.ptname}" placeholder="请输入手机专题名称"/>
+								<input type="text" style="width:500px;" name="post[name]" required value="{$post.name}" placeholder="请输入场次名称"/>
 								<span class="form-required">*</span>
 							</td>
 						</tr>
 
-						<tr>
-							<th width="100">拍卖英文名称</th>
+						<tr style="height: 60px">
+							<th>场次</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[en_tname]" id="title" required value="{$post.en_tname}" placeholder="请输入拍卖英文名称"/>
-								<span class="form-required">*</span>
-							</td>
-						</tr>
-						<tr>
-							<th>页面排序</th>
-							<td>
-								<input type="text" name="post[seq]" style="width: 400px" required value="{$post.seq}" placeholder="请输入排序">
-							</td>
-						</tr>
-
-						<tr>
-							<th>优酷视频ID</th>
-							<td>
-								<input type="text" name="post[you_id]" style="width: 400px" required value="{$post.you_id}" placeholder="请输入规格">
-							</td>
-						</tr>
-						<tr>
-							<th>药品简介</th>
-							<td>
-								<script type="text/plain" id="content" name="post[content]">{$post.content}</script>
+								<input type="text" name="post[seq]" style="width: 500px" required value="{$post.seq}" readonly="readonly" placeholder="请输入场次排序">
 							</td>
 						</tr>
 					</table>
@@ -63,63 +43,23 @@
 				<div class="span3">
 					<table class="table table-bordered">
 						<tr>
-							<td><b>类别图片</b></td>
+							<th><b>起拍时间</b></th>
 						</tr>
 						<tr>
-							<td>
-								<div style="text-align: center;">
-									<input type="hidden" name="smeta[thumb]" id="thumb" value="{$post.pics|default=''}">
-									<a href="javascript:upload_one_image('图片上传','#thumb');">
-										<if condition="empty($post['pics'])">
-											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb-preview" width="135" style="cursor: hand"/>
-										<else />
-											<img src="{:sp_get_image_preview_url($post['pics'])}" id="thumb-preview" width="135" style="cursor: hand"/>
-										</if>
-									</a>
-									<input type="button" class="btn btn-small" onclick="$('#thumb-preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
-								</div>
-							</td>
+							<td><input type="text" name="post[start_time]"  value="{$post[start_time]|date='Y-m-d H:i:s',###}" class="js-datetime" style="width: 160px;"></td>
 						</tr>
 						<tr>
-							<th>发布时间</th>
+							<th><b>结拍时间</b></th>
 						</tr>
 						<tr>
-							<td><input type="text" name="post[addtime]" value="{$post.addtime}" class="js-datetime" style="width: 160px;"></td>
+							<td><input type="text" name="post[end_time]" value="{$post[end_time]|date='Y-m-d H:i:s',###}" class="js-datetime" style="width: 160px;"></td>
 						</tr>
-						
-						<tr>
-							<th>状态</th>
-						</tr>
-						<tr>
-							<td>
-								<label class="radio"><input type="radio" name="post[cn_show]" value="0" <if condition="$post.cn_show eq '0'">checked</if>>不显示</label>
-								<label class="radio"><input type="radio" name="post[cn_show]" value="1" <if condition="$post.cn_show eq '1'">checked</if>>显示</label>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label class="radio"><input type="radio" name="post[tuijian]" value="1" <if condition="$post.tuijian eq '1'">checked</if>>推荐</label>
-								<label class="radio"><input type="radio" name="post[tuijian]" value="0" <if condition="$post.tuijian eq '0'">checked</if>>首页未推荐</label>
-							</td>
-						</tr>
-
-						<tr>
-							<th><b>国家</b></th>
-						</tr>
-						<tr>
-							<td>
-								<label class="radio"><input type="checkbox" name="post[country1]" value="1" <if condition="$post[country1] eq 1">checked="checked"</if>>中国</label>
-								<label class="radio"><input type="checkbox" name="post[country2]" value="2" <if condition="$post[country2] eq 2">checked="checked"</if>>英国</label>
-								<label class="radio"><input type="checkbox" name="post[country3]" value="3" <if condition="$post[country3] eq 3">checked="checked"</if>>荷兰</label>
-							</td>
-						</tr>
-						
 					</table>
 				</div>
 			</div>
 			<div class="form-actions">
 				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
-				<a class="btn" href="{:U('Auctionadmin/auctionindex')}">返回</a>
+				<a class="btn" href="{:U('Auctionadmin/changciindex',array('id'=>$post['cid']))}">返回</a>
 			</div>
 		</form>
 	</div>
@@ -266,7 +206,7 @@
 											}, {
 												name : '返回列表页',
 												callback : function() {
-													location = "{:U('Auctionadmin/auctionindex')}";
+													location = "{:U('Auctionadmin/changciindex',array('id'=>$post['cid']))}";
 													return true;
 												}
 											} ]

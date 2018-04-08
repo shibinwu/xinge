@@ -6,11 +6,11 @@
 			<li class="active"><a>{:L('AUCTION_CHANGCI_INDEX')}</a></li>
 			<!--<li><a href="{:U('Auction/Auctionadmin/changciadd')}">{:L('AUCTION_CHANGCI_ADD')}</a></li>-->
 		</ul>
-		<form class="well form-search" method="post" action="{:U('Auctionadmin/changciindex')}">
+		<form class="well form-search" method="post" action="{:U('Auctionadmin/changciindex',array('id'=>$list['0']['cid']))}">
 			{:L('KEYWORD')}：
 			<input type="text" name="keyword" style="width: 200px;" value="{$_REQUEST.keyword|default=''}" placeholder="{:L('KEYWORDS')}">
 			<input type="submit" class="btn btn-primary" value="{:L('SEARCH')}" />
-			<a class="btn btn-danger" href="{:U('Indexadmin/index')}">{:L('CLEAR')}</a>
+			<a class="btn btn-danger" href="{:U('Auctionadmin/changciindex',array('id'=>$list['0']['cid']))}">{:L('CLEAR')}</a>
 		</form>
 		<form method="post" class="js-ajax-form">
 			<table class="table table-hover table-bordered">
