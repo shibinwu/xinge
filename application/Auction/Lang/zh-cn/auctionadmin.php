@@ -30,6 +30,8 @@ return array(
         "START_PRICE" => '起始价格',
         "NOW_PRICE" => '当前价格',
         "MEMBER_ID" => '出价人ID',
+        "GEZI_SELECT" => '选择鸽子',
+        "PMGEZI_INDEX" => '鸽子列表',
 
 
         //鸽子管理

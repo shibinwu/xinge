@@ -16,6 +16,7 @@ class AuctionadminController extends AdminbaseController
     protected $zhanshou_model;
     protected $changci_model;
     protected $gezi_model;
+    protected $xuetongshu_model;
 
     function _initialize()
     {
@@ -30,6 +31,7 @@ class AuctionadminController extends AdminbaseController
         $this->zhanshou_model = M("Zhanshou");
         $this->changci_model = M("Changci");
         $this->gezi_model = M("Gezi");
+        $this->xuetongshu_model = M("Xuetongshu");
     }
 
     // 后台拍卖专题列表
@@ -147,7 +149,6 @@ class AuctionadminController extends AdminbaseController
         }
     }
 
-
     // 后台拍卖场次列表
     public function changciindex()
     {
@@ -157,8 +158,9 @@ class AuctionadminController extends AdminbaseController
             $keyword = $request['keyword'];
             $where['name'] = array('like', "%$keyword%");
         }
-        $id = I('get.id');
+        $changci = I('get.');
 
+        $id = I('get.id');
         $where['cid'] = $id;
         $where['l'] = LANG_SET;
         $count = $this->changci_model->where($where)->count();
@@ -168,15 +170,20 @@ class AuctionadminController extends AdminbaseController
             ->order("id DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
             ->select();
+//        dump($list);die;
         foreach ($list as $k => $val) {
-            $list[$k]['num'] = $this->pmzt_model->where(array('id' => $val['cid']))->count();
+            $list[$k]['num'] = explode(',',$val['gid']);
             $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
             $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
             $nums= $this->pmjilu_model->where(array('cid' => $val['id']))->getField('pmprice',true);
             $list[$k]['totals']=array_sum($nums);
-
         }
+        foreach ($list as $k =>$val){
+            $list[$k]['numms'] = count($val['num']);
+        }
+
         $this->assign('list', $list);
+        $this->assign('changci', $changci);
         $this->assign("page", $page->show('Admin'));
 
         $this->display();
@@ -244,6 +251,108 @@ class AuctionadminController extends AdminbaseController
         $info['tname'] = $this->pmzt_model->where(array('id' => $info['cid']))->getField('tname');
 
         $this->assign('post', $info);
+        $this->display();
+    }
+
+    // 后台拍卖场次选择鸽子列表
+    public function geziselect()
+    {
+        if (IS_POST) {
+            $post_id = intval($_POST['post']['id']);
+            $article = I("post.post");
+            //把时间转换成时间戳
+            $t = strtotime($article['start_time']);
+            $et = strtotime($article['end_time']);
+            //根据北京时间添加荷兰和英国时间
+            $article['en_start_time'] = $t - 28800;
+            $article['hl_start_time'] = $t - 21600;
+            $article['en_end_time'] = $et - 28800;
+            $article['hl_end_time'] = $et - 21600;
+            $article['start_time'] = $t;
+            $article['end_time'] = $et;
+            $result = $this->changci_model->save($article);
+            if ($result !== false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where = array();
+        $id = I('get.id');
+
+        $where['id'] = $id;
+        $gids = $this->changci_model->where($where)->getField('gid');
+        $gids = explode(',',$gids);
+        $gezis =array();
+        foreach ($gids as $key=>$vol){
+            $gezis[$key] = $this->gezi_model->where(array('id' => $vol)) ->find();
+        }
+//        dump($gezis);die;
+        $info = $this->gezi_model->where($where)->find();
+        $info['tname'] = $this->pmzt_model->where(array('id' => $info['gid']))->getField('tname');
+//        dump($info);die;
+        $gezi = $this->gezi_model->getField('id,huanhao');
+//        dump($gezi);die;
+
+        $this->assign('list', $gezis);
+        $this->assign('post', $id);
+        $this->display();
+    }
+
+    // 后台拍卖信鸽添加
+    public function pmgeziadd()
+    {
+        if (IS_POST) {
+            dump($_POST);exit;
+            $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['xtpic'] = sp_asset_relative_url($_POST['smeta']['thumbs']);
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $result = M("Pmproduct")->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $huanhao = I('get.');
+        $map = array();
+        $maps = array();
+        foreach ($huanhao as $k => $val){
+            $map['huanhao'] = $val[0];
+            $maps['id'] = $val[1];
+        }
+        $info = $this->gezi_model->where($map)->find();
+        $info['name'] = $this->changci_model->where($maps)->getField('name');
+
+
+        //获取目录路径
+        $path = './data/upload/default/tupian/';
+        //取出该目录下所有的文件及目录
+        $result = scandir($path);
+        //删除目录
+        array_splice($result,0,2);
+
+        if(in_array($map['huanhao'].'-pigeon.jpg',$result)){
+            $info['pic'] = "$path"."$map[huanhao]".'-pigeon.jpg';
+        }
+        if(in_array($map['huanhao'].'-eye.jpg',$result)){
+            $info['yjpic'] = "$path"."$map[huanhao]".'-eye.jpg';
+        }
+        if(in_array($map['huanhao'].'-ancestry.jpg',$result)){
+            $info['xtpic'] = "$path"."$map[huanhao]".'-ancestry.jpg';
+        }
+
+        $info['info'] = $this->xuetongshu_model->where($map)->getField('info');
+
+
+        if(empty($info)){
+            echo '无此鸽子';exit;
+        }
+        $this->assign('info', $info);
         $this->display();
     }
 
@@ -349,7 +458,7 @@ class AuctionadminController extends AdminbaseController
             $_POST = array();
             $info = '';
             foreach($str as $val){
-                $info .= '<p>'.$val.'<p>';
+                $info .= '<p>'.$val.'</p>';
             }
             $_POST['huanhao'] = $nameArr[0];
             $_POST['info'] = $info;

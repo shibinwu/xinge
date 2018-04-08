@@ -7,113 +7,139 @@
 </head>
 <body>
 <div class="wrap js-check-wrap">
-    <ul class="nav nav-tabs">
-        <li><a href="{:U('Auctionadmin/geziindex')}">{:L('AUCTION_GEZI_INDEX')}</a></li>
-        <li class="active"><a href="{:U('Auctionadmin/geziadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('AUCTION_GEZI_ADD')}</a></li>
-    </ul>
-    <form action="{:U('Auctionadmin/geziadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+
+    <form action="{:U('Auctionadmin/pmgeziadd')}" method="post" class="form-horizontal " enctype="multipart/form-data">
         <div class="row-fluid">
             <div class="span9">
                 <table class="table table-bordered">
-
                     <tr>
-                        <th width="80">鸽子名称</th>
+                        <th>起拍价</th>
                         <td>
-                            <input type="text" name="post[title]" style="width: 400px" required value="" placeholder="请输入鸽子名称">
-                            <span class="form-required">*</span>
+                            <input type="text" name="post[price]" value="{$info['price']}" style="width: 320px" placeholder="请输入价格">
+                            <select name="post[bz]" style="width:80px;">
+                                <option value="1" <if condition="$info['bz'] eq 1">selected</if>>欧元</option>
+                                <option value="2" <if condition="$info['bz'] eq 2">selected</if>>人民币</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="display: none">
+                        <th>加价幅度</th>
+                        <td>
+                            <input type="text" name="post[margin_price]" style="width: 400px" placeholder="请输入运费">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>运费</th>
+                        <td>
+                            <input type="text" name="post[yunfei]" style="width: 400px" placeholder="请输入运费">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Koop</th>
+                        <td>
+                            <input type="text" name="post[sequence]" style="width: 160px" placeholder="请输入排序">&nbsp&nbsp此处只能填写数字
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>查看次数</th>
+                        <td>
+                            <input type="text" name="post[hits]" style="width: 400px" value="{$info['hits']|default='0'}" placeholder="请输入查看次数">
                         </td>
                     </tr>
                     <tr>
                         <th>环号</th>
                         <td>
-                            <input type="text" name="post[huanhao]" style="width: 400px" required value="" placeholder="请输入鸽子环号">
-                            <span class="form-required">*</span>
+                            <input type="text" name="post[huanhao]" style="width: 400px" required value="{$info.huanhao}" readonly="readonly">
                         </td>
                     </tr>
-
+                    <tr>
+                        <th style="width:80px;">所属场次</th>
+                        <td>
+                            {$info.name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>鸽子名称</th>
+                        <td>
+                            {$info.title}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>属性</th>
+                        <td>
+                            <if condition="$info[zhuangtai] eq 0">拍卖</if>
+                            <if condition="$info[zhuangtai] eq 1">赠送</if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>性别</th>
+                        <td>
+                            <if condition="$info[gezi_sex] eq 0">雌</if>
+                            <if condition="$info[gezi_sex] eq 1">雄</if>
+                            <if condition="$info[gezi_sex] eq 2">未知</if>
+                        </td>
+                    </tr>
                     <tr>
                         <th>眼沙</th>
                         <td>
-                            <select name="post[gezi_eyes]" style="width:200px;">
-                                <option>请选择眼沙</option>
-                                <option value="黄眼">黄眼</option>
-                                <option value="砂眼">砂眼</option>
-                                <option value="牛眼">牛眼</option>
-                            </select>
+                            <if condition="$info.gezi_eyes == 黄眼">黄眼</if>
+                            <if condition="$info.gezi_eyes == 砂眼">砂眼</if>
+                            <if condition="$info.gezi_eyes == 牛眼">牛眼</if>
                         </td>
                     </tr>
-
                     <tr>
                         <th>羽色</th>
                         <td>
-                            <select name="post[gezi_color]" style="width:200px;">
-                                <option value="">请选择羽色</option>
-                                <option value="灰">灰</option>
-                                <option value="黑">黑</option>
-                                <option value="绛">绛</option>
-                                <option value="白">白</option>
-                                <option value="花">花</option>
-                                <option value="雨点">雨点</option>
-                            </select>
+                            <if condition="$info.gezi_color == 灰 ">灰</if>
+                            <if condition="$info.gezi_color == 黑 ">黑</if>
+                            <if condition="$info.gezi_color == 绛 ">绛</if>
+                            <if condition="$info.gezi_color == 白 ">白</if>
+                            <if condition="$info.gezi_color == 花 ">花</if>
+                            <if condition="$info.gezi_color == 雨点 ">雨点</if>
                         </td>
                     </tr>
                     <tr>
                         <th>专家评论</th>
                         <td style="width: 30px">
-                            <select name="post[figure]" style="width:110px;">
-                                <option value="">请选择体型</option>
-                                <option value="1">偏大</option>
-                                <option value="2">中等</option>
-                                <option value="3">偏小</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[keel]" style="width:110px;">
-                                <option value="">请选择龙骨</option>
-                                <option value="1">偏短</option>
-                                <option value="2">中等</option>
-                                <option value="3">偏长</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[waist_tail]" style="width:110px;">
-                                <option value="">请选择要背</option>
-                                <option value="1">强壮</option>
-                                <option value="2">正常</option>
-                                <option value="3">一般</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[muscle]" style="width:110px;">
-                                <option value="">请选择肌肉</option>
-                                <option value="1">很好</option>
-                                <option value="2">正常</option>
-                                <option value="3">一般</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[balance]" style="width:110px;">
-                                <option value="">请选择平衡</option>
-                                <option value="1">很好</option>
-                                <option value="2">正常</option>
-                                <option value="3">一般</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[pubis]" style="width:110px;">
-                                <option value="">请选择耻骨</option>
-                                <option value="1">紧合</option>
-                                <option value="2">正常</option>
-                                <option value="3">稍松</option>
-                            </select>
-                            &nbsp &nbsp
-                            <select name="post[feather]" style="width:110px;">
-                                <option value="">请选择羽毛</option>
-                                <option value="1">柔软</option>
-                                <option value="2">一般</option>
-                            </select>
+                            体型:
+                            <if condition="$info.figure == 1">偏大</if>
+                            <if condition="$info.figure == 2">中等</if>
+                            <if condition="$info.figure == 3">偏小</if>
+                            &nbsp&nbsp&nbsp&nbsp龙骨:
+                            <if condition="$info.keel == 1">偏短</if>
+                            <if condition="$info.keel == 2">中等</if>
+                            <if condition="$info.keel == 3">偏长</if>
+                            &nbsp&nbsp&nbsp&nbsp要背:
+                            <if condition="$info.waist_tail == 1">强壮</if>
+                            <if condition="$info.waist_tail == 2">正常</if>
+                            <if condition="$info.waist_tail == 3">一般</if>
+                            &nbsp&nbsp&nbsp&nbsp肌肉:
+                            <if condition="$info.muscle == 1">很好</if>
+                            <if condition="$info.muscle == 2">正常</if>
+                            <if condition="$info.muscle == 3">一般</if>
+                            &nbsp&nbsp&nbsp&nbsp平衡:
+                            <if condition="$info.balance == 1">很好</if>
+                            <if condition="$info.balance == 2">正常</if>
+                            <if condition="$info.balance == 3">一般</if>
+                            &nbsp&nbsp&nbsp&nbsp耻骨:
+                                <if condition="$info.pubis == 1">紧合</if>
+                                <if condition="$info.pubis == 2">正常</if>
+                                <if condition="$info.pubis == 3">稍松</if>
+                            &nbsp&nbsp&nbsp&nbsp羽毛:<if condition="$info.feather == 1">柔软</if>
+                                      <if condition="$info.feather == 2">一般</if>
                         </td>
                     </tr>
-
                     <tr>
                         <th>鸽子简介</th>
                         <td>
-                            <script type="text/plain" id="content" name="post[content]"></script>
+                            <div style="max-height: 350px;overflow:hidden;overflow-y: scroll;">{:htmlspecialchars_decode($info['content'])}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>血统书</th>
+                        <td>
+                            <!--<script type="text/plain" id="contents" name="info[content]">{$info.info}</script>-->
+                            <div style="max-height: 350px;width:100%;overflow:hidden;overflow-y: scroll;">{:htmlspecialchars_decode($info['info'])}</div>
                         </td>
                     </tr>
                 </table>
@@ -121,23 +147,45 @@
             <div class="span3">
                 <table class="table table-bordered">
                     <tr>
-                        <th><b>鸽子性别</b></th>
+                        <th><b>鸽子图片</b></th>
                     </tr>
                     <tr>
                         <td>
-                            <label class="radio"><input type="radio" name="post[gezi_sex]" value="0" checked>雌</label>
-                            <label class="radio"><input type="radio" name="post[gezi_sex]" value="1">雄</label>
-                            <label class="radio"><input type="radio" name="post[gezi_sex]" value="2">未知</label>
+                            <div style="text-align: center;">
+                                        <if condition="empty($info['pic'])">
+                                            <img src="__TMPL__Public/assets/images/default-thumbnail.png"  width="135" style="cursor: hand"/>
+                                            <else />
+                                            <img src="{$info['pic']}"  width="135" style="cursor: hand"/>
+                                        </if>
+                            </div>
                         </td>
                     </tr>
-
                     <tr>
-                        <th><b>分类</b></th>
+                        <th><b>鸽子眼图</b></th>
                     </tr>
                     <tr>
                         <td>
-                            <label class="radio"><input type="radio" name="post[zhuangtai]" value="0" checked>拍卖</label>
-                            <label class="radio"><input type="radio" name="post[zhuangtai]" value="1" >赠送</label>
+                            <div style="text-align: center;">
+                                <if condition="empty($info['yjpic'])">
+                                    <img src="__TMPL__Public/assets/images/default-thumbnail.png"  width="135" style="cursor: hand"/>
+                                    <else />
+                                    <img src="{$info['yjpic']}"  width="135" style="cursor: hand"/>
+                                </if>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>鸽子血统书</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <if condition="empty($info['xtpic'])">
+                                    <img src="__TMPL__Public/assets/images/default-thumbnail.png"  width="135" style="cursor: hand"/>
+                                    <else />
+                                    <img src="{$info['xtpic']}"  width="135" style="cursor: hand"/>
+                                </if>
+                            </div>
                         </td>
                     </tr>
 
@@ -145,8 +193,8 @@
             </div>
         </div>
         <div class="form-actions">
-            <button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
-            <a class="btn" href="{:U('Auctionadmin/geziindex')}">返回</a>
+            <button class="btn btn-primary " type="submit">提交</button>
+            <a class="btn" href="{:U('Auctionadmin/index')}">返回</a>
         </div>
     </form>
 </div>
@@ -295,7 +343,7 @@
                                         }, {
                                             name : '返回列表页',
                                             callback : function() {
-                                                location = "{:U('Auctionadmin/geziindex')}";
+                                                location = "{:U('Auctionadmin/xingeindex')}";
                                                 return true;
                                             }
                                         } ]
@@ -311,7 +359,6 @@
         });
         ////-------------------------
     });
-
 </script>
 </body>
 </html>

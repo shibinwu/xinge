@@ -47,7 +47,7 @@ class XuetongshuadminController extends AdminbaseController
             $_POST = array();
             $info = '';
             foreach($str as $val){
-                $info .= '<p>'.$val.'<p>';
+                $info .= '<p>'.$val.'</p>';
             }
             $_POST['huanhao'] = $nameArr[0];
             $_POST['info'] = $info;

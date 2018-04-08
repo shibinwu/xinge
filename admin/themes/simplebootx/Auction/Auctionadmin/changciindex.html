@@ -5,6 +5,8 @@
 		<ul class="nav nav-tabs">
 			<li class="active"><a>{:L('AUCTION_CHANGCI_INDEX')}</a></li>
 			<!--<li><a href="{:U('Auction/Auctionadmin/changciadd')}">{:L('AUCTION_CHANGCI_ADD')}</a></li>-->
+			<li><a href="{:U('Auctionadmin/changciadd',array('id'=>$changci['id'],'num'=>$changci['num']))}" >{:L('AUCTION_CHANGCI_ADD')}</a></li>
+
 		</ul>
 		<form class="well form-search" method="post" action="{:U('Auctionadmin/changciindex',array('id'=>$list['0']['cid']))}">
 			{:L('KEYWORD')}：
@@ -34,11 +36,12 @@
 						<td>{$vo.seq}</td>
 						<td>{$vo[start_time] | date='Y-m-d H:i:s',###}</td>
 						<td>{$vo[end_time] | date='Y-m-d H:i:s',###}</td>
-						<td>{$vo.nums}只</td>
+						<td>{$vo.numms}只</td>
 						<td>{$vo.totals}</td>
 						<td align="center">
 							<a href="{:U('Auctionadmin/changciedit',array('id'=>$vo['id']))}" >{:L('EDIT')}</a>
 							<a href="{:U('Auctionadmin/changcidelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+							<a href="{:U('Auctionadmin/geziselect',array('id'=>$vo['id']))}" >{:L('GEZI_SELECT')}</a>
 						</td>
 					</tr>
 					</foreach>
