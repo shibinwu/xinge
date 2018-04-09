@@ -69,8 +69,6 @@ class ZtndgzController extends HomebaseController {
                 $data[$key]['max'] = $arr[count($arr)-1];
             }
         }
-
-
         if(empty($changci)){
             $changci = $data['0']['id'];
         }
@@ -88,13 +86,10 @@ class ZtndgzController extends HomebaseController {
             $result = scandir($path);
             //删除目录
             array_splice($result,0,2);
-
             if(in_array($huanhao.'-pigeon.jpg',$result)){
                 $article[$k]['pics'] = "$path"."$huanhao".'-pigeon.jpg';
             }
         }
-
-
         //专题信息
         $this->assign('list', $list);
         $this->assign('changci', $changci);
