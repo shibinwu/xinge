@@ -40,6 +40,7 @@ class MgpmController extends HomebaseController {
         $this->pmproduct_model = M("Pmproduct");
         $this->pmjilu_model = M("Pmjilu");
     }
+    //正在拍卖的专题页面显示
 	public function index() {
         $where = array();
         $request = I('request.');
@@ -57,8 +58,9 @@ class MgpmController extends HomebaseController {
             ->where($where)
             ->order("addtime DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,tuijian,addtime')
+            ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,pics,tuijian,addtime')
             ->select();
+
         foreach ($list as $k => $val) {
             $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
             //倒计时
@@ -83,8 +85,9 @@ class MgpmController extends HomebaseController {
             ->where($where)
             ->order("addtime DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,tname,start_time,end_time,cn_show,zhaiyao,tuijian,addtime')
+            ->field('id,tname,start_time,end_time,cn_show,zhaiyao,content,pics,tuijian,addtime')
             ->select();
+
         foreach ($data as $k => $val) {
             $data[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
         }

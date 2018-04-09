@@ -43,6 +43,9 @@ return array(
         "ZHUANGTAI" => '状态',
         "FENLEI" => '分类',
 
+        //拍卖鸽子管理
+        "ADDTIME" => '添加时间',
+
 
         //拍卖管理
         "AUCTION_XINGE_INDEX" => '拍卖管理列表',

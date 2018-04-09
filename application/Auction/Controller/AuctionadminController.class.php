@@ -17,6 +17,7 @@ class AuctionadminController extends AdminbaseController
     protected $changci_model;
     protected $gezi_model;
     protected $xuetongshu_model;
+    protected $pmgezi_model;
 
     function _initialize()
     {
@@ -32,6 +33,7 @@ class AuctionadminController extends AdminbaseController
         $this->changci_model = M("Changci");
         $this->gezi_model = M("Gezi");
         $this->xuetongshu_model = M("Xuetongshu");
+        $this->pmgezi_model = M("Pmgezi");
     }
 
     // 后台拍卖专题列表
@@ -159,7 +161,6 @@ class AuctionadminController extends AdminbaseController
             $where['name'] = array('like', "%$keyword%");
         }
         $changci = I('get.');
-
         $id = I('get.id');
         $where['cid'] = $id;
         $where['l'] = LANG_SET;
@@ -170,16 +171,10 @@ class AuctionadminController extends AdminbaseController
             ->order("id DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
             ->select();
-//        dump($list);die;
         foreach ($list as $k => $val) {
-            $list[$k]['num'] = explode(',',$val['gid']);
-            $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
-            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
-            $nums= $this->pmjilu_model->where(array('cid' => $val['id']))->getField('pmprice',true);
+            $list[$k]['num'] = $this->pmgezi_model->where(array('cid' => $val['id']))->count();
+            $nums= $this->pmgezi_model->where(array('cid' => $val['id']))->getField('start_price',true);
             $list[$k]['totals']=array_sum($nums);
-        }
-        foreach ($list as $k =>$val){
-            $list[$k]['numms'] = count($val['num']);
         }
 
         $this->assign('list', $list);
@@ -257,45 +252,16 @@ class AuctionadminController extends AdminbaseController
     // 后台拍卖场次选择鸽子列表
     public function geziselect()
     {
-        if (IS_POST) {
-            $post_id = intval($_POST['post']['id']);
-            $article = I("post.post");
-            //把时间转换成时间戳
-            $t = strtotime($article['start_time']);
-            $et = strtotime($article['end_time']);
-            //根据北京时间添加荷兰和英国时间
-            $article['en_start_time'] = $t - 28800;
-            $article['hl_start_time'] = $t - 21600;
-            $article['en_end_time'] = $et - 28800;
-            $article['hl_end_time'] = $et - 21600;
-            $article['start_time'] = $t;
-            $article['end_time'] = $et;
-            $result = $this->changci_model->save($article);
-            if ($result !== false) {
-                $this->success("保存成功！");
-            } else {
-                $this->error("保存失败！");
-            }
-            exit;
-        }
         $where = array();
         $id = I('get.id');
-
-        $where['id'] = $id;
-        $gids = $this->changci_model->where($where)->getField('gid');
-        $gids = explode(',',$gids);
-        $gezis =array();
-        foreach ($gids as $key=>$vol){
-            $gezis[$key] = $this->gezi_model->where(array('id' => $vol)) ->find();
+        $where['l'] = LANG_SET;
+        //根据场次id获取该场次下面的所有鸽子信息
+        $where['cid'] = $id;
+        $article = $this->pmgezi_model->where($where)->getField('huanhao,cid,sequence,addtime');
+        foreach ($article as $k => $val){
+            $article[$k]['title'] = $this->gezi_model->where(array('huanhao'=>$k))->getField('title');
         }
-//        dump($gezis);die;
-        $info = $this->gezi_model->where($where)->find();
-        $info['tname'] = $this->pmzt_model->where(array('id' => $info['gid']))->getField('tname');
-//        dump($info);die;
-        $gezi = $this->gezi_model->getField('id,huanhao');
-//        dump($gezi);die;
-
-        $this->assign('list', $gezis);
+        $this->assign('list', $article);
         $this->assign('post', $id);
         $this->display();
     }
@@ -304,14 +270,14 @@ class AuctionadminController extends AdminbaseController
     public function pmgeziadd()
     {
         if (IS_POST) {
-            dump($_POST);exit;
-            $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
-            $_POST['post']['xtpic'] = sp_asset_relative_url($_POST['smeta']['thumbs']);
             $_POST['post']['created_by'] = get_current_admin_id();
             $article = I("post.post");
-            $article['content'] = htmlspecialchars_decode($article['content']);
-            $result = M("Pmproduct")->add($article);
+
+            $article['addtime'] = time();
+            $huanhao = $article['huanhao'];
+            $result = $this->pmgezi_model->add($article);
             if ($result) {
+                $this-> gezi_model->where("huanhao = '$huanhao'")->setField('zhuangtai',1);
                 $this->success("添加成功！");
             } else {
                 $this->error("添加失败！");
@@ -327,7 +293,7 @@ class AuctionadminController extends AdminbaseController
         }
         $info = $this->gezi_model->where($map)->find();
         $info['name'] = $this->changci_model->where($maps)->getField('name');
-
+        $info['cid'] = $maps['id'];
 
         //获取目录路径
         $path = './data/upload/default/tupian/';
@@ -345,12 +311,15 @@ class AuctionadminController extends AdminbaseController
         if(in_array($map['huanhao'].'-ancestry.jpg',$result)){
             $info['xtpic'] = "$path"."$map[huanhao]".'-ancestry.jpg';
         }
-
         $info['info'] = $this->xuetongshu_model->where($map)->getField('info');
-
-
-        if(empty($info)){
+        if(empty($info['huanhao'])){
             echo '无此鸽子';exit;
+        }
+        if(!empty($info) && $info['zhuangtai'] == 1){
+            echo '此鸽子已在拍卖中';exit;
+        }
+        if(!empty($info) && $info['zhuangtai'] == 2){
+            echo '此鸽子为赠鸽，不能拍卖';exit;
         }
         $this->assign('info', $info);
         $this->display();

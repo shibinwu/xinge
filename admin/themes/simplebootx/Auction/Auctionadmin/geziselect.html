@@ -20,7 +20,7 @@
 				<th>{:L('ORDER')}</th>
 				<th>{:L('HUANHAO')}</th>
 				<th>{:L('GEZI_NAME')}</th>
-				<th>{:L('ZHUANGTAI')}</th>
+				<th>{:L('ADDTIME')}</th>
 				<th align="center">{:L('ACTIONS')}</th>
 			</tr>
 			</thead>
@@ -42,9 +42,7 @@
 					</td>
 					<td>{$vo.title}</td>
 					<td>
-						<if condition="$vo.zhuangtai eq 0">拍卖
-							<elseif condition="$vo.zhuangtai eq 1"/>赠送
-						</if>
+						{$vo[addtime]|date="Y-m-d H:i:s",###}
 					</td>
 					<td align="center">
 						<a href="{:U('Auctionadmin/geziedit',array('id'=>$vo['id']))}" >{:L('EDIT')}</a>
@@ -62,7 +60,7 @@
 				<th>{:L('ORDER')}</th>
 				<th>{:L('HUANHAO')}</th>
 				<th>{:L('GEZI_NAME')}</th>
-				<th>{:L('ZHUANGTAI')}</th>
+				<th>{:L('ADDTIME')}</th>
 				<th align="center">{:L('ACTIONS')}</th>
 			</tr>
 			</thead>

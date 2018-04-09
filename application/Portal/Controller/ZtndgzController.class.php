@@ -28,71 +28,82 @@ use Common\Controller\HomebaseController;
 /**
  * 首页
  */
-class MgpmController extends HomebaseController {
+class ZtndgzController extends HomebaseController {
     //当前使用语言 常量  LANG_SET
     protected $pmzt_model;
-    protected $pmproduct_model;
+    protected $changci_model;
+    protected $pmgezi_model;
     protected $pmjilu_model;
+    protected $gezi_model;
     function _initialize()
     {
         parent::_initialize();
         $this->pmzt_model = M("Pmzt");
-        $this->pmproduct_model = M("Pmproduct");
+        $this->changci_model = M("Changci");
+        $this->pmgezi_model = M("Pmgezi");
         $this->pmjilu_model = M("Pmjilu");
+        $this->gezi_model = M("Gezi");
     }
+    //获取专题页面的信息
 	public function index() {
-        $where = array();
-        $request = I('request.');
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
-        if (!empty($request['keyword'])) {
-            $keyword = $request['keyword'];
-            $where['title'] = array('like', "%$keyword%");
-        }
+        //专题id
+        $id = I('get.id');
+        //场次id
+        $changci = I('get.cid');
         $where['l'] = LANG_SET;
-        $count = $this->pmzt_model->where($where)->count();
-        $page = $this->page($count, 8);
+        $where['id'] = $id;
+        //获取专题信息
         $list = $this->pmzt_model
             ->where($where)
-            ->order("addtime DESC")
-            ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,tuijian,addtime')
-            ->select();
-        foreach ($list as $k => $val) {
-            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
-            //倒计时
-            $remain_time = $val['end_time'] - time(); //剩余的秒数
-            $remain_hours = floor($remain_time/(60*60)); //剩余的小时
-            $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
-            $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
-            $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
-            $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
-            $remain_second=sprintf("%02d",$remain_seconds);
-            $list[$k]['daojishi'] = $remain_hour.':'.$remain_minute.':'.$remain_second;
-
+            ->field('id,tname,pics,zhaiyao')->find();
+        //获取场次信息
+        $data = $this->changci_model->where(array('cid'=>$list['id']))->select();
+        foreach ($data as $key => $val){
+            $data[$key]['map'] = $this->pmgezi_model->where(array('cid'=>$val['id']))->getField('sequence',true);
+        }
+        foreach ($data as $key =>$val){
+            $arr = $val['map'];
+            if(!empty($arr)){
+                sort($arr);
+                $data[$key]['min'] = $arr[0];
+                $data[$key]['max'] = $arr[count($arr)-1];
+            }
         }
 
-        $where['l'] = LANG_SET;
-        //即将上线的条件
-        $temp = time();
-        $where['start_time'] = array('gt',"$temp");
-        $count = $this->pmzt_model->where($where)->count();
-        $page = $this->page($count, 3);
-        $data = $this->pmzt_model
-            ->where($where)
-            ->order("addtime DESC")
-            ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,tname,start_time,end_time,cn_show,zhaiyao,tuijian,addtime')
-            ->select();
-        foreach ($data as $k => $val) {
-            $data[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+
+        if(empty($changci)){
+            $changci = $data['0']['id'];
         }
+       //根据场次id获取该场次下面的所有鸽子信息
+        $map['cid'] = $changci;
+        $article = $this->pmgezi_model->where($map)->field('huanhao,cid,sequence,addtime')->select();
+        foreach ($article as $k => $val){
+            $gzmap = array('huanhao'=>$val['huanhao']);
+            $huanhao = $val['huanhao'];
+            $article[$k]['title'] = $this->gezi_model->where($gzmap)->getField('title');
+            $article[$k]['gezi_sex'] = $this->gezi_model->where($gzmap)->getField('gezi_sex');
+            //获取目录路径
+            $path = './data/upload/default/tupian/';
+            //取出该目录下所有的文件及目录
+            $result = scandir($path);
+            //删除目录
+            array_splice($result,0,2);
+
+            if(in_array($huanhao.'-pigeon.jpg',$result)){
+                $article[$k]['pics'] = "$path"."$huanhao".'-pigeon.jpg';
+            }
+        }
+
+
+        //专题信息
         $this->assign('list', $list);
+        $this->assign('changci', $changci);
+        $this->assign('id', $id);
+        //场次信息
         $this->assign('data', $data);
-        $this->assign("page", $page->show('Admin'));
-
-    	$this->display(":mgpm");
+        //鸽子信息
+        $this->assign('article', $article);
+    	$this->display(":ztndgz");
     }
 }
 

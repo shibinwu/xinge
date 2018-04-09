@@ -52,8 +52,9 @@
 						</td>
 						<td>{$vo.title}</td>
 						<td>
-						<if condition="$vo.zhuangtai eq 0">拍卖
-							<elseif condition="$vo.zhuangtai eq 1"/>赠送
+						<if condition="$vo.zhuangtai eq 0">库存
+							<elseif condition="$vo.zhuangtai eq 1"/>拍卖
+							<elseif condition="$vo.zhuangtai eq 2"/>赠送
 						</if>
 						</td>
 						<td align="center">

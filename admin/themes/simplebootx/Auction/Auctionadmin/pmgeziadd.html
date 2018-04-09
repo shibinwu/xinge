@@ -3,6 +3,10 @@
     .pic-list li {
         margin-bottom: 5px;
     }
+    .tijiao {
+        margin-bottom: 15px;
+
+    }
 </style>
 </head>
 <body>
@@ -15,17 +19,17 @@
                     <tr>
                         <th>起拍价</th>
                         <td>
-                            <input type="text" name="post[price]" value="{$info['price']}" style="width: 320px" placeholder="请输入价格">
+                            <input type="text" name="post[start_price]" value="{$info['start_price']}" style="width: 320px" placeholder="请输入价格">
                             <select name="post[bz]" style="width:80px;">
                                 <option value="1" <if condition="$info['bz'] eq 1">selected</if>>欧元</option>
                                 <option value="2" <if condition="$info['bz'] eq 2">selected</if>>人民币</option>
                             </select>
                         </td>
                     </tr>
-                    <tr style="display: none">
+                    <tr>
                         <th>加价幅度</th>
                         <td>
-                            <input type="text" name="post[margin_price]" style="width: 400px" placeholder="请输入运费">
+                            <input type="text" name="post[margin_price]" style="width: 400px" placeholder="请输入涨幅">
                         </td>
                     </tr>
                     <tr>
@@ -37,7 +41,7 @@
                     <tr>
                         <th>Koop</th>
                         <td>
-                            <input type="text" name="post[sequence]" style="width: 160px" placeholder="请输入排序">&nbsp&nbsp此处只能填写数字
+                            <input type="text" name="post[sequence]" style="width: 400px" placeholder="请输入排序">&nbsp&nbsp此处只能填写数字
                         </td>
                     </tr>
                     <tr>
@@ -55,6 +59,7 @@
                     <tr>
                         <th style="width:80px;">所属场次</th>
                         <td>
+                            <input type="hidden" name="post[cid]" value="{$info.cid}">
                             {$info.name}
                         </td>
                     </tr>
@@ -146,6 +151,10 @@
             </div>
             <div class="span3">
                 <table class="table table-bordered">
+                    <div class="tijiao">
+                        <button class="btn btn-primary " type="submit">提交</button>
+                        <a class="btn" href="{:U('Auctionadmin/index')}">返回</a>
+                    </div>
                     <tr>
                         <th><b>鸽子图片</b></th>
                     </tr>
