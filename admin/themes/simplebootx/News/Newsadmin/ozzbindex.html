@@ -3,22 +3,11 @@
 <body>
 <div class="wrap js-check-wrap">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="javascript:;">{:L('LABEL_INDEX')}</a></li>
-		<li><a href="{:U('Labeladmin/add',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('LABEL_ADD')}</a></li>
+		<li class="active"><a href="javascript:;">{:L('NEWS_OZZB_INDEX')}</a></li>
+		<li><a href="{:U('Newsadmin/ozzbadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZB_ADD')}</a></li>
 	</ul>
-	<form class="well form-search" method="post" action="{:U('Labeladmin/index')}">
-		分类：
-		<select name="term" style="width: 120px;">
-				<option value="">请选择标签类型</option>
-				<option value='0' <if condition="$_POST['term'] eq 0">selected </if> >鸽主标签</option>
-				<option value='1' <if condition="$_POST['term'] eq 1">selected </if> >赛事标签</option>
-		</select> &nbsp;&nbsp;
-		标签：
-		<input type="text" name="keyword" style="width: 200px;" value="{$_POST.keyword|default=''}" placeholder="请输入关键字...">
-		<input type="submit" class="btn btn-primary" value="搜索" />
-		<a class="btn btn-danger" href="{:U('AdminPost/index')}">清空</a>
-	</form>
 	<form class="js-ajax-form" action="" method="post">
+
 		<table class="table table-hover table-bordered table-list">
 			<thead>
 			<tr>
@@ -27,9 +16,12 @@
 					<th width="50">{:L('SORT')}</th>
 				</notempty>
 				<th align="center">ID</th>
-				<th>{:L('LABEL_NAME')}</th>
-				<th>{:L('LABEL_TYPE')}</th>
-				<th width="180">{:L('ACTIONS')}</th>
+				<th>{:L('MATCH')}</th>
+				<th>{:L('JIGE')}</th>
+				<th>{:L('FANGFEI')}</th>
+				<th>{:L('DISTANCE')}</th>
+				<th>{:L('ORGANIZER')}</th>
+				<th>{:L('ACTIONS')}</th>
 			</tr>
 			</thead>
 			<foreach name="list" item="vo">
@@ -38,16 +30,15 @@
 					<notempty name="term">
 						<td><input name="listorders[{$vo.tid}]" class="input input-order" type="text" size="5" value="{$vo.listorder}"></td>
 					</notempty>
-					<td><b>{$vo.id}</b></td>
+					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
-					<td><b><if condition="$vo[type] eq 0">
-						鸽主标签
-						<elseif condition="$vo[type] eq 1"/>
-						赛事标签
-					</if></b></td>
+					<td>{$vo[jige]|date="Y-m-d H:i:s",###}</td>
+					<td>{$vo[fangfei]|date="Y-m-d H:i:s",###}</td>
+					<td>{$vo.distance}</td>
+					<td>{$vo.organizer}</td>
 					<td>
-						<a href="{:U('Labeladmin/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
-						<a href="{:U('Labeladmin/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						<a href="{:U('Newsadmin/ozzbedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
+						<a href="{:U('Newsadmin/ozzbdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 			</foreach>
@@ -58,12 +49,16 @@
 					<th width="50">{:L('SORT')}</th>
 				</notempty>
 				<th align="center">ID</th>
-				<th>{:L('LABEL_NAME')}</th>
-				<th>{:L('LABEL_TYPE')}</th>
-				<th width="180">{:L('ACTIONS')}</th>
+				<th>{:L('MATCH')}</th>
+				<th>{:L('JIGE')}</th>
+				<th>{:L('FANGFEI')}</th>
+				<th>{:L('DISTANCE')}</th>
+				<th>{:L('ORGANIZER')}</th>
+				<th>{:L('ACTIONS')}</th>
 			</tr>
 			</tfoot>
 		</table>
+
 		<div class="pagination">{$page}</div>
 	</form>
 </div>

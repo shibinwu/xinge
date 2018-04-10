@@ -14,4 +14,23 @@ return array(
         "CLICKS" => '真实点击数',
         "ISSUER_TIME" => '发布时间',
         "COLUMN" => '所属栏目',
+
+        //年份列表
+        "NEWS_YEAR_INDEX" => '年份列表',
+        "NEWS_YEAR_ADD" => '添加年份',
+        "NEWS_YEAR_EDIT" => '编辑年份',
+        "NEWS_YEAR_NAME" => '所属年份',
+        "NEWS_YEAR_TYPE" => '所属战报',
+        "CLEAR" => '清除',
+
+        //欧洲战报列表
+        "NEWS_OZZB_INDEX" => '欧洲战报列表',
+        "NEWS_OZZB_ADD" => '添加欧洲战报',
+        "NEWS_OZZB_EDIT" => '编辑欧洲战报',
+        "JIGE" => '集鸽',
+        "FANGFEI" => '放飞',
+        "MATCH" => '赛事',
+        "DISTANCE" => '预估空距（公里）',
+        "ORGANIZER" => '组织者',
+        "FENLEI" => '分类',
 );

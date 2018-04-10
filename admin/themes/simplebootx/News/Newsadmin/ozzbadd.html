@@ -8,32 +8,76 @@
 <body>
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
-			<li><a href="{:U('Labeladmin/index')}">{:L('LABEL_INDEX')}</a></li>
-			<li><a href="{:U('Labeladmin/add',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('LABEL_ADD')}</a></li>
-			<li class="active"><a href="#">{:L('LABEL_EDIT')}</a></li>
+			<li><a href="{:U('Newsadmin/ozzbindex')}">{:L('NEWS_OZZB_INDEX')}</a></li>
+			<li class="active"><a href="{:U('Newsadmin/ozzbadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZB_ADD')}</a></li>
 		</ul>
-		<form action="{:U('Labeladmin/edit')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+		<form action="{:U('Newsadmin/ozzbadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
-						<input type="hidden" name="post[id]" value="{$post.id}">
 						<tr>
-							<th width="80">标签名称</th>
+							<th width="80">赛事名称</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[name]"  required value="{$post.name}" placeholder="请输入标签名称"/>
+								<input type="text" style="width:400px;" name="post[name]" id="1" required value="" placeholder="请输入赛事名称"/>
 								<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th width="80">所属年份</th>
+							<td>
+								<select name="post[yid]" style="width:415px;">
+									<option >请选择</option>
+									<foreach name="data" item="vo" >
+										<option value="{$key}" >{$vo}</option>
+									</foreach>
+								</select>
 							</td>
 						</tr>
 
 						<tr>
-							<th>所属类型</th>
+							<th>集鸽</th>
 							<td>
-								<select name="post[type]" style="width:200px;">
-									<option>请选择类型</option>
-									<option value="0" <if condition="$post['type'] eq 0"> selected</if>>鸽主标签</option>
-									<option value="1" <if condition="$post['type'] eq 1"> selected</if>>赛事标签</option>
+								<input type="text" name="post[jige]" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;">
+							</td>
+						</tr>
 
-								</select>
+						<tr>
+							<th>放飞</th>
+							<td>
+								<input type="text" name="post[fangfei]" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;">
+							</td>
+						</tr>
+						<tr>
+							<th>分类</th>
+							<td>
+								<input type="text" name="post[fenlei]"  style="width: 400px" placeholder="请输入所属分类">
+							</td>
+						</tr>
+
+						<tr>
+							<th>预估空距（公里）</th>
+							<td>
+								<input type="text" name="post[distance]" style="width: 400px" placeholder="请输入预估空距">
+							</td>
+						</tr>
+						<tr>
+							<th>组织者</th>
+							<td>
+								<input type="text" name="post[organizer]" style="width: 400px" placeholder="请输入组织者">
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<th><b>标签</b></th>
+						</tr>
+						<tr>
+							<td>
+								<foreach name="arr" item="vo">
+									<label class="radio"><input type="checkbox" name="post[bid][{$key}]" value="{$key}" >{$vo}</label>
+								</foreach>
 							</td>
 						</tr>
 					</table>
@@ -41,7 +85,7 @@
 			</div>
 			<div class="form-actions">
 				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
-				<a class="btn" href="{:U('Labeladmin/index')}">返回</a>
+				<a class="btn" href="{:U('Newsadmin/index')}">返回</a>
 			</div>
 		</form>
 	</div>
@@ -54,8 +98,6 @@
 	<script type="text/javascript" src="__PUBLIC__/js/ueditor/ueditor.all.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			
-			//setInterval(function(){public_lock_renewal();}, 10000);
 			$(".js-ajax-close-btn").on('click', function(e) {
 				e.preventDefault();
 				Wind.use("artDialog", function() {
@@ -92,7 +134,6 @@
 						editorcontent.sync();
 					} catch (err) {
 					}
-					;
 					return editorcontent.hasContents();
 				});
 				var form = $('form.js-ajax-forms');
@@ -105,6 +146,8 @@
 						}
 					});
 				}
+
+				var formloading = false;
 				//表单验证开始
 				form.validate({
 					//是否在获取焦点时验证
@@ -159,13 +202,16 @@
 					onfocusout : false,
 					//验证通过，提交表单
 					submitHandler : function(forms) {
+						if (formloading)
+							return;
 						$(forms).ajaxSubmit({
 							url : form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)
 							dataType : 'json',
 							beforeSubmit : function(arr, $form, options) {
-
+								formloading = true;
 							},
 							success : function(data, statusText, xhr, $form) {
+								formloading = false;
 								if (data.status) {
 									setCookie("refersh_time", 1);
 									//添加成功
@@ -179,16 +225,16 @@
 											opacity : 0,
 											content : data.info,
 											button : [ {
-												name : '继续编辑？',
+												name : '继续添加？',
 												callback : function() {
-													//reloadPage(window);
+													reloadPage(window);
 													return true;
 												},
 												focus : true
 											}, {
 												name : '返回列表页',
 												callback : function() {
-													location = "{:U('Labeladmin/index')}";
+													location = "{:U('Newsadmin/ozzbindex')}";
 													return true;
 												}
 											} ]
