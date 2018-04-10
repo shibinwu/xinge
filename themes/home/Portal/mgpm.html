@@ -73,8 +73,8 @@
                         <span class="RENMING"><a href="./ztndgz.html" class="REMI">{$vol.tname|msubstr=0,13}</a></span>
                         <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
                         <span class="JIESHAO">{$vol.zhaiyao}</span>
-                        <div class="SSSJ"><a href="./ztndgz.html" class="sssj">剩余时间 {$vol.daojishi}</a></div>
-                        <div class="ZZPM_list_JG"><a href="./ztndgz.html" class="jg">{$vol.nums}羽</a></div>
+                        <div class="SSSJ"><a href="./ztndgz.html" class="sssj" >剩余时间 <if condition="$vol.daojishi lt 0">已结束<else/>{$vol.daojishi} </if></a></div>
+                        <div class="ZZPM_list_JG"><a href="./ztndgz.html" class="jg">{$vol.gezicount}羽</a></div>
                         <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
                     </li>
                 </foreach>
@@ -188,6 +188,20 @@
         paginationClickable: true,
 
     })
+
+    function dealData(id,value){
+        var place = document.getElementById(daojishi);
+        place.innerHTML = 10;
+    }
+    window.setInterval(function(){  // 每秒从服务器取一次数据
+        var ajax = new Ajax();
+        ajax.get(":U('Portal/ztndgz/index')?a="+Math.random(),function(data){
+            eval("var dtime = "+data);
+            dealData('hour',dtime.hour);
+            dealData('minute',dtime.minute);
+            dealData('second',dtime.second);
+        });
+    },1000);
 </script>
 
 </html>

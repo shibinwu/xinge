@@ -82,9 +82,9 @@
                 <li class="teshu">
                     <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" <if condition="$vo['id'] eq $changci">class="a1 XZ1"<else />class="a1"</if> id="chang" >场{$vo.seq}</a>
                         <if condition="$vo[min]">
-                            <a href="" class="a2">k{$vo.min}-k{$vo.max}</a>
+                            <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">k{$vo.min}-k{$vo.max}</a>
                             <else/>
-                            <a href="" class="a2">0</a>
+                            <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">0</a>
                         </if>
                 </li>
             </volist>
@@ -126,7 +126,7 @@
                 <li class="zhanshishijian">
                     <span class="ssq">本场拍卖</span>
                     <span class="ssq">剩余时间</span>
-                    <span class="daojishi">08:33:48</span>
+                    <span class="daojishi">{$times}</span>
                     <span class="B1 B3">> 注册会员</span>
                     <span class="B2">提供手机号码提交短信验证码</span>
                     <span class="B1">> 缴纳保证金</span>

@@ -31,14 +31,14 @@ use Common\Controller\HomebaseController;
 class MgpmController extends HomebaseController {
     //当前使用语言 常量  LANG_SET
     protected $pmzt_model;
-    protected $pmproduct_model;
-    protected $pmjilu_model;
+    protected $changci_model;
+    protected $pmgezi_model;
     function _initialize()
     {
         parent::_initialize();
         $this->pmzt_model = M("Pmzt");
-        $this->pmproduct_model = M("Pmproduct");
-        $this->pmjilu_model = M("Pmjilu");
+        $this->changci_model = M("Changci");
+        $this->pmgezi_model = M("Pmgezi");
     }
     //正在拍卖的专题页面显示
 	public function index() {
@@ -60,9 +60,21 @@ class MgpmController extends HomebaseController {
             ->limit($page->firstRow . ',' . $page->listRows)
             ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,pics,tuijian,addtime')
             ->select();
+        foreach ($list as $key => $val){
+            $list[$key]['end_time']= $this->changci_model->where(array('cid'=>$val['id']))->order('end_time desc')->getField('end_time');
+        }
+
 
         foreach ($list as $k => $val) {
-            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+            //专题下鸽子总数
+            $gezicount = 0;
+            $arr =  $this->changci_model->where(array('cid' => $val['id']))->field('id')->select();
+            foreach ($arr as $key => $vo){
+                $gezinum = $this->pmgezi_model->where(array('cid' => $vo['id']))->count();
+                $gezicount += $gezinum;
+            }
+            $list[$k]['gezicount'] = $gezicount;
+
             //倒计时
             $remain_time = $val['end_time'] - time(); //剩余的秒数
             $remain_hours = floor($remain_time/(60*60)); //剩余的小时

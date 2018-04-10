@@ -66,11 +66,29 @@ class ZtndgzController extends HomebaseController {
             if(!empty($arr)){
                 sort($arr);
                 $data[$key]['min'] = $arr[0];
-                $data[$key]['max'] = $arr[count($arr)-1];
+                if(count($arr) > 1){
+                    $data[$key]['max'] = $arr[count($arr)-1];
+                }
             }
         }
         if(empty($changci)){
             $changci = $data['0']['id'];
+        }
+        $maps['id'] = $changci;
+        $time = $this->changci_model->where($maps)->getField('end_time');
+        //倒计时
+        $remain_time = $time - time(); //剩余的秒数
+        $remain_hours = floor($remain_time/(60*60)); //剩余的小时
+        $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
+        $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+        $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+        $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+        $remain_second=sprintf("%02d",$remain_seconds);
+        $times = $remain_hour.':'.$remain_minute.':'.$remain_second;
+        if($times > 0){
+            $times = $times;
+        }else{
+            $times = '已结束';
         }
        //根据场次id获取该场次下面的所有鸽子信息
         $map['cid'] = $changci;
@@ -98,6 +116,8 @@ class ZtndgzController extends HomebaseController {
         $this->assign('data', $data);
         //鸽子信息
         $this->assign('article', $article);
+        //场次时间
+        $this->assign('times', $times);
     	$this->display(":ztndgz");
     }
 }

@@ -64,6 +64,7 @@ class DzgzxxController extends HomebaseController {
             $data['xtpic'] = "$path"."$huanhao".'-ancestry.jpg';
         }
         $data['info'] = $this->xuetongshu_model->where($where)->getField('info');
+
         $list = $this->pmgezi_model->where($where)->find();
         $this->assign('data', $data);
         $this->assign('list', $list);

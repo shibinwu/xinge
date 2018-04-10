@@ -58,10 +58,21 @@ class AuctionadminController extends AdminbaseController
             ->limit($page->firstRow . ',' . $page->listRows)
             ->field('id,adduser,seq,tname,start_time,end_time,cn_show,tuijian,addtime')
             ->select();
+        foreach ($list as $key =>$val){
+            $gezicount = 0;
+            $arr =  $this->changci_model->where(array('cid' => $val['id']))->field('id')->select();
+            foreach ($arr as $k => $vo){
+                $gezinum = $this->pmgezi_model->where(array('cid' => $vo['id']))->count();
+                $gezicount += $gezinum;
+            }
+            $list[$key]['gezicount'] = $gezicount;
+        }
+
         foreach ($list as $k => $val) {
-            $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
-            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+//            $list[$k]['names'] = $this->user_model->where(array('id' => $val['adduser']))->getField('user_nicename');
+//            $list[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
             $list[$k]['num'] = $this->changci_model->where(array('cid' => $val['id']))->count();
+//            $list[$k]['num'] = $this->pmgezi_model->where(array('cid' => $val['id']))->count();
             $nums= $this->pmjilu_model->where(array('cid' => $val['id']))->getField('pmprice',true);
             $list[$k]['totals']=array_sum($nums);
 
