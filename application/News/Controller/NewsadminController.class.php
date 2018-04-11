@@ -11,6 +11,7 @@ class NewsadminController extends AdminbaseController
     protected $ozzb_model;
     protected $ozzbxq_model;
     protected $label_model;
+    protected $yzzb_model;
 
     function _initialize()
     {
@@ -20,6 +21,7 @@ class NewsadminController extends AdminbaseController
         $this->ozzb_model = M("Ozzb");
         $this->ozzbxq_model = M("Ozzbxq");
         $this->label_model = M("Label");
+        $this->yzzb_model = M("Yzzb");
 
     }
     // 后台年份添加
@@ -413,36 +415,43 @@ class NewsadminController extends AdminbaseController
     public function yzzbindex()
     {
         $where = array();
-        $request = I('request.');
-
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
-        if (!empty($request['keyword'])) {
-            $keyword = $request['keyword'];
-            $where['title'] = array('like', "%$keyword%");
-        }
         $where['l'] = LANG_SET;
-
-        $count = $this->article_model->where($where)->count();
+        $count = $this->yzzb_model->where($where)->count();
         $page = $this->page($count, 20);
-        $list = $this->article_model
+        $list = $this->yzzb_model
             ->where($where)
             ->order("id DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
             ->select();
-        $arr = array();
-        foreach ($list as $k => $val) {
-
-            $list[$k]['column'] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-            $arr[] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-        }
-        $arrs = array_unique($arr);
-
         $this->assign('list', $list);
-        $this->assign('arr', $arrs);
         $this->assign("page", $page->show('Admin'));
+        $this->display();
+    }
+    //后台亚洲战报添加
+    public function yzzbadd()
+    {
+        if (IS_POST) {
+            $_POST['post']['pic'] = implode(',',$_POST['photos_url']);
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['addtime'] = time();
+            if($article['bid']){
+                $article['bid'] =  implode(',',$article['bid']);
+            }
 
+            $result = $this->yzzb_model->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $data = $this->year_model->where(array('type'=>1))->order('yname desc')->getField('id,yname',true);
+        $arr = $this->label_model->where(array('type'=>1))->getField('id,name');
+        $this->assign('data',$data);
+        $this->assign('arr',$arr);
         $this->display();
     }
 }

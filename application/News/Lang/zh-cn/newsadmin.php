@@ -41,4 +41,9 @@ return array(
         "TITLE" => '标题',
         "CONTENT" => '内容',
 
+        //亚洲战报列表
+        "NEWS_YZZB_INDEX" => '亚洲战报列表',
+        "NEWS_YZZB_ADD" => '添加亚洲战报',
+        "NEWS_YZZB_EDIT" => '编辑亚洲战报',
+
 );
