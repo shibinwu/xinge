@@ -29,8 +29,16 @@ return array(
         "NEWS_OZZB_EDIT" => '编辑欧洲战报',
         "JIGE" => '集鸽',
         "FANGFEI" => '放飞',
-        "MATCH" => '赛事',
+        "MATCH" => '赛事名称',
         "DISTANCE" => '预估空距（公里）',
         "ORGANIZER" => '组织者',
         "FENLEI" => '分类',
+
+        //欧洲战报详情列表
+        "NEWS_OZZBXQ_INDEX" => '欧洲战报详情列表',
+        "NEWS_OZZBXQ_ADD" => '添加详情',
+        "NEWS_OZZBXQ_EDIT" => '编辑欧洲战报详情',
+        "TITLE" => '标题',
+        "CONTENT" => '内容',
+
 );

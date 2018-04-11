@@ -3,8 +3,8 @@
 <body>
 <div class="wrap js-check-wrap">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="javascript:;">{:L('NEWS_OZZB_INDEX')}</a></li>
-		<li><a href="{:U('Newsadmin/ozzbadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZB_ADD')}</a></li>
+		<li class="active"><a href="javascript:;">{:L('NEWS_OZZBXQ_INDEX')}</a></li>
+		<li><a href="{:U('Newsadmin/ozzbxqadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZBXQ_ADD')}</a></li>
 	</ul>
 	<form class="js-ajax-form" action="" method="post">
 
@@ -17,10 +17,8 @@
 				</notempty>
 				<th align="center">ID</th>
 				<th>{:L('MATCH')}</th>
-				<th>{:L('JIGE')}</th>
-				<th>{:L('FANGFEI')}</th>
-				<th>{:L('DISTANCE')}</th>
-				<th>{:L('ORGANIZER')}</th>
+				<th>{:L('TITLE')}</th>
+				<th>{:L('CONTENT')}</th>
 				<th>{:L('ACTIONS')}</th>
 			</tr>
 			</thead>
@@ -32,31 +30,26 @@
 					</notempty>
 					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
-					<td>{$vo[jige]|date="Y-m-d H:i:s",###}</td>
-					<td>{$vo[fangfei]|date="Y-m-d H:i:s",###}</td>
-					<td>{$vo.distance}</td>
-					<td>{$vo.organizer}</td>
+					<td>{$vo.title}</td>
+					<td>{$vo.content}</td>
 					<td>
-						<a href="{:U('Newsadmin/ozzbedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
-						<a href="{:U('Newsadmin/ozzbdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>|
-						<a href="{:U('Newsadmin/ozzbxqadd',array('id'=>$vo['id']))}">{:L('NEWS_OZZBXQ_ADD')}</a>
+						<a href="{:U('Newsadmin/ozzbxqedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
+						<a href="{:U('Newsadmin/ozzbxqdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 			</foreach>
 			<tfoot>
-			<tr>
-				<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
-				<notempty name="term">
-					<th width="50">{:L('SORT')}</th>
-				</notempty>
-				<th align="center">ID</th>
-				<th>{:L('MATCH')}</th>
-				<th>{:L('JIGE')}</th>
-				<th>{:L('FANGFEI')}</th>
-				<th>{:L('DISTANCE')}</th>
-				<th>{:L('ORGANIZER')}</th>
-				<th>{:L('ACTIONS')}</th>
-			</tr>
+				<tr>
+					<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+					<notempty name="term">
+						<th width="50">{:L('SORT')}</th>
+					</notempty>
+					<th align="center">ID</th>
+					<th>{:L('MATCH')}</th>
+					<th>{:L('TITLE')}</th>
+					<th>{:L('CONTENT')}</th>
+					<th>{:L('ACTIONS')}</th>
+				</tr>
 			</tfoot>
 		</table>
 

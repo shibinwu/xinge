@@ -9,6 +9,7 @@ class NewsadminController extends AdminbaseController
     protected $article_model;
     protected $year_model;
     protected $ozzb_model;
+    protected $ozzbxq_model;
     protected $label_model;
 
     function _initialize()
@@ -17,6 +18,7 @@ class NewsadminController extends AdminbaseController
         $this->article_model = M("Article");
         $this->year_model = M("Year");
         $this->ozzb_model = M("Ozzb");
+        $this->ozzbxq_model = M("Ozzbxq");
         $this->label_model = M("Label");
 
     }
@@ -361,6 +363,51 @@ class NewsadminController extends AdminbaseController
                 $this->error("删除失败！");
             }
         }
+    }
+
+    //后台欧洲战报列表
+    public function ozzbxqindex()
+    {
+        $where = array();
+        $where['l'] = LANG_SET;
+        $count = $this->ozzbxq_model->where($where)->count();
+        $page = $this->page($count, 20);
+        $list = $this->ozzbxq_model
+            ->where($where)
+            ->order("id DESC")
+            ->limit($page->firstRow . ',' . $page->listRows)
+            ->select();
+        foreach ($list as $key => $val){
+            $list[$key]['name'] = $this->ozzb_model->where(array('id' => $val['sid']))->getField('name');
+        }
+
+        $this->assign('list', $list);
+        $this->assign("page", $page->show('Admin'));
+        $this->display();
+    }
+
+    //后台欧洲战报详情添加
+    public function ozzbxqadd()
+    {
+        if (IS_POST) {
+            $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['addtime'] = time();
+
+            $result = $this->ozzbxq_model->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $data = $this->ozzb_model->getField('id,name',true);
+
+        $this->assign('data',$data);
+        $this->display();
     }
 
     public function yzzbindex()
