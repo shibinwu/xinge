@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 /*中间部分*/
 
@@ -13,6 +13,7 @@
 	padding:0px;
 	display:inline-block;
 	position:relative;
+	padding-bottom: 120px;
 }
 .section .ZZPM .zzpm{
 	width:100px;
@@ -25,7 +26,6 @@
 }
 .section .ZZPM .ZZPM_list{
 	width:1187px;
-	height:1127px;
 	position:relative;
 }
 .section .ZZPM .ZZPM_list .ZZPM_list_one{
@@ -35,7 +35,6 @@
 	margin-top:65px;
 }
 .section .ZZPM .ZZPM_list ul{
-	margin-top:42px;
 	width:1187px;
 }
 .section .ZZPM .ZZPM_list ul li{
@@ -44,6 +43,7 @@
 	float:left;
 	border:1px solid #D3D3D3;
 	position:relative;
+	margin-top: 42px;
 }
 .section .ZZPM .ZZPM_list ul li .img{
 	margin-bottom:45px;

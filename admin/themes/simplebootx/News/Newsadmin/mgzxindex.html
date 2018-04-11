@@ -3,18 +3,10 @@
 <body>
 <div class="wrap js-check-wrap">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="javascript:;">{:L('NEWS_INDEX')}</a></li>
-		<li><a href="{:U('Newsadmin/newsadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_ADD')}</a></li>
+		<li class="active"><a href="javascript:;">{:L('NEWS_MGZX_INDEX')}</a></li>
+		<li><a href="{:U('Newsadmin/mgzxadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_MGZX_ADD')}</a></li>
 	</ul>
-	<form class="well form-search" method="post" action="{:U('Newsadmin/newsindex')}">
-		分类：
-		<select name="term" style="width: 120px;">
-
-			<volist name="arr" id="vo">
-				<option value='{$key}'>{$vo}</option>
-			</volist>
-
-		</select> &nbsp;&nbsp;
+	<form class="well form-search" method="post" action="{:U('Newsadmin/mgzxindex')}">
 		时间：
 		<input type="text" name="start_time" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
 		<input type="text" class="js-datetime" name="end_time" value="{$formget.end_time|default=''}" style="width: 120px;" autocomplete="off"> &nbsp; &nbsp;
@@ -24,22 +16,7 @@
 		<a class="btn btn-danger" href="{:U('AdminPost/index')}">清空</a>
 	</form>
 	<form class="js-ajax-form" action="" method="post">
-		<div class="table-actions">
-			<notempty name="term">
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/listorders')}">{:L('SORT')}</button>
-			</notempty>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/check',array('check'=>1))}" data-subcheck="true">审核</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/check',array('uncheck'=>1))}" data-subcheck="true">取消审核</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/top',array('top'=>1))}" data-subcheck="true">置顶</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/top',array('untop'=>1))}" data-subcheck="true">取消置顶</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/recommend',array('recommend'=>1))}" data-subcheck="true">推荐</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/recommend',array('unrecommend'=>1))}" data-subcheck="true">取消推荐</button>
-			<notempty name="term">
-				<button class="btn btn-primary btn-small js-articles-move" type="button">批量移动</button>
-			</notempty>
-			<button class="btn btn-primary btn-small js-articles-copy" type="button">批量复制</button>
-			<button class="btn btn-danger btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/delete')}" data-subcheck="true" data-msg="您确定删除吗？">{:L('DELETE')}</button>
-		</div>
+
 		<table class="table table-hover table-bordered table-list">
 			<thead>
 			<tr>
@@ -52,7 +29,6 @@
 				<th width="150">{:L('ISSUER_NAME')}</th>
 				<th width="150">{:L('CLICKS')}</th>
 				<th width="150">{:L('ISSUER_TIME')}</th>
-				<th width="150">{:L('COLUMN')}</th>
 				<th width="150">{:L('STATUS')}</th>
 				<th width="180">{:L('ACTIONS')}</th>
 			</tr>
@@ -72,10 +48,10 @@
 						</notempty>
 					</td>
 					<td>{$vo.user_nicename|default=$vo.user_login}</td>
-					<td>{$vo.real_hits}</td>
+					<td>{$vo.hits}</td>
 
 					<td>{:date('Y-m-d H:i',strtotime($vo['created_date']))}</td>
-					<td><b>{$vo.column}</b></td>
+
 					<td>
 						<notempty name="vo.working">
 							<a data-toggle="tooltip" title="已审核"><i class="fa fa-check"></i></a>
@@ -95,8 +71,8 @@
 					</td>
 
 					<td>
-						<a href="{:U('Newsadmin/newsedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
-						<a href="{:U('Newsadmin/newsdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						<a href="{:U('Newsadmin/mgzxedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
+						<a href="{:U('Newsadmin/mgzxdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 			</foreach>
@@ -111,28 +87,12 @@
 				<th width="150">{:L('ISSUER_NAME')}</th>
 				<th width="150">{:L('CLICKS')}</th>
 				<th width="150">{:L('ISSUER_TIME')}</th>
-				<th width="150">{:L('COLUMN')}</th>
 				<th width="150">{:L('STATUS')}</th>
 				<th width="180">{:L('ACTIONS')}</th>
 			</tr>
 			</tfoot>
 		</table>
-		<div class="table-actions">
-			<notempty name="term">
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/listorders')}">{:L('SORT')}</button>
-			</notempty>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/check',array('check'=>1))}" data-subcheck="true">审核</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/check',array('uncheck'=>1))}" data-subcheck="true">取消审核</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/top',array('top'=>1))}" data-subcheck="true">置顶</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/top',array('untop'=>1))}" data-subcheck="true">取消置顶</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/recommend',array('recommend'=>1))}" data-subcheck="true">推荐</button>
-			<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/recommend',array('unrecommend'=>1))}" data-subcheck="true">取消推荐</button>
-			<notempty name="term">
-				<button class="btn btn-primary btn-small js-articles-move" type="button">批量移动</button>
-			</notempty>
-			<button class="btn btn-primary btn-small js-articles-copy" type="button">批量复制</button>
-			<button class="btn btn-danger btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPost/delete')}" data-subcheck="true" data-msg="你确定删除吗？">{:L('DELETE')}</button>
-		</div>
+
 		<div class="pagination">{$page}</div>
 	</form>
 </div>

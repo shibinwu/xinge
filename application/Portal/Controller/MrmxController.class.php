@@ -29,9 +29,22 @@ use Common\Controller\HomebaseController;
  * 首页
  */
 class MrmxController extends HomebaseController {
-	
-    //首页 小夏是老猫除外最帅的男人了
+
+    //当前使用语言 常量  LANG_SET
+    protected $year_model;
+    protected $article_model;
+    function _initialize()
+    {
+        parent::_initialize();
+        $this->year_model = M("Year");
+        $this->article_model = M("Article");
+    }
 	public function index() {
+	    $data = $this->year_model->order('yname desc')->select();
+	    $mgzx = $this->article_model->where(array('cid' => 0))->select();
+
+	    $this->assign('data',$data);
+	    $this->assign('mgzx',$mgzx);
     	$this->display(":mrmx");
     }
 	public function chaxun() {
@@ -42,9 +55,9 @@ class MrmxController extends HomebaseController {
     }
 	function ccc(){
 		$url='https://router.jd.com/api?v=1.2&method=public.product.base.query&access_token=73d13559c03d431bacffb90e4a5d08298&app_key=adf4a35940c7475bad3215d797c52549&sign_method=md5&format=json&timestamp=2018-02-09%2016:16:04&sign=CCC83908152F3AD8B787905F5F84F43F&param_json={%22sku%22:10183487366,%22areaId%22:%221732387%22}';
-		$json = $this->http_get($url,$data);
-		$data = json_decode($json,true);
-		dump($data);
+
+
+
 	}
 	/**
 	 * GET 请求

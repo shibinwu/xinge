@@ -43,10 +43,10 @@
             </div>
             <div class="list" id="list">
                 <ul>
-                    <li class="list1"><a href="{:U('Portal/index/index')}">首页</a></li>
-                    <li class="list2"><a href="{:U('Portal/mgpm/index')}">铭鸽拍卖</a></li>
-                    <li class="list3"><a href="{:U('Portal/mgcp/index')}">铭鸽产品</a></li>
-                    <li class="list4  queding"><a href="{:U('Portal/mrmx/index')}">鸽闻天下</a></li>
+                    <li class="list1"><a href="./index.html">首页</a></li>
+                    <li class="list2"><a href="./mgpm.html">铭鸽拍卖</a></li>
+                    <li class="list3"><a href="./mgcp.html">铭鸽产品</a></li>
+                    <li class="list4  queding"><a href="./mrmx.html">鸽闻天下</a></li>
                     <li id="DL" class="last list5"><a href="javascript:;">用户登录</a></li>
                 </ul>
             </div>
@@ -82,181 +82,92 @@
         <div class="ZY" id="ZY">
             <div class="DHLIST" id="DHLIST" style="height:359px;">
                 <ul class="tabs">
-                    <li id="tab1" class="XUANZHONG aa">
+                    <li id="tab1" class="yiji XUANZHONG fl1">
                         <a href="javascript:;">铭鸽资讯</a>
                     </li>
-                    <li id="tab2" class="bb">
+                    <li id="tab2" class="yiji fudai1 fl2">
                         <a href="javascript:;">欧洲战报</a>
                     </li>
-                    <li id="tab3" class="cc none">
-                        <a href="javascript:;">2018</a>
-                    </li>
-                    <li id="tab4" class="dd none">
-                        <a href="javascript:;">2017</a>
-                    </li>
-                    <li id="tab5" class="ee none">
-                        <a href="javascript:;">2016</a>
-                    </li>
-                    <li id="tab6" class="ff">
+
+                        <li id="tab3" class="ziji fudai1s none">
+                            <foreach name="data" item="vo">
+                            <a href="javascript:;" class="xuanzhong fl2">{$vo.yname}</a>
+                            <!--<a href="javascript:;" class="fl2">2017</a>-->
+                            <!--<a href="javascript:;" class="fl2">2017</a>-->
+                            <!--<a href="javascript:;" class="fl2">2017</a>-->
+                            <!--<a href="javascript:;" class="fl2">2017</a>-->
+                            </foreach>
+                        </li>
+
+
+                    <li id="tab6" class="yiji fudai2 fl3">
                         <a href="javascript:;">亚洲战报</a>
                     </li>
-                    <li id="tab7" class="gg none">
-                        <a href="javascript:;">2018</a>
+                    <li id="tab3" class="ziji fudai2s none">
+                        <a href="javascript:;" class="xuanzhong fl3">2018</a>
+                        <a href="javascript:;" class="fl3">2017</a>
+                        <a href="javascript:;" class="fl3">2017</a>
                     </li>
-                    <li id="tab8" class="hh none">
-                        <a href="javascript:;">2017</a>
+                    <li id="tab10" class="yiji fl1">
+                        <a href="javascript:;">名人铭系</a>
                     </li>
-                    <li id="tab9" class="ii none">
-                        <a href="javascript:;">2016</a>
-                    </li>
-                    <li id="tab10" class="jj">
+                    <li id="tab10" class="yiji fl1">
                         <a href="javascript:;">名人铭系</a>
                     </li>
                 </ul>
             </div>
             <div class="products" id="products">
-                <!-- 名人铭系 -->
-                <div class="SERVERLIST_one none tab_content zyzy">
+                <!-- 铭鸽资讯 名人铭系 -->
+                <div class="SERVERLIST_one tab_content zyzy">
                     <ul id="MRMXS">
-                        <li>
-                            &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时“沉默巨匠”马塞尔.沃特斯（Marcel Wouters）</a>
-                            <span class="SERVERLIST_time">2018-01-18</span>
-                        </li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">“无环号”的缔造者---根特.布朗格</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">欧冠霸主—安德烈斯.德拉帕</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">波治II：“所向无敌”迪克.凡戴克夺一岁鸽冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2017年布瑞福国家赛9123羽全国总亚军—尼基.德佛斯</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时波治先生--吉诺.克里克</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">鸽坛传奇—卡尔.幕利门</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">德国赛坛宿将—科特.保德曼</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时艾力克.林伯格成为新一代KBDB全国最佳全能鸽舍得主</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时全能强豪【超级种雄“尼克”之父—克里斯.德巴克】</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">亚利.迪克特拉的制胜秘方：黄金配对“里奥纳多×蜻蜓姑娘”</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时长距离新生代代表人物—优斯特.狄史麦特-瑞斯帝安</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">NPO当日归长距离及幼鸽赛强豪——荷兰艾尔辛加联合鸽舍</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2015大赢家：比利时“好战分子”马克.波林</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                    </ul>
-                    <div class="JIAZAI"><a href="">查看更多</a></div>
-                </div>
-                <!-- 铭鸽资讯 -->
-                <div class="SERVERLIST_two show tab_content zyzy">
-                    <ul>
-                        <li>
-                            &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">雷.马腾斯（荷兰）拍卖手册</a>
-                            <span class="SERVERLIST_time">2018-01-18</span>
-                        </li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">关于荷兰赛鸽“金色”足环的相关说明</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2017-2018拍卖季EPW拍卖鸽现场展示会实录</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2018年EPW专属台历/挂历免费申领</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2017年布瑞福国家赛9123羽全国总亚军—尼基.德佛斯</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">EPW汉斯鸽药-育种调理方案</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2017-2018欧洲信鸽站拍卖季</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">关于荷兰赛鸽“金色”足环的相关说明</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">德国赛坛宿将—科特.保德曼</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时艾力克.林伯格成为新一代KBDB全国最佳全能鸽舍得主</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时全能强豪【超级种雄“尼克”之父—克里斯.德巴克】</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">亚利.迪克特拉的制胜秘方：黄金配对“里奥纳多×蜻蜓姑娘”</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时长距离新生代代表人物—优斯特.狄史麦特-瑞斯帝安</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">NPO当日归长距离及幼鸽赛强豪——荷兰艾尔辛加联合鸽舍</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2015大赢家：比利时“好战分子”马克.波林</a><span class="SERVERLIST_time">2018-01-18</span></li>
+                        <volist name="mgzx" id="vo">
+                            <li>
+                                &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                                <a href="javascript:;">{$vo.title}</a>
+                                <span class="SERVERLIST_time">{$vo.created_date|date="Y-m-d",###}</span>
+                            </li>
+                        </volist>
+
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">“无环号”的缔造者-&#45;&#45;根特.布朗格</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">欧冠霸主—安德烈斯.德拉帕</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">波治II：“所向无敌”迪克.凡戴克夺一岁鸽冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">2017年布瑞福国家赛9123羽全国总亚军—尼基.德佛斯</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">比利时波治先生&#45;&#45;吉诺.克里克</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">鸽坛传奇—卡尔.幕利门</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">德国赛坛宿将—科特.保德曼</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">比利时艾力克.林伯格成为新一代KBDB全国最佳全能鸽舍得主</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">比利时全能强豪【超级种雄“尼克”之父—克里斯.德巴克】</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">亚利.迪克特拉的制胜秘方：黄金配对“里奥纳多×蜻蜓姑娘”</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">比利时长距离新生代代表人物—优斯特.狄史麦特-瑞斯帝安</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">NPO当日归长距离及幼鸽赛强豪——荷兰艾尔辛加联合鸽舍</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
+                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
+                            <!--<a href="javascript:;">2015大赢家：比利时“好战分子”马克.波林</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
                     </ul>
                     <div class="JIAZAI"><a href="">查看更多</a></div>
                 </div>
                 <!-- 欧洲战报 -->
-                <div class="SERVERLIST_two none tab_content zyzy">
-                    <ul>
-                        <li>
-                            &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时“沉默巨匠”马塞尔.沃特斯（Marcel Wouters）</a>
-                            <span class="SERVERLIST_time">2018-01-18</span>
-                        </li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">“无环号”的缔造者---根特.布朗格</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">欧冠霸主—安德烈斯.德拉帕</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">波治II：“所向无敌”迪克.凡戴克夺一岁鸽冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2017年布瑞福国家赛9123羽全国总亚军—尼基.德佛斯</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时波治先生--吉诺.克里克</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">鸽坛传奇—卡尔.幕利门</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">德国赛坛宿将—科特.保德曼</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时艾力克.林伯格成为新一代KBDB全国最佳全能鸽舍得主</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时全能强豪【超级种雄“尼克”之父—克里斯.德巴克】</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">亚利.迪克特拉的制胜秘方：黄金配对“里奥纳多×蜻蜓姑娘”</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">比利时长距离新生代代表人物—优斯特.狄史麦特-瑞斯帝安</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">NPO当日归长距离及幼鸽赛强豪——荷兰艾尔辛加联合鸽舍</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">2015大赢家：比利时“好战分子”马克.波林</a><span class="SERVERLIST_time">2018-01-18</span></li>
-                    </ul>
-                    <div class="JIAZAI"><a href="">查看更多</a></div>
-                </div>
-                <!-- 欧洲战报二级 -->
                 <div class="SERVERLIST_three none tab_content zyzy">
                     <ul class="OZZB_type">
                         <li class="OZZB_lione" style="background:#CCCCCC;">
@@ -283,7 +194,7 @@
                                 <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
                             </div>
                         </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
+                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;" id="TSDK">
                             <span style="margin-left:85px;">25/05</span>
                             <span style="margin-left:135px;">27/05</span>
                             <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
@@ -422,6 +333,62 @@
                     </ul>
                     <div class="JIAZAI "><a href=" ">查看更多</a></div>
                 </div>
+                <!-- 亚洲战报 -->
+                <div class="none tab_content zyzy" id="tabss6" style="width:1124px;float:right;	padding:44px 57px 35px 0px; ">
+                    <div class="YZZB">
+                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
+                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
+                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
+                        <div class="YZZB_XT">
+                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTone"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTtwo"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTthree"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                        </div>
+                        <div class="DT FD">
+                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="YZZB">
+                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
+                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
+                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
+                        <div class="YZZB_XT">
+                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfour"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfive"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTsix"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                        </div>
+                        <div class="DT FD">
+                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="YZZB">
+                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
+                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
+                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
+                        <div class="YZZB_XT">
+                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTseven"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTeight"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTnine"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                        </div>
+                        <div class="DT FD">
+                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="YZZB">
+                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
+                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
+                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
+                        <div class="YZZB_XT">
+                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTten"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT11"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT12"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
+                        </div>
+                        <div class="DT FD">
+                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="YZZB_XT5"><a href=" ">查看更多</a></div>
+                </div>
                 <!-- 名人铭系二级页面 -->
                 <div class="SECTION none tab_content zyzy">
                     <span class="SECTION_RM">林德劳夫父子（荷兰）</span>
@@ -474,86 +441,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <!-- 亚洲战报 -->
-                <div class="none tab_content zyzy" id="tabss6" style="width:1124px;float:right;	padding:44px 57px 35px 0px; ">
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
-                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTone"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTtwo"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTthree"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT DTone">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTtwo">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTthree">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
-                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfour"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfive"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTsix"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT DTfour">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTfive">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTsix">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
-                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTseven"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTeight"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTnine"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT DTseven">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTeight">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DTnine">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
-                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTten"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT11"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT12"><img style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT DTten">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DT11">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                        <div class="DT DT12">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB_XT5"><a href=" ">查看更多</a></div>
                 </div>
             </div>
             <div class="" style="clear:right;height:0;">
@@ -636,589 +523,84 @@
         })
         // 左侧tab栏切换
     jQuery(window).ready(function() {
-        $(".tabs #tab1").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 铭鸽资讯");
-            $(this).addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('.tab_content:eq(1)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab2").click(function() {
-            $('#DHLIST').height($('#ZY').outerHeight());
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $('#tab3').show().addClass('show');
-            $('#tab4').show().addClass('show');
-            $('#tab5').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 欧洲战报");
-            $(this).addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab3").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $('#tab3').show().addClass('show');
-            $('#tab4').show().addClass('show');
-            $('#tab5').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 欧洲战报");
-            $('#tab2').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab3 a').addClass("ZIJI");
-            $('#tab4 a').removeClass("ZIJI");
-            $('#tab5 a').removeClass("ZIJI");
-            $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab4").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $('#tab3').show().addClass('show');
-            $('#tab4').show().addClass('show');
-            $('#tab5').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 欧洲战报");
-            $('#tab2').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab4 a').addClass("ZIJI");
-            $('#tab3 a').removeClass("ZIJI");
-            $('#tab5 a').removeClass("ZIJI");
-            $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab5").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $('#tab3').show().addClass('show');
-            $('#tab4').show().addClass('show');
-            $('#tab5').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 欧洲战报");
-            $('#tab2').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab5 a').addClass("ZIJI");
-            $('#tab4 a').removeClass("ZIJI");
-            $('#tab3 a').removeClass("ZIJI");
-            $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-
-        $(".tabs #tab6").click(function() {
-            $('#DHLIST').height($('#ZY').height());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').show().addClass('show');
-            $('#tab8').show().addClass('show');
-            $('#tab9').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 亚洲战报");
-            $(this).addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('.tab_content:eq(5)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab7").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').show().addClass('show');
-            $('#tab8').show().addClass('show');
-            $('#tab9').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 亚洲战报");
-            $('#tab6').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab7 a').addClass("ZIJI");
-            $('#tab8 a').removeClass("ZIJI");
-            $('#tab9 a').removeClass("ZIJI");
-            $('.tab_content:eq(5)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab8").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').show().addClass('show');
-            $('#tab8').show().addClass('show');
-            $('#tab9').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 亚洲战报");
-            $('#tab6').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab8 a').addClass("ZIJI");
-            $('#tab7 a').removeClass("ZIJI");
-            $('#tab9 a').removeClass("ZIJI");
-            $('.tab_content:eq(5)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab9").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').show().addClass('show');
-            $('#tab8').show().addClass('show');
-            $('#tab9').show().addClass('show');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 亚洲战报");
-            $('#tab6').addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
-            $('#tab9 a').addClass("ZIJI");
-            $('#tab7 a').removeClass("ZIJI");
-            $('#tab8 a').removeClass("ZIJI");
-            $('.tab_content:eq(5)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $(".tabs #tab10").click(function() {
-            $('#DHLIST').height($('#ZY').innerHeight());
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 名人铭系");
-            $(this).addClass("XUANZHONG").siblings("li").removeClass("XUANZHONG");
+        $('.yiji').click(function() {
+            $(this).addClass('XUANZHONG').siblings('.yiji').removeClass('XUANZHONG');
+            $(this).siblings('.fudai1s').removeClass('show').addClass('none').hide();
+            $(this).siblings('.fudai2s').removeClass('show').addClass('none').hide();
+        })
+        $('.fudai1s a').click(function() {
+            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+        })
+        $('.fudai2s a').click(function() {
+            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+        })
+        var fd1 = 0;
+        $('.fudai1').click(function() {
+            if (fd1 == 0) {
+                $(this).siblings('.fudai2s').removeClass('show').addClass('none').hide();
+                $(this).siblings('.fudai1s').removeClass('none').addClass('show').show();
+                $(this).siblings('.fudai1s').children('a:last').addClass('qingbian');
+                fd1 = 1;
+            } else {
+                $(this).siblings('.fudai1s').removeClass('show').addClass('none').hide();
+                fd1 = 0;
+            }
+        })
+        var fd2 = 0;
+        $('.fudai2').click(function() {
+            if (fd2 == 0) {
+                $(this).siblings('.fudai1s').removeClass('show').addClass('none').hide();
+                $(this).siblings('.fudai2s').removeClass('none').addClass('show').show();
+                $(this).siblings('.fudai2s').children('a:last').addClass('qingbian');
+                fd2 = 1;
+            } else {
+                $(this).siblings('.fudai2s').removeClass('show').addClass('none').hide();
+                fd2 = 0;
+            }
+        })
+        $('.fl1').click(function() {
             $('.tab_content:eq(0)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-        $("#MRMXS li a").click(function() {
-            $('#tab3').removeClass('show').hide().addClass('none');
-            $('#tab4').removeClass('show').hide().addClass('none');
-            $('#tab5').removeClass('show').hide().addClass('none');
-            $('#tab7').removeClass('show').hide().addClass('none');
-            $('#tab8').removeClass('show').hide().addClass('none');
-            $('#tab9').removeClass('show').hide().addClass('none');
-            $("#DAOHANG").text("首页 > 鸽闻天下 > 名人铭系 > 林劳德夫父子");
-            $('.tab_content:eq(4)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-        });
-
-        // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTone').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTone').css('background-image', 'url(images/123.png)');
-                    $('.DTone').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTsix').css('background-image', 'none');
-                    $('.DTsix').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    i = 0;
-                }
+        })
+        $('.fl2').click(function() {
+            $('.tab_content:eq(1)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+        })
+        $('.fl3').click(function() {
+            $('.tab_content:eq(2)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+        })
+        $('#MRMXS li').click(function() {
+                $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
             })
-            // 亚洲战报人物图片点击放大
+            // 亚洲战报人物图片放大
         var i = 0;
-        $('.YZZB_XTtwo').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTtwo').css('background-image', 'url(images/123.png)');
-                    $('.DTtwo').removeClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTsix').css('background-image', 'none');
-                    $('.DTsix').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTthree').click(function() {
+        $('.FDSX').click(function() {
+            var num = $('.FDSX').index(this);
             if (i == 0) {
-                $('.YZZB_XTthree').css('background-image', 'url(images/123.png)');
-                $('.DTthree').removeClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                $('.YZZB_XTtwo').css('background-image', 'none');
-                $('.DTtwo').addClass('DT');
-                $('.YZZB_XTfour').css('background-image', 'none');
-                $('.DTfour').addClass('DT');
-                $('.YZZB_XTfive').css('background-image', 'none');
-                $('.DTfive').addClass('DT');
-                $('.YZZB_XTsix').css('background-image', 'none');
-                $('.DTsix').addClass('DT');
-                $('.YZZB_XTseven').css('background-image', 'none');
-                $('.DTseven').addClass('DT');
-                $('.YZZB_XTeight').css('background-image', 'none');
-                $('.DTeight').addClass('DT');
-                $('.YZZB_XTnine').css('background-image', 'none');
-                $('.DTnine').addClass('DT');
-                $('.YZZB_XTten').css('background-image', 'none');
-                $('.DTten').addClass('DT');
-                $('.YZZB_XT11').css('background-image', 'none');
-                $('.DT11').addClass('DT');
-                $('.YZZB_XT12').css('background-image', 'none');
-                $('.DT12').addClass('DT');
+                $(this).parent().css('background-image', 'url(images/123.png)').siblings('div').css('background-image', 'none').parent().siblings('.FD').removeClass('DT');
                 i = 1;
             } else {
-                $('.YZZB_XTthree').css('background-image', 'none');
-                $('.DTthree').addClass('DT');
+                $(this).parent().css('background-image', 'none');
+                $(this).parent().parent().siblings('.FD').addClass('DT');
                 i = 0;
             }
         })
 
 
-        // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTfour').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTfour').css('background-image', 'url(images/123.png)');
-                    $('.DTfour').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTsix').css('background-image', 'none');
-                    $('.DTsix').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTfive').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTfive').css('background-image', 'url(images/123.png)');
-                    $('.DTfive').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTsix').css('background-image', 'none');
-                    $('.DTsix').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTsix').click(function() {
-            if (i == 0) {
-                $('.YZZB_XTsix').css('background-image', 'url(images/123.png)');
-                $('.DTsix').removeClass('DT');
-                $('.YZZB_XTtwo').css('background-image', 'none');
-                $('.DTtwo').addClass('DT');
-                $('.YZZB_XTthree').css('background-image', 'none');
-                $('.DTthree').addClass('DT');
-                $('.YZZB_XTfour').css('background-image', 'none');
-                $('.DTfour').addClass('DT');
-                $('.YZZB_XTfive').css('background-image', 'none');
-                $('.DTfive').addClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                $('.YZZB_XTseven').css('background-image', 'none');
-                $('.DTseven').addClass('DT');
-                $('.YZZB_XTeight').css('background-image', 'none');
-                $('.DTeight').addClass('DT');
-                $('.YZZB_XTnine').css('background-image', 'none');
-                $('.DTnine').addClass('DT');
-                $('.YZZB_XTten').css('background-image', 'none');
-                $('.DTten').addClass('DT');
-                $('.YZZB_XT11').css('background-image', 'none');
-                $('.DT11').addClass('DT');
-                $('.YZZB_XT12').css('background-image', 'none');
-                $('.DT12').addClass('DT');
-                i = 1;
+        var q = 0;
+        $('#TSDK').click(function() {
+            if (q == 0) {
+                $(this).siblings('.TSD').show().removeClass('YCB');
+                q = 1;
             } else {
-                $('.YZZB_XTsix').css('background-image', 'none');
-                $('.DTsix').addClass('DT');
-                i = 0;
+                $(this).siblings('.TSD').hide().addClass('YCB');
+                q = 0;
             }
+
         })
 
-        // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTseven').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTseven').css('background-image', 'url(images/123.png)');
-                    $('.DTseven').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTeight').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTeight').css('background-image', 'url(images/123.png)');
-                    $('.DTeight').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTnine').click(function() {
-            if (i == 0) {
-                $('.YZZB_XTnine').css('background-image', 'url(images/123.png)');
-                $('.DTnine').removeClass('DT');
-                $('.YZZB_XTtwo').css('background-image', 'none');
-                $('.DTtwo').addClass('DT');
-                $('.YZZB_XTthree').css('background-image', 'none');
-                $('.DTthree').addClass('DT');
-                $('.YZZB_XTfour').css('background-image', 'none');
-                $('.DTfour').addClass('DT');
-                $('.YZZB_XTfive').css('background-image', 'none');
-                $('.DTfive').addClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                $('.YZZB_XTseven').css('background-image', 'none');
-                $('.DTseven').addClass('DT');
-                $('.YZZB_XTeight').css('background-image', 'none');
-                $('.DTeight').addClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                $('.YZZB_XTten').css('background-image', 'none');
-                $('.DTten').addClass('DT');
-                $('.YZZB_XT11').css('background-image', 'none');
-                $('.DT11').addClass('DT');
-                $('.YZZB_XT12').css('background-image', 'none');
-                $('.DT12').addClass('DT');
-                i = 1;
-            } else {
-                $('.YZZB_XTnine').css('background-image', 'none');
-                $('.DTnine').addClass('DT');
-                i = 0;
-            }
-        })
 
-        // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XTten').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XTten').css('background-image', 'url(images/123.png)');
-                    $('.DTten').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XT11').click(function() {
-                if (i == 0) {
-                    $('.YZZB_XT11').css('background-image', 'url(images/123.png)');
-                    $('.DT11').removeClass('DT');
-                    $('.YZZB_XTtwo').css('background-image', 'none');
-                    $('.DTtwo').addClass('DT');
-                    $('.YZZB_XTthree').css('background-image', 'none');
-                    $('.DTthree').addClass('DT');
-                    $('.YZZB_XTfour').css('background-image', 'none');
-                    $('.DTfour').addClass('DT');
-                    $('.YZZB_XTfive').css('background-image', 'none');
-                    $('.DTfive').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XTseven').css('background-image', 'none');
-                    $('.DTseven').addClass('DT');
-                    $('.YZZB_XTeight').css('background-image', 'none');
-                    $('.DTeight').addClass('DT');
-                    $('.YZZB_XTnine').css('background-image', 'none');
-                    $('.DTnine').addClass('DT');
-                    $('.YZZB_XTten').css('background-image', 'none');
-                    $('.DTten').addClass('DT');
-                    $('.YZZB_XTone').css('background-image', 'none');
-                    $('.DTone').addClass('DT');
-                    $('.YZZB_XT12').css('background-image', 'none');
-                    $('.DT12').addClass('DT');
-                    i = 1;
-                } else {
-                    $('.YZZB_XT11').css('background-image', 'none');
-                    $('.DT11').addClass('DT');
-                    i = 0;
-                }
-            })
-            // 亚洲战报人物图片点击放大
-        var i = 0;
-        $('.YZZB_XT12').click(function() {
-            if (i == 0) {
-                $('.YZZB_XT12').css('background-image', 'url(images/123.png)');
-                $('.DT12').removeClass('DT');
-                $('.YZZB_XTtwo').css('background-image', 'none');
-                $('.DTtwo').addClass('DT');
-                $('.YZZB_XTthree').css('background-image', 'none');
-                $('.DTthree').addClass('DT');
-                $('.YZZB_XTfour').css('background-image', 'none');
-                $('.DTfour').addClass('DT');
-                $('.YZZB_XTfive').css('background-image', 'none');
-                $('.DTfive').addClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                $('.YZZB_XTseven').css('background-image', 'none');
-                $('.DTseven').addClass('DT');
-                $('.YZZB_XTeight').css('background-image', 'none');
-                $('.DTeight').addClass('DT');
-                $('.YZZB_XTnine').css('background-image', 'none');
-                $('.DTnine').addClass('DT');
-                $('.YZZB_XTten').css('background-image', 'none');
-                $('.DTten').addClass('DT');
-                $('.YZZB_XT11').css('background-image', 'none');
-                $('.DT11').addClass('DT');
-                $('.YZZB_XTone').css('background-image', 'none');
-                $('.DTone').addClass('DT');
-                i = 1;
-            } else {
-                $('.YZZB_XT12').css('background-image', 'none');
-                $('.DT12').addClass('DT');
-                i = 0;
-            }
-        })
 
-        // 欧洲战报隐藏显示
-        $('#TSDK').click(function() { //点击标签  
-            if ($('.TSD').is(':hidden')) { //如果当前隐藏  
-                $('.TSD').show(); //那么就显示div  
-            } else { //否则  
-                $('.TSD').hide(); //就隐藏div  
-            }
-        })
+
+
     });
 </script>
 

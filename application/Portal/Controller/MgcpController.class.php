@@ -29,9 +29,21 @@ use Common\Controller\HomebaseController;
  * 首页
  */
 class MgcpController extends HomebaseController {
-	
-    //首页 小夏是老猫除外最帅的男人了
+
+    //当前使用语言 常量  LANG_SET
+    protected $yaopin_model;
+    protected $article_model;
+    function _initialize()
+    {
+        parent::_initialize();
+        $this->yaopin_model = M("Yaopin");
+        $this->article_model = M("Article");
+    }
+
 	public function index() {
+	    $data = $this->yaopin_model->select();
+
+        $this->assign('data',$data);
     	$this->display(":mgcp");
     }
 	public function chaxun() {

@@ -29,84 +29,88 @@ use Common\Controller\HomebaseController;
  * 首页
  */
 class IndexController extends HomebaseController {
-	
-    //首页 小夏是老猫除外最帅的男人了
-	public function index() {
-    	$this->display(":index");
-    }
-	public function chaxun() {
-		$url = 'http://202.85.213.155/youpintong/AgentNewQueryInterfaceServlet';
-		$data = array();
-		
-    	$this->display(":index");
-    }
-	function ccc(){
-		$url='https://router.jd.com/api?v=1.2&method=public.product.base.query&access_token=73d13559c03d431bacffb90e4a5d08298&app_key=adf4a35940c7475bad3215d797c52549&sign_method=md5&format=json&timestamp=2018-02-09%2016:16:04&sign=CCC83908152F3AD8B787905F5F84F43F&param_json={%22sku%22:10183487366,%22areaId%22:%221732387%22}';
-		$json = $this->http_get($url,$data);
-		$data = json_decode($json,true);
-		dump($data);
-	}
-	/**
-	 * GET 请求
-	 * @param string $url
-	*/
-	private function http_get($url){
-		$oCurl = curl_init();
-		if(stripos($url,"https://")!==FALSE){
-			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
-		}
-		curl_setopt($oCurl, CURLOPT_URL, $url);
-		curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
-		$sContent = curl_exec($oCurl);
-		$aStatus = curl_getinfo($oCurl);
-		curl_close($oCurl);
-		if(intval($aStatus["http_code"])==200){
-			return $sContent;
-		}else{
-			return false;
-		}
-	}
-	/**
-	 * POST 请求
-	 * @param string $url 
-	 * @param array $param 
-	 * @return string content
-	*/
-	public function http_post($url,$param){
-		$oCurl = curl_init();
-		if(stripos($url,"https://")!==FALSE){
-			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
-		}
-		if (is_string($param)) {
-			$strPOST = $param;
-		} else {
-			$aPOST = array();
-			foreach($param as $key=>$val){
-				$aPOST[] = $key."=".urlencode($val);
-			}
-			$strPOST =  join("&", $aPOST);
-			
-		}
-		curl_setopt($oCurl, CURLOPT_URL, $url);
-		curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt($oCurl, CURLOPT_POST,true);
-		curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
-		$sContent = curl_exec($oCurl);
-		if($error=curl_error($oCurl)){  
-	        die($error);  
-	    } 
 
-		$aStatus = curl_getinfo($oCurl);
-		
-		curl_close($oCurl);
-		if(intval($aStatus["http_code"])==200){
-			return $sContent;
-		}else{
-			return false;
-		}
-	}
+    //当前使用语言 常量  LANG_SET
+    protected $pmzt_model;
+    protected $changci_model;
+    protected $pmgezi_model;
+    protected $yaopin_model;
+    function _initialize()
+    {
+        parent::_initialize();
+        $this->pmzt_model = M("Pmzt");
+        $this->changci_model = M("Changci");
+        $this->pmgezi_model = M("Pmgezi");
+        $this->yaopin_model = M("Yaopin");
+    }
+
+    //正在拍卖的专题页面显示
+    public function index() {
+        $where = array();
+        $request = I('request.');
+        if (($request['status'] == '0') || ($request['status'] == 1)) {
+            $where['hiden'] = $request['status'];
+        }
+        if (!empty($request['keyword'])) {
+            $keyword = $request['keyword'];
+            $where['title'] = array('like', "%$keyword%");
+        }
+        $where['l'] = LANG_SET;
+        $count = $this->pmzt_model->where($where)->count();
+        $page = $this->page($count, 8);
+        $list = $this->pmzt_model
+            ->where($where)
+            ->order("addtime DESC")
+            ->limit($page->firstRow . ',' . $page->listRows)
+            ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,pics,tuijian,addtime')
+            ->select();
+        foreach ($list as $key => $val){
+            $list[$key]['end_time']= $this->changci_model->where(array('cid'=>$val['id']))->order('end_time desc')->getField('end_time');
+        }
+        foreach ($list as $k => $val) {
+            //专题下鸽子总数
+            $gezicount = 0;
+            $arr =  $this->changci_model->where(array('cid' => $val['id']))->field('id')->select();
+            foreach ($arr as $key => $vo){
+                $gezinum = $this->pmgezi_model->where(array('cid' => $vo['id']))->count();
+                $gezicount += $gezinum;
+            }
+            $list[$k]['gezicount'] = $gezicount;
+
+            //倒计时
+            $remain_time = $val['end_time'] - time(); //剩余的秒数
+            $remain_hours = floor($remain_time/(60*60)); //剩余的小时
+            $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
+            $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+            $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+            $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+            $remain_second=sprintf("%02d",$remain_seconds);
+            $list[$k]['daojishi'] = $remain_hour.':'.$remain_minute.':'.$remain_second;
+        }
+
+        $where['l'] = LANG_SET;
+        //即将上线的条件
+        $temp = time();
+        $where['start_time'] = array('gt',"$temp");
+        $count = $this->pmzt_model->where($where)->count();
+        $page = $this->page($count, 3);
+        $data = $this->pmzt_model
+            ->where($where)
+            ->order("addtime DESC")
+            ->limit($page->firstRow . ',' . $page->listRows)
+            ->field('id,tname,start_time,end_time,cn_show,zhaiyao,content,pics,tuijian,addtime')
+            ->select();
+
+        foreach ($data as $k => $val) {
+            $data[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+        }
+        $yaopin = $this->yaopin_model->select();
+        $this->assign('list', $list);
+        $this->assign('yaopin', $yaopin);
+        $this->assign('data', $data);
+        $this->assign("page", $page->show('Admin'));
+        $this->display(":index");
+    }
 
 }
 

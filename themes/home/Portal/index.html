@@ -16,6 +16,7 @@
     <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
     <script src="__TMPL__Public/js/swiper.min.js"></script>
     <script src="__TMPL__Public/js/index.js"></script>
+    <link rel="stylesheet" href="../Public/css/shouye.css">
 </head>
 
 <body>
@@ -180,69 +181,102 @@
                 <span class="zzpm">正在拍卖</span>
                 <div class="ZZPM_list">
                     <ul>
-                        <li class="ZZPM_list_one">
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                        <li class="ZZPM_list_one">
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding02.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding03.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                        <li class="liuwu ZZPM_list_one">
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding04.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                        <li class="liuwu ZZPM_list_one">
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding05.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                        <li class="liuwu">
-                            <div class="img">
-                                <a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding06.png" alt=""></a>
-                            </div>
-                            <span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>
-                            <span class="ppo">结拍时间：2017年12月5日  22:30:00</span>
-                            <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>
-                            <div class="ZZPM_list_JG">20羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
+                        <foreach name="list" item="vol">
+                            <li class="ZZPM_list_one">
+                                <div class="img">
+                                    <a href="./mgpm.html"><img src="{:sp_get_image_preview_url($vol['pics'])}" alt=""></a>
+                                </div>
+                                <span class="ppl"><a href="./mgpm.html" class="mores">{$vol[tname] | msubstr=0,13}</a></span>
+                                <span class="ppo">结拍时间：{$vol[end_time]|date="Y-m-d H:i:s",###}</span>
+                                <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 <if condition="$vol.daojishi lt 0">已结束<else/>{$vol.daojishi}</if></a></div>
+                                <div class="ZZPM_list_JG">{$vol.gezicount}羽</div>
+                                <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+                            </li>
+                        </foreach>
+
+                        <!--<li class="ZZPM_list_one">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding02.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                            <!--<div class="ZZPM_list_JG">20羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class=" ZZPM_list_one">-->
+                        <!--<div class="img">-->
+                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding03.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                        <!--<div class="ZZPM_list_JG">20羽</div>-->
+                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="ZZPM_list_one">-->
+                        <!--<div class="img">-->
+                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding04.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                        <!--<div class="ZZPM_list_JG">20羽</div>-->
+                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class=" ZZPM_list_one">-->
+                        <!--<div class="img">-->
+                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding05.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                        <!--<div class="ZZPM_list_JG">20羽</div>-->
+                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class=" ZZPM_list_one">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding03.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                            <!--<div class="ZZPM_list_JG">20羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="ZZPM_list_one">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding04.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                            <!--<div class="ZZPM_list_JG">20羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class=" ZZPM_list_one">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding05.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                            <!--<div class="ZZPM_list_JG">20羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="liuwu">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding06.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
+                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
+                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
+                            <!--<div class="ZZPM_list_JG">20羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
                     </ul>
-                    <div class="JZGD"><a href="./mgpm.html" class="more">查看所有拍卖</a></div>
                 </div>
+                <div class="JZGD"><a href="./mgpm.html" class="more">查看所有拍卖</a></div>
             </div>
             <!-- 广告图 -->
             <div class="GGT"><img src="__TMPL__Public/images/AD SPACE.png" alt=""></div>
@@ -251,114 +285,117 @@
                 <span class="mgcp">铭鸽产品</span>
                 <div class="MGCP_list">
                     <ul>
-                        <li class="MGCP_list_one YC_one">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
-                        <li class="MGCP_list_one YC_two">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
-                        <li class="YC_three">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
-                        <li class="liuwu MGCP_list_one YC_four">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
-                        <li class="liuwu MGCP_list_one YC_five">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
-                        <li class="liuwu YC_six">
-                            <div class="img">
-                                <a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>
-                            </div>
-                            <span class="ppq">EEPW强能液</span>
-                            <span class="ppd">10 毫升/瓶</span>
-                            <div class="SSJG">¥ 198元</div>
-                            <!-- 隐藏信息框 -->
-                            <div class="YC hidden">
-                                <span class="MM">主治与功能：</span>
-                                <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
-                                <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
-                                <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
-                            </div>
-                            <!--  -->
-                            <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
-                            <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
-                        </li>
+                        <foreach name="yaopin" item="vo">
+                            <li class="MGCP_list_one YC_one">
+                                <div class="img">
+                                    <a href="./mgcpxq.html"><img src="{:sp_get_image_preview_url($vo['small_pic'])}" alt="" height="160px"></a>
+                                </div>
+                                <span class="ppq">{$vo.title}</span>
+                                <span class="ppd">{$vo.guige}</span>
+                                <div class="SSJG">¥ {$vo.price}元</div>
+                                <!-- 隐藏信息框 -->
+                                <div class="YC hidden">
+                                    <span class="MM">主治与功能：</span>
+                                    <p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>
+                                    <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
+                                    <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
+                                </div>
+                                <!--  -->
+                                <div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>
+                                <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
+                            </li>
+                        </foreach>
+
+                        <!--<li class="MGCP_list_one YC_two">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppq">EEPW强能液</span>-->
+                            <!--<span class="ppd">10 毫升/瓶</span>-->
+                            <!--<div class="SSJG">¥ 198元</div>-->
+                            <!--&lt;!&ndash; 隐藏信息框 &ndash;&gt;-->
+                            <!--<div class="YC hidden">-->
+                                <!--<span class="MM">主治与功能：</span>-->
+                                <!--<p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>-->
+                                <!--<div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>-->
+                                <!--<div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;  &ndash;&gt;-->
+                            <!--<div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>-->
+                            <!--<div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="YC_three">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppq">EEPW强能液</span>-->
+                            <!--<span class="ppd">10 毫升/瓶</span>-->
+                            <!--<div class="SSJG">¥ 198元</div>-->
+                            <!--&lt;!&ndash; 隐藏信息框 &ndash;&gt;-->
+                            <!--<div class="YC hidden">-->
+                                <!--<span class="MM">主治与功能：</span>-->
+                                <!--<p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>-->
+                                <!--<div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>-->
+                                <!--<div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;  &ndash;&gt;-->
+                            <!--<div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>-->
+                            <!--<div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="liuwu MGCP_list_one YC_four">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppq">EEPW强能液</span>-->
+                            <!--<span class="ppd">10 毫升/瓶</span>-->
+                            <!--<div class="SSJG">¥ 198元</div>-->
+                            <!--&lt;!&ndash; 隐藏信息框 &ndash;&gt;-->
+                            <!--<div class="YC hidden">-->
+                                <!--<span class="MM">主治与功能：</span>-->
+                                <!--<p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>-->
+                                <!--<div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>-->
+                                <!--<div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;  &ndash;&gt;-->
+                            <!--<div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>-->
+                            <!--<div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="liuwu MGCP_list_one YC_five">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppq">EEPW强能液</span>-->
+                            <!--<span class="ppd">10 毫升/瓶</span>-->
+                            <!--<div class="SSJG">¥ 198元</div>-->
+                            <!--&lt;!&ndash; 隐藏信息框 &ndash;&gt;-->
+                            <!--<div class="YC hidden">-->
+                                <!--<span class="MM">主治与功能：</span>-->
+                                <!--<p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>-->
+                                <!--<div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>-->
+                                <!--<div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;  &ndash;&gt;-->
+                            <!--<div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>-->
+                            <!--<div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>-->
+                        <!--</li>-->
+                        <!--<li class="liuwu YC_six">-->
+                            <!--<div class="img">-->
+                                <!--<a href="./mgcpxq.html"><img src="__TMPL__Public/images/20161122170034865.png" alt=""></a>-->
+                            <!--</div>-->
+                            <!--<span class="ppq">EEPW强能液</span>-->
+                            <!--<span class="ppd">10 毫升/瓶</span>-->
+                            <!--<div class="SSJG">¥ 198元</div>-->
+                            <!--&lt;!&ndash; 隐藏信息框 &ndash;&gt;-->
+                            <!--<div class="YC hidden">-->
+                                <!--<span class="MM">主治与功能：</span>-->
+                                <!--<p class="JS">加强肌肉生长，适应高强度比赛。用以提速，增强耐力，强化体能，停止换羽。</p>-->
+                                <!--<div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>-->
+                                <!--<div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;  &ndash;&gt;-->
+                            <!--<div class="TH"><img src="__TMPL__Public/images/th.png" alt=""></div>-->
+                            <!--<div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>-->
+                        <!--</li>-->
                     </ul>
                     <div class="CKCP"><a href="./mgcp.html" class="more">查看所有产品</a></div>
                 </div>

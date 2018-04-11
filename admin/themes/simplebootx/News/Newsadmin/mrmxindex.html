@@ -3,10 +3,10 @@
 <body>
 <div class="wrap js-check-wrap">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="javascript:;">{:L('NEWS_INDEX')}</a></li>
-		<li><a href="{:U('Newsadmin/newsadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_ADD')}</a></li>
+		<li class="active"><a href="javascript:;">{:L('NEWS_MRMX_INDEX')}</a></li>
+		<li><a href="{:U('Newsadmin/mrmxadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_MRMX_ADD')}</a></li>
 	</ul>
-	<form class="well form-search" method="post" action="{:U('Newsadmin/newsindex')}">
+	<form class="well form-search" method="post" action="{:U('Newsadmin/mrmxindex')}">
 		分类：
 		<select name="term" style="width: 120px;">
 
@@ -52,7 +52,6 @@
 				<th width="150">{:L('ISSUER_NAME')}</th>
 				<th width="150">{:L('CLICKS')}</th>
 				<th width="150">{:L('ISSUER_TIME')}</th>
-				<th width="150">{:L('COLUMN')}</th>
 				<th width="150">{:L('STATUS')}</th>
 				<th width="180">{:L('ACTIONS')}</th>
 			</tr>
@@ -72,10 +71,9 @@
 						</notempty>
 					</td>
 					<td>{$vo.user_nicename|default=$vo.user_login}</td>
-					<td>{$vo.real_hits}</td>
+					<td>{$vo.hits}</td>
 
 					<td>{:date('Y-m-d H:i',strtotime($vo['created_date']))}</td>
-					<td><b>{$vo.column}</b></td>
 					<td>
 						<notempty name="vo.working">
 							<a data-toggle="tooltip" title="已审核"><i class="fa fa-check"></i></a>
@@ -95,8 +93,8 @@
 					</td>
 
 					<td>
-						<a href="{:U('Newsadmin/newsedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
-						<a href="{:U('Newsadmin/newsdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						<a href="{:U('Newsadmin/mrmxedit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
+						<a href="{:U('Newsadmin/mrmxdelete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 			</foreach>
@@ -111,7 +109,6 @@
 				<th width="150">{:L('ISSUER_NAME')}</th>
 				<th width="150">{:L('CLICKS')}</th>
 				<th width="150">{:L('ISSUER_TIME')}</th>
-				<th width="150">{:L('COLUMN')}</th>
 				<th width="150">{:L('STATUS')}</th>
 				<th width="180">{:L('ACTIONS')}</th>
 			</tr>

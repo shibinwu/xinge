@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>铭鸽产品</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/swiper.min.css">
-    <link rel="stylesheet" href="./css/FJ.css">
-    <link rel="stylesheet" href="./css/mgcp.css">
-    <script src="./js/jquery-1.10.2.min.js"></script>
-    <script src="./js/swiper.min.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/autosize.min.js"></script>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/mgcp.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <script src="__TMPL__Public/js/autosize.min.js"></script>
 </head>
 
 <body>
@@ -27,16 +27,16 @@
             <span class="lxdh">电话:010-85175305 13146616133   |   邮箱:epw@xingezhan.com</span>
             <div class="kuang">
                 <input type="search" placeholder="搜索你想要的项目" name="搜索" id="">
-                <div class="fdj"><img src="./images/search.png" alt="" srcset=""></div>
-                <div class="gq"><img src="./images/NL.png" alt="" srcset="">
-                    <a><img src="./images/xiasanjiao.png" alt=""></a>
+                <div class="fdj"><img src="__TMPL__Public/images/search.png" alt="" srcset=""></div>
+                <div class="gq"><img src="__TMPL__Public/images/NL.png" alt="" srcset="">
+                    <a><img src="__TMPL__Public/images/xiasanjiao.png" alt=""></a>
                 </div>
             </div>
         </div>
         <!-- 头部 -->
         <div class="header">
             <div class="logo">
-                <a href=""><img src="./images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
+                <a href=""><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
             </div>
             <div class="list" id="list">
                 <ul>
@@ -90,7 +90,7 @@
                     <li>浏览次数</li>
                 </ul>
                 <ul class="value">
-                    <li>250克/罐</li>
+                    <li>{$data.guige}</li>
                     <li>汉斯制药</li>
                     <li>荷兰</li>
                     <li>充足</li>
@@ -185,52 +185,53 @@
         </div>
         <!-- 中间内容 -->
         <div class="MGMG">
-            <span class="mgmg">呼必清</span>
+            <span class="mgmg">{$data.title}</span>
             <span class="mgmgs">Ornicure</span>
             <div class="FENXIANG">
-                <a href="" class="fenxiang"><img src="./images/fx.png" alt=""></a>
-                <a href="" class="shoucang"><img src="./images/Laag.png" alt=""></a>
+                <a href="" class="fenxiang"><img src="__TMPL__Public/images/fx.png" alt=""></a>
+                <a href="" class="shoucang"><img src="__TMPL__Public/images/Laag.png" alt=""></a>
             </div>
             <div class="GEZIA">
-                <img src="./images/GEYAO.png" alt="" srcset="">
+                <img src="__TMPL__Public/images/GEYAO.png" alt="" srcset="">
             </div>
             <div class="ZHENGSHU">
                 <ul>
-                    <li id="GE1"><img src="./images/zhengshu.png" alt="">
-                        <span>血统书</span>
+                    <li id="GE1"><img src="{:sp_get_image_preview_url($data['small_pic'])}" alt="">
+                        <!--<span>血统书</span>-->
                     </li>
-                    <li id="GE4"><img src="./images/zhengshu.png" alt="">
-                        <span>血统书</span></li>
+                    <!--<li id="GE4"><img src="__TMPL__Public/images/zhengshu.png" alt="">-->
+                        <!--<span>血统书</span></li>-->
                 </ul>
-                <ul>
-                    <li id="GE2"><img src="./images/zhengshu2.png" alt="">
-                        <span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span>
-                    </li>
-                    <li id="GE5"><img src="./images/zhengshu2.png" alt="">
-                        <span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span></li>
-                </ul>
-                <ul>
-                    <li id="GE3"><img src="./images/zhengshu3.png" alt="">
-                        <span>鸽眼</span>
-                    </li>
-                    <li id="GE6"><img src="./images/zhengshu3.png" alt="">
-                        <span>鸽眼</span></li>
-                </ul>
+                <!--<ul>-->
+                    <!--<li id="GE2"><img src="__TMPL__Public/images/zhengshu2.png" alt="">-->
+                        <!--<span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span>-->
+                    <!--</li>-->
+                    <!--<li id="GE5"><img src="__TMPL__Public/images/zhengshu2.png" alt="">-->
+                        <!--<span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span></li>-->
+                <!--</ul>-->
+                <!--<ul>-->
+                    <!--<li id="GE3"><img src="__TMPL__Public/images/zhengshu3.png" alt="">-->
+                        <!--<span>鸽眼</span>-->
+                    <!--</li>-->
+                    <!--<li id="GE6"><img src="__TMPL__Public/images/zhengshu3.png" alt="">-->
+                        <!--<span>鸽眼</span></li>-->
+                <!--</ul>-->
             </div>
             <div class="SHUOMING">
-                <span class="YAONAMES">呼必清</span>
-                <span class="YAOSM">主治与功能：</span>
-                <span class="YAOSM">本品是一种水溶性粉剂，强效针对由伤风综合性病原体（如：敏感性衣原体、披衣菌、以及细菌）引起的各类感染。</span>
-                <span class="YAOSM">【适应症状】</span>
-                <span class="YAOSM">本品对于赛鸽眼鼻内有分泌物增多，鼻/眼涩（湿），呼吸异样，喉内红肿，张嘴飞行等症状适用。</span>
-                <span class="YAOSM">用法与用量：</span>
-                <span class="YAOSM">【用法】</span>
-                <span class="YAOSM">治愈 连续用6天。严重感染者，建议使用(病毒注射液)加强治疗。治愈后，应连用2天(多维康)，帮助赛鸽尽快恢复体力。</span>
-                <span class="YAOSM">预防 上笼前1-2天，使用本品，可以有效预防赛鸽感染病菌，增强抵抗力。</span>
-                <span class="YAOSM">【用量】</span>
-                <span class="YAOSM">1.量匙本品加入2升饮用水中，连续使用6天。通常情况下，每20羽鸽子一天的饮水量为1升水。</span>
-                <span class="YAOSM">【规格】250克/瓶</span>
-                <span class="YAOSM">【产地】荷兰</span>
+                <!--{$data.content}-->
+                <!--<span class="YAONAMES">{$data.content}</span>-->
+                <span class="YAOSM">主治与功能：{$data.content}</span>
+                <!--<span class="YAOSM">本品是一种水溶性粉剂，强效针对由伤风综合性病原体（如：敏感性衣原体、披衣菌、以及细菌）引起的各类感染。</span>-->
+                <!--<span class="YAOSM">【适应症状】</span>-->
+                <!--<span class="YAOSM">本品对于赛鸽眼鼻内有分泌物增多，鼻/眼涩（湿），呼吸异样，喉内红肿，张嘴飞行等症状适用。</span>-->
+                <!--<span class="YAOSM">用法与用量：</span>-->
+                <!--<span class="YAOSM">【用法】</span>-->
+                <!--<span class="YAOSM">治愈 连续用6天。严重感染者，建议使用(病毒注射液)加强治疗。治愈后，应连用2天(多维康)，帮助赛鸽尽快恢复体力。</span>-->
+                <!--<span class="YAOSM">预防 上笼前1-2天，使用本品，可以有效预防赛鸽感染病菌，增强抵抗力。</span>-->
+                <!--<span class="YAOSM">【用量】</span>-->
+                <!--<span class="YAOSM">1.量匙本品加入2升饮用水中，连续使用6天。通常情况下，每20羽鸽子一天的饮水量为1升水。</span>-->
+                <!--<span class="YAOSM">【规格】250克/瓶</span>-->
+                <!--<span class="YAOSM">【产地】荷兰</span>-->
             </div>
         </div>
         <!-- 底部 -->
@@ -238,7 +239,7 @@
             <div class="t1"></div>
             <div class="t2"></div>
             <div class="t3">
-                <div class="logos"><img src="./images/LG_EuropeanPigeonWebsite_diap.png" alt="" srcset=""></div>
+                <div class="logos"><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_diap.png" alt="" srcset=""></div>
                 <div class="lxwm">
                     <span class="lxwms">联系我们</span>
                     <p class="p11">电话（大陆） 010-85175305</p>
@@ -249,16 +250,16 @@
                 </div>
                 <div class="wx">
                     <span>微信公众号</span>
-                    <img src="./images/wx.png" alt="">
+                    <img src="__TMPL__Public/images/wx.png" alt="">
                 </div>
                 <div class="xz">
                     <span>下载APP</span>
-                    <img src="./images/wx.png" alt="">
+                    <img src="__TMPL__Public/images/wx.png" alt="">
                 </div>
                 <div class="jh">
-                    <span><img src="./images/pm.png" alt="">&nbsp;拍卖规则</span>
-                    <span class="span3"><img src="./images/fk.png" alt="">&nbsp;付款方式</span>
-                    <span class="span3"><img src="./images/gj.png" alt="">&nbsp;冠军计划</span>
+                    <span><img src="__TMPL__Public/images/pm.png" alt="">&nbsp;拍卖规则</span>
+                    <span class="span3"><img src="__TMPL__Public/images/fk.png" alt="">&nbsp;付款方式</span>
+                    <span class="span3"><img src="__TMPL__Public/images/gj.png" alt="">&nbsp;冠军计划</span>
                 </div>
                 <div class="liebiao">
                     <ul>
@@ -279,10 +280,10 @@
     </div>
     <!-- 左右箭头 -->
     <div class="JTZ">
-        <a href="./mgcpxq.html"><img src="./images/xiangzuo.png" alt="" class="JTT"></a>
+        <a href="./mgcpxq.html"><img src="__TMPL__Public/images/xiangzuo.png" alt="" class="JTT"></a>
     </div>
     <div class="JTY">
-        <a href="./mgcpxq.html"><img src="./images/xiangyou.png" alt="" class="JTT"></a>
+        <a href="./mgcpxq.html"><img src="__TMPL__Public/images/xiangyou.png" alt="" class="JTT"></a>
     </div>
     <!-- 弹框 -->
     <div class="ALERT hidden" id="alert">
@@ -302,7 +303,7 @@
             </div>
         </div>
         <div class="GEZIA">
-            <img src="./images/alert2.png" alt="">
+            <img src="__TMPL__Public/images/alert2.png" alt="">
         </div>
         <div class="XINGHAO">
             <span>* 本产品价格以“人民币”为单位。</span>
@@ -312,7 +313,7 @@
                 条款等。</span>
         </div>
         <div class="XXX" id="close_img">
-            <a href=""><img src="./images/X.png" alt=""></a>
+            <a href=""><img src="__TMPL__Public/images/X.png" alt=""></a>
         </div>
         <div class="lianxidizhi">
             <span class="JPXX">订购人信息</span>
@@ -344,19 +345,19 @@
     <div class="FJ hidden" id="FJ">
         <ul class="fj">
             <li class="SUO" id="SUO">
-                <div class="suo"><img src="./images/suo.png" alt=""><span class="suos">登录</span></div>
+                <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>
             </li>
             <li class="APP">
-                <div class="app"><img src="./images/niao.png" alt=""><span class="apps">APP</span></div>
+                <div class="app"><img src="__TMPL__Public/images/niao.png" alt=""><span class="apps">APP</span></div>
             </li>
             <li class="PHONE">
-                <div class="phone"><img src="./images/phone.png" alt=""><span class="phones">联系我们</span></div>
+                <div class="phone"><img src="__TMPL__Public/images/phone.png" alt=""><span class="phones">联系我们</span></div>
             </li>
             <li class="FEIJI" id="FB">
-                <div class="feiji"><img src="./images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
+                <div class="feiji"><img src="__TMPL__Public/images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
             </li>
             <li class="guanbi" id="guanbi">
-                <div class="guanbis"><img src="./images/img602.png" alt="" srcset=""></div>
+                <div class="guanbis"><img src="__TMPL__Public/images/img602.png" alt="" srcset=""></div>
             </li>
         </ul>
     </div>
@@ -381,34 +382,34 @@
             })
             // 证书图片互换
         $('#GE1').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu.png');
+            $('.GEZIA').find('img').attr('src', '{:sp_get_image_preview_url($data[small_pic])}');
         });
         $('#GE2').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu2.png');
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu2.png');
         });
         $('#GE3').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu3.png');
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu3.png');
         });
         $('#GE4').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu.png');
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu.png');
         });
         $('#GE5').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu2.png');
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu2.png');
         });
         $('#GE6').click(function() {
-            $('.GEZIA').find('img').attr('src', './images/zhengshu3.png');
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu3.png');
         });
 
         //切换页面药品
         $('.JTZ').hover(function() {
-            $('.JTZ').find('img').attr('src', './images/xiangzuo2.png');
+            $('.JTZ').find('img').attr('src', '__TMPL__Public/images/xiangzuo2.png');
         }, function() {
-            $('.JTZ').find('img').attr('src', './images/xiangzuo.png');
+            $('.JTZ').find('img').attr('src', '__TMPL__Public/images/xiangzuo.png');
         });
         $('.JTY').hover(function() {
-            $('.JTY').find('img').attr('src', './images/xiangyou2.png');
+            $('.JTY').find('img').attr('src', '__TMPL__Public/images/xiangyou2.png');
         }, function() {
-            $('.JTY').find('img').attr('src', './images/xiangyou.png');
+            $('.JTY').find('img').attr('src', '__TMPL__Public/images/xiangyou.png');
         });
         // 加减
         $(".jiajian .add").click(function() {

@@ -382,6 +382,50 @@ class IndexadminController extends AdminbaseController
         $this->display();
     }
 
+    // 后台药品添加
+    public function add(){
+        if (IS_POST) {
+            $_POST['post']['small_pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['created_by']=get_current_admin_id();
+            $article=I("post.post");
+            $article['content']=htmlspecialchars_decode($article['content']);
+            $result=$this->posts_model->add($article);
+            if ($result) {
+                $this->success("添加成功！");
+            } else {
+                $this->error("添加失败！");
+            }
+            exit;
+        }
+        $this->display();
+    }
+
+    // 后台药品编辑
+    public function edit(){
+        if (IS_POST) {
+            $post_id=intval($_POST['post']['id']);
+            $_POST['post']['small_pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            unset($_POST['post']['post_author']);
+            $article=I("post.post");
+            $article['content']=htmlspecialchars_decode($article['content']);
+            $result=$this->posts_model->save($article);
+            if ($result!==false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where=array();
+        $id=I('get.id');
+        $where['id']=$id;
+        $yaopin_model=M("Yaopin");
+        $info = $yaopin_model->where($where)->find();
+        $this->assign('post', $info);
+        $this->display();
+    }
+
+
     // 后台鸽子展售订单添加
     public function geyaoadd()
     {

@@ -19,20 +19,35 @@
 	width:384px;
 		background:#F4F2F3;
 }
-.DHLIST ul li{
+.DHLIST ul .yiji{
 	width:384px;
 	height:87px;
 	line-height:87px;
 	border-bottom:1px solid #CFCFCF;
 	text-align:center;
 }
+.DHLIST ul .ziji{
+	width:384px;
+	line-height:87px;
+	border-bottom:1px solid #CFCFCF;
+	text-align:center;
+}
+.DHLIST ul .ziji a{
+	border-bottom:1px solid #CFCFCF;
+}
 .DHLIST ul li a{
 	font-size:22px;
 	height:87px;
-	width:381px;
+	width:384px;
 	color:#575756;
+	display:block;
 }
-
+.qingbian{
+	border-bottom:0 !important;
+}
+.xuanzhong{
+	color:#007bc1 !important;
+}
 
 /*名人铭事  铭鸽资讯*/
 .SERVERLIST_one{

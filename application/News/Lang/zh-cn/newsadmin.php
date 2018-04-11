@@ -46,4 +46,15 @@ return array(
         "NEWS_YZZB_ADD" => '添加亚洲战报',
         "NEWS_YZZB_EDIT" => '编辑亚洲战报',
 
+        //铭鸽咨询
+        "NEWS_MGZX_INDEX" => '铭鸽咨询',
+        "NEWS_MGZX_ADD" => '添加铭鸽咨询',
+        "NEWS_MGZX_EDIT" => '编辑铭鸽咨询',
+
+        //名人铭系
+        "NEWS_MRMX_INDEX" => '名人铭系',
+        "NEWS_MRMX_ADD" => '添加名人铭系',
+        "NEWS_MRMX_EDIT" => '编辑名人铭系',
+
+
 );
