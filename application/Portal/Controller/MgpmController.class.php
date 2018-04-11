@@ -63,8 +63,6 @@ class MgpmController extends HomebaseController {
         foreach ($list as $key => $val){
             $list[$key]['end_time']= $this->changci_model->where(array('cid'=>$val['id']))->order('end_time desc')->getField('end_time');
         }
-
-
         foreach ($list as $k => $val) {
             //专题下鸽子总数
             $gezicount = 0;

@@ -86,9 +86,8 @@
                         <a href="javascript:;">铭鸽资讯</a>
                     </li>
                     <li id="tab2" class="yiji fudai1 fl2">
-                        <a href="javascript:;">欧洲战报</a>
+                        <a href="{:U('Portal/ztndgz/index',array('id'=>1))}:;">欧洲战报</a>
                     </li>
-
                         <li id="tab3" class="ziji fudai1s none">
                             <foreach name="data" item="vo">
                             <a href="javascript:;" class="xuanzhong fl2">{$vo.yname}</a>
@@ -602,6 +601,10 @@
 
 
     });
+</script>
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+<script type="text/javascript">
+    $(document).pjax('a', '#MRMXS')
 </script>
 
 </html>

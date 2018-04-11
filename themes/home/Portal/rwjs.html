@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>铭鸽拍卖</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/swiper.min.css">
-    <link rel="stylesheet" href="./css/FJ.css">
-    <link rel="stylesheet" href="./css/rwjs.css">
-    <script src="./js/jquery-1.10.2.min.js"></script>
-    <script src="./js/swiper.min.js"></script>
-    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/rwjs.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
 </head>
 
 <body>
@@ -26,16 +26,16 @@
             <span class="lxdh">电话:010-85175305 13146616133   |   邮箱:epw@xingezhan.com</span>
             <div class="kuang">
                 <input type="search" placeholder="搜索你想要的项目" name="搜索" id="">
-                <div class="fdj"><img src="./images/search.png" alt="" srcset=""></div>
-                <div class="gq"><img src="./images/NL.png" alt="" srcset="">
-                    <a><img src="./images/xiasanjiao.png" alt=""></a>
+                <div class="fdj"><img src="__TMPL__Public/images/search.png" alt="" srcset=""></div>
+                <div class="gq"><img src="__TMPL__Public/images/NL.png" alt="" srcset="">
+                    <a><img src="__TMPL__Public/images/xiasanjiao.png" alt=""></a>
                 </div>
             </div>
         </div>
         <!-- 头部 -->
         <div class="header">
             <div class="logo">
-                <a href=""><img src="./images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
+                <a href=""><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
             </div>
             <div class="list" id="list">
                 <ul>
@@ -144,38 +144,38 @@
         </div>
         <!-- 中心部分 -->
         <div class="SECTION">
-            <span class="SECTION_RM">班尼·史蒂文</span>
-            <span class="SECTION_JPSJ CT">结拍时间：2018-01-27 23:30:00</span>
-            <span class="SECTION_PMYS CT">拍卖羽数：20羽</span>
-            <p class="SECTION_PMYS_XXJS">班尼·史蒂文的鸽舍建立于上世纪60年代末期，那时在慕尼黑（德国城市）放飞的国家赛风靡荷兰鸽友圈，也正因如此，初出茅庐的班尼·史蒂文凭借在该场比赛上的出色表现挣得了他在欧洲鸽坛名利场上的“第一桶金”。后佐以弗豪斯-佛哈根鸽舍（Vrosch-voragen）和亨利。范路易（Henri van Venrooij）的顶级赛绩鸽创立基础种系。是名震荷兰的超级赛鸽2005年王者之王全国幼鸽鸽王冠军“强尼男孩”的血脉。</p>
+            <span class="SECTION_RM">{$list.tname}</span>
+            <span class="SECTION_JPSJ CT">结拍时间：{$list.end_time}</span>
+            <span class="SECTION_PMYS CT">拍卖羽数：{$list.gezicount}羽</span>
+            <p class="SECTION_PMYS_XXJS">{$list.content}</p>
             <div class="SECTION_RWTP">
-                <img src="./images/rwtp.png" alt="">
+                <img src="{:sp_get_image_preview_url($list['pics'])}" alt="">
             </div>
             <div class="SECTION_SP">
                 <div class="SECTION_bt">
-                    <img src="./images/sp.png" alt="">
-                    <a href="" class="sp"><img src="./images/图层 518.png" alt=""></a>
+                    <img src="__TMPL__Public/images/sp.png" alt="">
+                    <a href="" class="sp"><img src="__TMPL__Public/images/图层 518.png" alt=""></a>
                     <a href="./mgpm.html" class="CLJ">
                         < 回到拍卖鸽列表页</a>
                 </div>
             </div>
             <div class="SECTION_XW">
                 <div class="SECTION_xw">
-                    <img src="./images/组 17.png" alt="">
+                    <img src="__TMPL__Public/images/组 17.png" alt="">
                     <ul>
                         <li>
-                            &nbsp;&nbsp;&nbsp;<img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a>
                         </li>
-                        <li class="BACK">&nbsp;&nbsp;&nbsp; <img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                        <li class="BACK">&nbsp;&nbsp;&nbsp; <img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a></li>
-                        <li class="BACK"> &nbsp;&nbsp;&nbsp;<img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                        <li class="BACK"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a></li>
-                        <li> &nbsp;&nbsp;&nbsp;<img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                        <li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a></li>
-                        <li class="BACK">&nbsp;&nbsp;&nbsp; <img src="./images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                        <li class="BACK">&nbsp;&nbsp;&nbsp; <img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
                             <a href="">瑞和保罗.罗德里古斯兄弟鸽舍历年战绩</a></li>
                     </ul>
                 </div>
@@ -186,7 +186,7 @@
             <div class="t1"></div>
             <div class="t2"></div>
             <div class="t3">
-                <div class="logos"><img src="./images/LG_EuropeanPigeonWebsite_diap.png" alt="" srcset=""></div>
+                <div class="logos"><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_diap.png" alt="" srcset=""></div>
                 <div class="lxwm">
                     <span class="lxwms">联系我们</span>
                     <p class="p11">电话（大陆） 010-85175305</p>
@@ -197,16 +197,16 @@
                 </div>
                 <div class="wx">
                     <span>微信公众号</span>
-                    <img src="./images/wx.png" alt="">
+                    <img src="__TMPL__Public/images/wx.png" alt="">
                 </div>
                 <div class="xz">
                     <span>下载APP</span>
-                    <img src="./images/wx.png" alt="">
+                    <img src="__TMPL__Public/images/wx.png" alt="">
                 </div>
                 <div class="jh">
-                    <span><img src="./images/pm.png" alt="">&nbsp;拍卖规则</span>
-                    <span class="span3"><img src="./images/fk.png" alt="">&nbsp;付款方式</span>
-                    <span class="span3"><img src="./images/gj.png" alt="">&nbsp;冠军计划</span>
+                    <span><img src="__TMPL__Public/images/pm.png" alt="">&nbsp;拍卖规则</span>
+                    <span class="span3"><img src="__TMPL__Public/images/fk.png" alt="">&nbsp;付款方式</span>
+                    <span class="span3"><img src="__TMPL__Public/images/gj.png" alt="">&nbsp;冠军计划</span>
                 </div>
                 <div class="liebiao">
                     <ul>
@@ -229,19 +229,19 @@
     <div class="FJ hidden" id="FJ">
         <ul class="fj">
             <li class="SUO" id="SUO">
-                <div class="suo"><img src="./images/suo.png" alt=""><span class="suos">登录</span></div>
+                <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>
             </li>
             <li class="APP">
-                <div class="app"><img src="./images/niao.png" alt=""><span class="apps">APP</span></div>
+                <div class="app"><img src="__TMPL__Public/images/niao.png" alt=""><span class="apps">APP</span></div>
             </li>
             <li class="PHONE">
-                <div class="phone"><img src="./images/phone.png" alt=""><span class="phones">联系我们</span></div>
+                <div class="phone"><img src="__TMPL__Public/images/phone.png" alt=""><span class="phones">联系我们</span></div>
             </li>
             <li class="FEIJI" id="FB">
-                <div class="feiji"><img src="./images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
+                <div class="feiji"><img src="__TMPL__Public/images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
             </li>
             <li class="guanbi" id="guanbi">
-                <div class="guanbis"><img src="./images/img602.png" alt="" srcset=""></div>
+                <div class="guanbis"><img src="__TMPL__Public/images/img602.png" alt="" srcset=""></div>
             </li>
         </ul>
     </div>

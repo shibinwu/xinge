@@ -28,30 +28,39 @@ use Common\Controller\HomebaseController;
 /**
  * 首页
  */
-class MrmxController extends HomebaseController {
-
+class RwjsController extends HomebaseController {
     //当前使用语言 常量  LANG_SET
-    protected $year_model;
-    protected $article_model;
+    protected $pmzt_model;
+    protected $changci_model;
+    protected $pmgezi_model;
     function _initialize()
     {
         parent::_initialize();
-        $this->year_model = M("Year");
-        $this->article_model = M("Article");
+        $this->pmzt_model = M("Pmzt");
+        $this->changci_model = M("Changci");
+        $this->pmgezi_model = M("Pmgezi");
     }
+    //正在拍卖的专题页面显示
 	public function index() {
-        if(IS_PJAX){
-            $id = I('get.id');
-            dump($id);die;
-        }
+        $where = array();
+       $id = I('get.id');
+        $where['l'] = LANG_SET;
+        $where['id'] = $id;
+        $list = $this->pmzt_model
+            ->where($where)
+            ->find();
+            $list['end_time']= $this->changci_model->where(array('cid'=>$list['id']))->order('end_time desc')->getField('end_time');
+            //专题下鸽子总数
+            $gezicount = 0;
+            $arr =  $this->changci_model->where(array('cid' => $list['id']))->field('id')->select();
+            foreach ($arr as $key => $vo){
+                $gezinum = $this->pmgezi_model->where(array('cid' => $vo['id']))->count();
+                $gezicount += $gezinum;
+            }
+            $list['gezicount'] = $gezicount;
 
-	    $data = $this->year_model->order('yname desc')->select();
-	    $mgzx = $this->article_model->where(array('cid' => 0))->select();
-//	    dump($mgzx);die;
-
-	    $this->assign('data',$data);
-	    $this->assign('mgzx',$mgzx);
-    	$this->display(":mrmx");
+        $this->assign('list', $list);
+    	$this->display(":rwjs");
     }
 }
 
