@@ -180,10 +180,11 @@
 	margin-top:65px;
 }
 .section .MGCP .MGCP_list ul{
-	margin-top:42px;
 	width:1187px;
+	height:792px;
 }
 .section .MGCP .MGCP_list ul li{
+	margin-top:42px;
 	width:327px; 
 	height:283px;
 	background:#F4F2F2;

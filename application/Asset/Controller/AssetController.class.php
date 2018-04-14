@@ -88,7 +88,7 @@ class AssetController extends AdminbaseController {
 
             }
 //
-			$upload = new \Think\Upload($config);// 
+			$upload = new \Think\Upload($config);//
 			$info=$upload->upload();
             //开始上传
             if ($info) {

@@ -17,10 +17,13 @@ class ImageadminController extends AdminbaseController
     public function imageindex(){
         //获取目录路径
         $path = './data/upload/default/tupian/';
+
         //取出该目录下所有的文件及目录
         $result = scandir($path);
+
         //删除目录
         array_splice($result,0,2);
+
         //分页
         $count =count($result);
         $page = $this->page($count, 2);

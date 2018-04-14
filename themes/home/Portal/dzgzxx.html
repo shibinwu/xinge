@@ -257,106 +257,35 @@
                 <a href="" class="shoucang"><img src="__TMPL__Public/images/Laag.png" alt=""></a>
             </div>
             <div class="GEZIA">
-                <img src="{$data.pic}" alt="" srcset="">
+                <div id="imgsss" style="padding: 1px;"><img src="{$data.pic}"  alt="" srcset=""></div>
             </div>
             <div class="ZHENGSHU">
-                <ul>
-                    <li id="GE1"><img src="{$data.xtpic}" alt="" width="330px">
-                        <span>血统书</span>
-                    </li>
-                    <!--<li id="GE4"><img src="__TMPL__Public/images/zhengshu.png" alt="">-->
-                        <!--<span>血统书</span></li>-->
-                </ul>
-                <ul>
-                    <li id="GE2"><img src="{$data.pic}" alt="" width="330px">
+
+                <ul style="float: left;">
+                    <li id="GE2"><img src="{$data.pic}" alt="" height="330px">
                         <span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span>
                     </li>
                     <!--<li id="GE5"><img src="__TMPL__Public/images/zhengshu2.png" alt="">-->
                         <!--<span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span></li>-->
                 </ul>
-                <ul>
-                    <li id="GE3"><img src="{$data.yjpic}" alt="" width="330px">
+                <ul style="">
+                    <li id="GE3"><img src="{$data.yjpic}" alt="" height="330px">
                         <span>鸽眼</span>
                     </li>
                     <!--<li id="GE6"><img src="__TMPL__Public/images/zhengshu3.png" alt="">-->
                         <!--<span>鸽眼</span></li>-->
                 </ul>
+                <ul style="float: right;">
+                    <li id="GE1"><img src="{$data.xtpic}" style="display: block;"=alt="" height="330px">
+                        <span>血统书</span>
+                    </li>
+                    <!--<li id="GE4"><img src="__TMPL__Public/images/zhengshu.png" alt="">-->
+                    <!--<span>血统书</span></li>-->
+                </ul>
             </div>
-            <!--<div class="SHUOMING">-->
-                <!--<ul class="shuoming">-->
-                    <!--<li class="shuomingstyle">K1 B16-162 雄</li>-->
-                    <!--<li class="shuomingstyle3">"米亚"</li>-->
-                    <!--<li class="shuomingstyle2">强尼·潘尼斯原舍</li>-->
-                    <!--<li class="shuomingstyle2">本身成绩：</li>-->
-                    <!--<li class="shuomingstyle2">2011年奥林匹克全能鸽王德国冠军</li>-->
-                    <!--<li class="shuomingstyle2">2011年波兹南奥林匹克全能鸽王国际亚军</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">冠军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">亚军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">季军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">11位 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">13位 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">11位 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">13位 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">11位 苏普思 4437羽（324公里）</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <div>
-                {$data.info}
+            <div style="font-size: 20px;clear:right;font-weight: 500;color: #575756;">
+                {:htmlspecialchars_decode($data['info'])}
             </div>
-            <!--<div class="SHUOMING2">-->
-                <!--<ul class="shuoming2">-->
-                    <!--<li class="shuomingstyle">父亲：B14-613836 灰雌</li>-->
-                    <!--<li class="shuomingstyle3">"吉林克斯"</li>-->
-                    <!--<li class="shuomingstyle2">本身成绩：</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">冠军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">亚军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3"><span class="shuomingstyle2">季军</span> 苏普思 4437羽（324公里）</li>-->
-                    <!--<li class="shuomingstyle3">11位 苏普思 4437羽（324公里）</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING6">-->
-                <!--<ul class="shuoming6">-->
-                    <!--<li class="shuomingstyle">母亲：B14-613836 黑雌</li>-->
-                    <!--<li class="shuomingstyle3">"布恩至孙女"</li>-->
-                    <!--<li class="shuomingstyle3">100%布兰德兄弟</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING7">-->
-                <!--<ul class="shuoming7">-->
-                    <!--<li class="shuomingstyle">外祖父：B14-613836 雌</li>-->
-                    <!--<li class="shuomingstyle3">"米拉"直子</li>-->
-                    <!--<li class="shuomingstyle3">"布鲁瓦直子"</li>-->
-                    <!--<li class="shuomingstyle3">本身成绩：<span class="shuomingstyle2">冠军，亚军，3次季军，4位，5位</span></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING8">-->
-                <!--<ul class="shuoming8">-->
-                    <!--<li class="shuomingstyle">曾外祖母：B14-613836 雌</li>-->
-                    <!--<li class="shuomingstyle">曾外祖父：B14-613836 雄</li>-->
-                    <!--<li class="shuomingstyle">外祖母：B14-613836 雌</li>-->
-                    <!--<li class="shuomingstyle">外祖父：B14-613836 雄</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING3">-->
-                <!--<ul class="shuoming3">-->
-                    <!--<li class="shuomingstyle">父亲：B14-613836 灰雌</li>-->
-                    <!--<li class="shuomingstyle3">"吉林克斯"</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING4">-->
-                <!--<ul class="shuoming4">-->
-                    <!--<li class="shuomingstyle">祖父：B14-613836 灰雌</li>-->
-                    <!--<li class="shuomingstyle3">"米拉"直子</li>-->
-                    <!--<li class="shuomingstyle3">"布鲁瓦直子"</li>-->
-                    <!--<li class="shuomingstyle3">"<span class="shuomingstyle2">布鲁瓦</span>"获2011年布鲁瓦<span class="shuomingstyle2">冠军</span></li>-->
-                    <!--<li class="shuomingstyle3">"<span class="shuomingstyle2">查特鲁雌</span>"获查特鲁瓦<span class="shuomingstyle2">全省2448羽冠军</span></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="SHUOMING5">-->
-                <!--<ul class="shuoming5">-->
-                    <!--<li class="shuomingstyle">曾祖母：B14-613836 雌</li>-->
-                <!--</ul>-->
-            <!--</div>-->
         </div>
         <!-- 底部 -->
         <div class="footer">
@@ -449,7 +378,7 @@
         </div>
     </div>
     <!-- 右侧导航 -->
-    <div class="FJ hidden" id="FJ">
+    <div class="FJ " id="FJ">
         <ul class="fj">
             <li class="SUO" id="SUO">
                 <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>
@@ -470,9 +399,14 @@
     </div>
 </body>
 <script>
-    //兼容火狐、IE8   
-    //显示遮罩层    
+
     $(function() {
+        var top = $('#imgsss').outerHeight() / 2;
+//        var top = $('.MGMG').outerHeight() / 2;
+        console.log(top);
+
+        $('.JTZ').css('margin-top',top + 'px');
+        $('.JTY').css('margin-top',top + 'px');
         $('#btn_price').click(function(e) {
                 e.preventDefault();
                 $("#mask").css("height", $(document).height());
@@ -490,21 +424,39 @@
             // 证书鸽子图片互换
         $('#GE1').click(function() {
             $('.GEZIA').find('img').attr('src', '{$data.xtpic}');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top);
+            $('.JTY').css('margin-top',top);
         });
         $('#GE2').click(function() {
             $('.GEZIA').find('img').attr('src', '{$data.pic}');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top + 'px');
+            $('.JTY').css('margin-top',top + 'px');
         });
         $('#GE3').click(function() {
             $('.GEZIA').find('img').attr('src', '{$data.yjpic}');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top + 'px');
+            $('.JTY').css('margin-top',top + 'px');
         });
         $('#GE4').click(function() {
             $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu.png');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top + 'px');
+            $('.JTY').css('margin-top',top + 'px');
         });
         $('#GE5').click(function() {
             $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu2.png');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top + 'px');
+            $('.JTY').css('margin-top',top + 'px');
         });
         $('#GE6').click(function() {
             $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu3.png');
+            var top = $('.GEZIA').find('img').height() / 2;
+            $('.JTZ').css('margin-top',top + 'px');
+            $('.JTY').css('margin-top',top + 'px');
         });
 
         //切换页面鸽子

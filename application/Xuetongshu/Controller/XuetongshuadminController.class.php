@@ -96,7 +96,7 @@ class XuetongshuadminController extends AdminbaseController
             $post_id = intval($_POST['post']['id']);
             unset($_POST['post']['post_author']);
             $article = I("post.post");
-            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['content'] = $article['content'];
             $result = $this-> xuetongshu_model->save($article);
             if ($result !== false) {
                 $this->success("保存成功！");
@@ -110,12 +110,8 @@ class XuetongshuadminController extends AdminbaseController
         $where['id'] = $id;
         $info = $this-> xuetongshu_model
             ->where($where)
-            ->select();
-        $post =array();
-        foreach ($info as $key=>$val){
-            $post = $val;
-        }
-        $this->assign('post', $post);
+            ->find();
+        $this->assign('post', $info);
         $this->display('edit');
     }
 

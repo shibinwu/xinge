@@ -70,11 +70,11 @@
                         <div class="REN">
                             <a href="{:U('Portal/ztndgz/index',array('id'=>$vol['id']))}"><img src="{:sp_get_image_preview_url($vol['pics'])}" alt=""></a>
                         </div>
-                        <span class="RENMING"><a href="./ztndgz.html" class="REMI">{$vol.tname|msubstr=0,13}</a></span>
+                        <span class="RENMING"><a href="{:U('Portal/ztndgz/index',array('id'=>$vol['id']))}" class="REMI">{$vol.tname|msubstr=0,13}</a></span>
                         <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
                         <span class="JIESHAO">{$vol.zhaiyao}</span>
-                        <div class="SSSJ"><a href="./ztndgz.html" class="sssj" >剩余时间 <if condition="$vol.daojishi lt 0">已结束<else/>{$vol.daojishi} </if></a></div>
-                        <div class="ZZPM_list_JG"><a href="./ztndgz.html" class="jg">{$vol.gezicount}羽</a></div>
+                        <div class="SSSJ"><a href="{:U('Portal/ztndgz/index',array('id'=>$vol['id']))}" class="sssj" >剩余时间 <if condition="$vol.daojishi lt 0">已结束<else/>{$vol.daojishi} </if></a></div>
+                        <div class="ZZPM_list_JG"><a href="{:U('Portal/ztndgz/index',array('id'=>$vol['id']))}" class="jg">{$vol.gezicount}羽</a></div>
                         <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
                     </li>
                 </foreach>
@@ -88,17 +88,45 @@
             </div>
             <div class="JJSXPMLB">
                 <ul>
-                    <foreach name="data" item="vol">
-                        <li class="li1">
-                            <div class="REN"><img src="__TMPL__Public/images/REN2.png" alt=""></div>
-                            <span class="RENMING">{$vol[tname] | msubstr=0,13}</span>
-                            <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
-                            <span class="JIESHAO">{$vol.zhaiyao}</span>
-                            <div class="SSSJ">开始时间&nbsp&nbsp{$vol[start_time] | date="m月d日",###}</div>
-                            <div class="ZZPM_list_JG">{$vol.nums}羽</div>
-                            <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
-                        </li>
-                    </foreach>
+                    <!--<foreach name="data" item="vol">-->
+                        <!--<li class="li1">-->
+                            <!--<div class="REN"><img src="__TMPL__Public/images/REN2.png" alt=""></div>-->
+                            <!--<span class="RENMING">{$vol[tname] | msubstr=0,13}</span>-->
+                            <!--<span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>-->
+                            <!--<span class="JIESHAO">{$vol.zhaiyao}</span>-->
+                            <!--<div class="SSSJ">开始时间&nbsp&nbsp{$vol[start_time] | date="m月d日",###}</div>-->
+                            <!--<div class="ZZPM_list_JG">{$vol.nums}羽</div>-->
+                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
+                        <!--</li>-->
+                    <!--</foreach>-->
+
+                    <li class="li1">
+                        <div class="REN"><img src="__TMPL__Public/images/REN2.png" alt=""></div>
+                        <span class="RENMING">{$vol[tname] | msubstr=0,13}</span>
+                        <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
+                        <span class="JIESHAO">{$vol.zhaiyao}</span>
+                        <div class="SSSJ">开始时间&nbsp&nbsp{$vol[start_time] | date="m月d日",###}</div>
+                        <div class="ZZPM_list_JG">{$vol.nums}羽</div>
+                        <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+                    </li>
+                    <li class="li1">
+                        <div class="REN"><img src="__TMPL__Public/images/REN2.png" alt=""></div>
+                        <span class="RENMING">{$vol[tname] | msubstr=0,13}</span>
+                        <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
+                        <span class="JIESHAO">{$vol.zhaiyao}</span>
+                        <div class="SSSJ">开始时间&nbsp&nbsp{$vol[start_time] | date="m月d日",###}</div>
+                        <div class="ZZPM_list_JG">{$vol.nums}羽</div>
+                        <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+                    </li>
+                    <li class="li1">
+                        <div class="REN"><img src="__TMPL__Public/images/REN2.png" alt=""></div>
+                        <span class="RENMING">{$vol[tname] | msubstr=0,13}</span>
+                        <span class="JIEPAISHIJIAN">结拍时间：{$vol[end_time] | date="Y-m-d H:i:s",###}</span>
+                        <span class="JIESHAO">{$vol.zhaiyao}</span>
+                        <div class="SSSJ">开始时间&nbsp&nbsp{$vol[start_time] | date="m月d日",###}</div>
+                        <div class="ZZPM_list_JG">{$vol.nums}羽</div>
+                        <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+                    </li>
 
                     <li class="li2">
                         <div class="wenzilianjie">
@@ -160,7 +188,7 @@
         </div>
     </div>
     <!-- 右侧导航 -->
-    <div class="FJ hidden" id="FJ">
+    <div class="FJ " id="FJ">
         <ul class="fj">
             <li class="SUO" id="SUO">
                 <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>

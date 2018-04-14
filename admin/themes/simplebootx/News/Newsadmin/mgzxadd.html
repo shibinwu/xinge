@@ -12,6 +12,7 @@
 			<li class="active"><a href="{:U('Newsadmin/mgzxadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_MGZX_ADD')}</a></li>
 		</ul>
 		<form action="{:U('Newsadmin/mgzxadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+			<input type="hidden" name="post[cid]" value="0" />
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
@@ -22,6 +23,7 @@
 								<span class="form-required">*</span>
 							</td>
 						</tr>
+						<!--
 						<tr>
 							<th width="80">所属栏目</th>
 							<td>
@@ -34,14 +36,14 @@
 
 							</td>
 						</tr>
-
+						-->
 						<tr>
 							<th>链接地址</th>
 							<td>
-								<input type="text" name="post[weburl]" style="width: 160px" placeholder="请输入链接地址">请填写完整路径 如：http://www.baidu.com
+								<input type="text" name="post[weburl]" style="width: 400px" placeholder="请输入链接地址">请填写完整路径 如：http://www.baidu.com
 							</td>
 						</tr>
-
+						
 						<tr>
 							<th>排序</th>
 							<td>
@@ -73,7 +75,26 @@
 								</select>
 							</td>
 						</tr>
-
+						<tr>
+							<th>鸽主标签</th>
+							<td>
+								<ul>
+									<volist name="gezhu" id="gzs">
+										<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" name="post[tags][{$gzs['id']}]" value="{$gzs['name']}">{$gzs['name']}</li>
+									</volist>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>赛事标签</th>
+							<td>
+								<ul>
+								<volist name="saishi" id="sss">
+									<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" name="post[tags][{$sss['id']}]" value="{$sss['name']}">{$sss['name']}</li>
+								</volist>
+								</ul>
+							</td>
+						</tr>
 						<tr>
 							<th>关键字</th>
 							<td>
@@ -83,7 +104,7 @@
 						<tr>
 							<th>描述</th>
 							<td>
-								<input type="text"  name="post[resume]"  style= "width: 400px;  height:100px"></input>
+								<textarea name="post[resume]" style="width:400px;height:100px"></textarea>
 							</td>
 						</tr>
 

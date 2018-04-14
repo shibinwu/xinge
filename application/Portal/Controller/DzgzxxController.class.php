@@ -54,16 +54,17 @@ class DzgzxxController extends HomebaseController {
         $result = scandir($path);
         //删除目录
         array_splice($result,0,2);
-        if(in_array($huanhao.'-pigeon.jpg',$result)){
+//        if(in_array($huanhao.'-pigeon.jpg',$result)){
             $data['pic'] = "$path"."$huanhao".'-pigeon.jpg';
-        }
-        if(in_array($huanhao.'-eye.jpg',$result)){
+//        }
+//        if(in_array($huanhao.'-eye.jpg',$result)){
             $data['yjpic'] = "$path"."$huanhao".'-eye.jpg';
-        }
-        if(in_array($huanhao.'-ancestry.jpg',$result)){
+//        }
+//        if(in_array($huanhao.'-ancestry.jpg',$result)){
             $data['xtpic'] = "$path"."$huanhao".'-ancestry.jpg';
-        }
+//        }
         $data['info'] = $this->xuetongshu_model->where($where)->getField('info');
+        //$data['info'] = htmlspecialchars_decode($data['info']);
 
         $list = $this->pmgezi_model->where($where)->find();
         $this->assign('data', $data);

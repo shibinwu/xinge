@@ -41,7 +41,7 @@
 						<tr>
 							<th>链接地址</th>
 							<td>
-								<input type="text" name="post[weburl]" required value="{$post.weburl}" style="width: 160px" placeholder="请输入链接地址">请填写完整路径 如：http://www.baidu.com
+								<input type="text" name="post[weburl]" required value="{$post.weburl}" style="width: 400px" placeholder="请输入链接地址">请填写完整路径 如：http://www.baidu.com
 							</td>
 						</tr>
 
@@ -70,7 +70,26 @@
 								</select>
 							</td>
 						</tr>
-
+						<tr>
+							<th>鸽主标签</th>
+							<td>
+								<ul>
+									<volist name="gezhu" id="gzs">
+										<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" <in name="gzs.name" value="$post.tags">checked</in> name="post[tags][{$gzs['id']}]" value="{$gzs['name']}">{$gzs['name']}</li>
+									</volist>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>赛事标签</th>
+							<td>
+								<ul>
+								<volist name="saishi" id="sss">
+									<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" <in name="sss.name" value="$post.tags">checked</in>  name="post[tags][{$sss['id']}]" value="{$sss['name']}">{$sss['name']}</li>
+								</volist>
+								</ul>
+							</td>
+						</tr>
 						<tr>
 							<th>关键字</th>
 							<td>
@@ -80,7 +99,7 @@
 						<tr>
 							<th>描述</th>
 							<td>
-								<input type="text"  name="post[resume]"  value="{$post.resume}" style= "width: 400px;  height:100px"></input>
+								<textarea name="post[resume]" style="width:400px;height:100px">{$post.resume}</textarea>
 							</td>
 						</tr>
 

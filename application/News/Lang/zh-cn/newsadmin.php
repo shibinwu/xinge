@@ -46,10 +46,10 @@ return array(
         "NEWS_YZZB_ADD" => '添加亚洲战报',
         "NEWS_YZZB_EDIT" => '编辑亚洲战报',
 
-        //铭鸽咨询
-        "NEWS_MGZX_INDEX" => '铭鸽咨询',
-        "NEWS_MGZX_ADD" => '添加铭鸽咨询',
-        "NEWS_MGZX_EDIT" => '编辑铭鸽咨询',
+        //铭鸽资讯
+        "NEWS_MGZX_INDEX" => '铭鸽资讯',
+        "NEWS_MGZX_ADD" => '添加铭鸽资讯',
+        "NEWS_MGZX_EDIT" => '编辑铭鸽资讯',
 
         //名人铭系
         "NEWS_MRMX_INDEX" => '名人铭系',

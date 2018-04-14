@@ -7,9 +7,7 @@
 		<li><a href="{:U('Newsadmin/mgzxadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_MGZX_ADD')}</a></li>
 	</ul>
 	<form class="well form-search" method="post" action="{:U('Newsadmin/mgzxindex')}">
-		时间：
-		<input type="text" name="start_time" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
-		<input type="text" class="js-datetime" name="end_time" value="{$formget.end_time|default=''}" style="width: 120px;" autocomplete="off"> &nbsp; &nbsp;
+		
 		关键字：
 		<input type="text" name="keyword" style="width: 200px;" value="{$formget.keyword|default=''}" placeholder="请输入关键字...">
 		<input type="submit" class="btn btn-primary" value="搜索" />
@@ -50,7 +48,7 @@
 					<td>{$vo.user_nicename|default=$vo.user_login}</td>
 					<td>{$vo.hits}</td>
 
-					<td>{:date('Y-m-d H:i',strtotime($vo['created_date']))}</td>
+					<td>{$vo['created_date']|date='Y-m-d H:i:s',###}</td>
 
 					<td>
 						<notempty name="vo.working">

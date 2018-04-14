@@ -609,7 +609,7 @@
 }
 .GEZIA{
 	width:975px;
-	height:689px;
+	/*height:689px;*/
 	margin:0 auto;
 	margin-top:103px;
 	margin-left:41px;
@@ -618,16 +618,17 @@
 .GEZIA img{
 	vertical-align: middle;
 	width:975px;
-	height:689px;
+	/*height:689px;*/
 }
 .MGMG .ZHENGSHU{
 	margin-left:-25px;
+	text-align: center;
 }
 .MGMG .ZHENGSHU ul{
 	display:inline-block;
 }
 .MGMG .ZHENGSHU ul li{
-	height:345px;
+
 }
 .MGMG .ZHENGSHU ul li:hover{
 	cursor: pointer;
@@ -635,13 +636,14 @@
 .MGMG .ZHENGSHU ul li span{
 	display:block;
 	font-size:20px;
+	max-width: 290px;
 }
 .MGMG .SHUOMING{
 	width:337px;
 	height:338px;
 	margin:0 auto;
 	margin-top:96px;
-	margin-bottom:40px;
+	margin-bottom:100px;
 }
 .shuomingstyle{
 	font-size:20px;
@@ -879,7 +881,7 @@
 	height:66px;
 	position:absolute;
 	left:60px;
-	top:1105px;
+	top:723px;
 }
 .JTT{
 	width:62px;
@@ -890,7 +892,7 @@
 	width:62px;
 	height:66px;
 	position:absolute;
-	top:1105px;
+	top:723px;
 	right:60px;
 }
 /*遮罩层*/

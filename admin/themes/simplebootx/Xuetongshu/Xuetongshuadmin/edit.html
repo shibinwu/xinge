@@ -27,7 +27,7 @@
 						<tr>
 							<th>血统书内容</th>
 							<td>
-								<script type="text/plain" id="content" name="post[info]" value="{$post.info}">{$post.info}</script>
+								<script type="text/plain" id="content" name="post[info]" value="{$post.info}">{:htmlspecialchars_decode($post['info'])}</script>
 							</td>
 						</tr>
 					</table>

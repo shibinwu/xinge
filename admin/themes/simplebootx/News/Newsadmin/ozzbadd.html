@@ -35,14 +35,14 @@
 						</tr>
 
 						<tr>
-							<th>集鸽</th>
+							<th>集鸽时间</th>
 							<td>
 								<input type="text" name="post[jige]" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;">
 							</td>
 						</tr>
 
 						<tr>
-							<th>放飞</th>
+							<th>放飞时间</th>
 							<td>
 								<input type="text" name="post[fangfei]" value="{:date('Y-m-d H:i:s',time())}" class="js-datetime" style="width: 160px;">
 							</td>
@@ -71,12 +71,24 @@
 				<div class="span3">
 					<table class="table table-bordered">
 						<tr>
-							<th><b>标签</b></th>
+							<th><b>鸽主标签</b></th>
 						</tr>
 						<tr>
 							<td>
-								<foreach name="arr" item="vo">
-									<label class="radio"><input type="checkbox" name="post[bid][{$key}]" value="{$key}" >{$vo}</label>
+								<foreach name="gezhu" item="vo">
+									<label class="radio"><input type="checkbox" name="post[tags][{$vo['id']}]" value="{$vo['name']}" >{$vo['name']}</label>
+								</foreach>
+							</td>
+						</tr>
+					</table>
+					<table class="table table-bordered">
+						<tr>
+							<th><b>赛事标签</b></th>
+						</tr>
+						<tr>
+							<td>
+								<foreach name="saishi" item="vo">
+									<label class="radio"><input type="checkbox" name="post[tags][{$vo['id']}]" value="{$vo['name']}" >{$vo['name']}</label>
 								</foreach>
 							</td>
 						</tr>
@@ -85,7 +97,7 @@
 			</div>
 			<div class="form-actions">
 				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
-				<a class="btn" href="{:U('Newsadmin/index')}">返回</a>
+				<a class="btn" href="{:U('Newsadmin/ozzbindex')}">返回</a>
 			</div>
 		</form>
 	</div>

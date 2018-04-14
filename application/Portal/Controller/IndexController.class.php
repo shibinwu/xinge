@@ -104,7 +104,7 @@ class IndexController extends HomebaseController {
         foreach ($data as $k => $val) {
             $data[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
         }
-        $yaopin = $this->yaopin_model->select();
+        $yaopin = $this->yaopin_model->limit(6)->select();
         $this->assign('list', $list);
         $this->assign('yaopin', $yaopin);
         $this->assign('data', $data);

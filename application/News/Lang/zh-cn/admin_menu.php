@@ -5,4 +5,5 @@ return array (
   'ESHOP_INDEXADMIN_SHOWINDEX' => '展售主题',
   'ESHOP_INDEXADMIN_SHOWLIST' => '展售订单',
   'NEWS_NEWSADMIN_DEFAULT' => '新闻中心',
+  'NEWS_NEWSADMIN_MGZXINDEX' => '铭鸽资讯',
 );

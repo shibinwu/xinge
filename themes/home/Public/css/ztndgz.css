@@ -148,12 +148,12 @@
 	font-weight:800;
 }
 .daojishi{
-	width:235px;
+	width:270px;
 	margin:0 auto;
 	height:60px;
 	line-height:60px;
 	border-bottom:1px solid #fff;
-	font-size:52px;
+	font-size:40px;
 	font-weight:800;
 	text-align:center;
 }
@@ -219,6 +219,15 @@
 	position: absolute;
     top: 30px;
 }
+.MGPMSS ul li .niaoming2{
+	font-size:20px;
+	font-weight:700;
+	color:#85bd40;
+	width:219px;
+	height:29px;
+	position: absolute;
+	top: 30px;
+}
 .MGPMSS ul li .niaoren{
 	position: absolute;
     right: 20px;
@@ -262,7 +271,11 @@ left:35px;
 .niaomao{
 	position: absolute;
     top: 120px;
-    right: 40px;
+ 	width:270px;
+}
+.niaomao img{
+	width:270px;
+	vertical-align: middle;
 }
 .SSSJ{
 	width:135px;

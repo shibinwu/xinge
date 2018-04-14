@@ -64,7 +64,7 @@
         </div>
         <!-- 人物介绍 -->
         <div class="rwjs">
-            <span class="mingzi">{$list.tname}</span>
+            <span class="mingzi">{$list[tname]|msubstr=0,16}</span>
             <span class="chenghu">最好的繁育者的青少年</span>
             <span class="xiangxijieshao">
                 {$list.zhaiyao}
@@ -80,7 +80,7 @@
         <ul class="changci">
             <volist name="data" id="vo">
                 <li class="teshu">
-                    <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" <if condition="$vo['id'] eq $changci">class="a1 XZ1"<else />class="a1"</if> id="chang" >场{$vo.seq}</a>
+                    <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" <if condition="$vo['id'] eq $changci">class="a1 XZ1"<else />class="a1"</if> id="chang" >场 {$vo.seq}</a>
                         <if condition="$vo[min]">
                             <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">k{$vo.min}-k{$vo.max}</a>
                             <else/>
@@ -144,14 +144,20 @@
                 </li>
                 <volist name="article" id="vo">
                     <li class="li1 lis1">
-                        <span class="niaoming">{$vo[title] | msubstr=0,10}</span>
-                        <if condition="$vo.gezi_sex eq 1">
+                        <if condition="$vo[gezi_sex] eq 1">
+                            <span class="niaoming">{$vo[title] | msubstr=0,10}</span>
                             <img src="__TMPL__Public/images/niaogong.png" alt="" style="width: 50px" class="niaoren">
+                            <elseif condition="$vo[gezi_sex] eq 0"/>
+                            <span class="niaoming2">{$vo[title] | msubstr=0,10}</span>
+                            <img src="__TMPL__Public/images/niaomu.png" alt="" style="width: 50px" class="niaoren">
                         </if>
-
+                        <!--<if condition="$vo.gezi_sex eq 0">-->
+                            <!--<span class="niaoming2">{$vo[title] | msubstr=0,10}</span>-->
+                            <!--<img src="__TMPL__Public/images/niaogong.png" alt="" style="width: 50px" class="niaoren">-->
+                        <!--</if>-->
                         <span class="RENMING">{$vo.huanhao}</span>
                         <div class="niaomao">
-                            <a href="{:U('Dzgzxx/index',array('id'=>$vo['huanhao']))}"><img src="{$vo.pics}" alt="" style="width: 260px"></a>
+                            <a href="{:U('Dzgzxx/index',array('id'=>$vo['huanhao']))}"><img src="{$vo.pics}" alt="" ></a>
                         </div>
                         <span class="price">€  755,-</span>
                         <span class="wode1">最新出价：佚名01</span>
@@ -615,7 +621,7 @@
         </div>
     </div>
     <!-- 右侧导航 -->
-    <div class="FJ hidden" id="FJ">
+    <div class="FJ " id="FJ">
         <ul class="fj">
             <li class="SUO" id="SUO">
                 <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>

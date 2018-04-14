@@ -244,6 +244,7 @@ class NewsadminController extends AdminbaseController
         if (IS_POST) {
             $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
             $_POST['post']['created_by'] = get_current_admin_id();
+			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
             $article = I("post.post");
             $article['created_date'] = time();
             $article['content'] = htmlspecialchars_decode($article['content']);
@@ -255,6 +256,11 @@ class NewsadminController extends AdminbaseController
             }
             exit;
         }
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->display();
     }
 
@@ -265,6 +271,7 @@ class NewsadminController extends AdminbaseController
             $post_id = intval($_POST['post']['id']);
             $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
             $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
+			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
 //            $img = new \Think\Image(); //实例化
 //            $img->open($_POST['post']['tpic']); //打开被处理的图片
 //            $img->thumb(100,100); //制作缩略图(100*100)
@@ -292,7 +299,11 @@ class NewsadminController extends AdminbaseController
         $where['id'] = $id;
         $info = $this->article_model->where($where)->find();
         $data = $this-> category_model ->where('pid = 0 AND channelid =1')->getField('id,name');
-
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->assign('post', $info);
         $this->assign('data', $data);
         $this->display();
@@ -362,6 +373,7 @@ class NewsadminController extends AdminbaseController
         if (IS_POST) {
             $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
             $_POST['post']['created_by'] = get_current_admin_id();
+			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
             $article = I("post.post");
             $article['created_date'] = time();
             $article['content'] = htmlspecialchars_decode($article['content']);
@@ -373,6 +385,11 @@ class NewsadminController extends AdminbaseController
             }
             exit;
         }
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->display();
     }
 
@@ -383,6 +400,7 @@ class NewsadminController extends AdminbaseController
             $post_id = intval($_POST['post']['id']);
             $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
             $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
+			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
 //            $img = new \Think\Image(); //实例化
 //            $img->open($_POST['post']['tpic']); //打开被处理的图片
 //            $img->thumb(100,100); //制作缩略图(100*100)
@@ -410,7 +428,11 @@ class NewsadminController extends AdminbaseController
         $where['id'] = $id;
         $info = $this->article_model->where($where)->find();
         $data = $this-> category_model ->where('pid = 0 AND channelid =1')->getField('id,name');
-
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->assign('post', $info);
         $this->assign('data', $data);
         $this->display();
@@ -465,8 +487,8 @@ class NewsadminController extends AdminbaseController
             //把时间转换成时间戳
             $article['jige'] = strtotime($article['jige']);
             $article['fangfei'] = strtotime($article['fangfei']);
-            if($article['bid']){
-                $article['bid'] =  implode(',',$article['bid']);
+            if($article['tags']){
+                $article['tags'] =  implode(',',$article['tags']);
             }
             $result = $this->ozzb_model->add($article);
             if ($result) {
@@ -477,9 +499,13 @@ class NewsadminController extends AdminbaseController
             exit;
         }
         $data = $this->year_model->where(array('type'=>0))->order('yname desc')->getField('id,yname',true);
-        $arr = $this->label_model->where(array('type'=>1))->getField('id,name');
         $this->assign('data',$data);
-        $this->assign('arr',$arr);
+		//标签
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->display();
     }
 
@@ -492,6 +518,9 @@ class NewsadminController extends AdminbaseController
             //把时间转换成时间戳
             $article['jige'] = strtotime($article['jige']);
             $article['fangfei'] = strtotime($article['fangfei']);
+			if($article['tags']){
+                $article['tags'] =  implode(',',$article['tags']);
+            }
             $result = $this->ozzb_model->save($article);
             if ($result !== false) {
                 $this->success("保存成功！");
@@ -505,11 +534,14 @@ class NewsadminController extends AdminbaseController
         $where['id'] = $id;
         $info = $this->ozzb_model->where($where)->find();
         $data = $this->year_model->where(array('type'=>0))->order('yname desc')->getField('id,yname',true);
-        $arr = $this->label_model->where(array('type'=>1))->getField('id,name');
-
+		//标签
+		$labelMod = M('Label');
+		$gezhu = $labelMod->where('type=0')->select();
+		$saishi = $labelMod->where('type=1')->select();
+		$this->assign('gezhu', $gezhu);
+		$this->assign('saishi', $saishi);
         $this->assign('post', $info);
         $this->assign('data', $data);
-        $this->assign('arr', $arr);
         $this->display();
     }
 
@@ -606,9 +638,9 @@ class NewsadminController extends AdminbaseController
             $article['content'] = htmlspecialchars_decode($article['content']);
             $article['addtime'] = time();
             if($article['bid']){
-                $article['bid'] =  implode(',',$article['bid']);
+                $bid =  implode(',',$article['bid']);
+                $article['bid'] = ','.$bid.',';
             }
-
             $result = $this->yzzb_model->add($article);
             if ($result) {
                 $this->success("添加成功！");
@@ -618,9 +650,14 @@ class NewsadminController extends AdminbaseController
             exit;
         }
         $data = $this->year_model->where(array('type'=>1))->order('yname desc')->getField('id,yname',true);
-        $arr = $this->label_model->where(array('type'=>1))->getField('id,name');
+        //标签
+        $labelMod = M('Label');
+        $gezhu = $labelMod->where('type=0')->select();
+        $saishi = $labelMod->where('type=1')->select();
+        $this->assign('gezhu', $gezhu);
+        $this->assign('saishi', $saishi);
         $this->assign('data',$data);
-        $this->assign('arr',$arr);
+
         $this->display();
     }
 }

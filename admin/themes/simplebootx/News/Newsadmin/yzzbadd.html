@@ -11,7 +11,7 @@
 			<li><a href="{:U('Newsadmin/yzzbindex')}">{:L('NEWS_YZZB_INDEX')}</a></li>
 			<li class="active"><a href="{:U('Newsadmin/yzzbadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_YZZB_ADD')}</a></li>
 		</ul>
-		<form action="{:U('Newsadmin/yzzbadd')}" method="post" class="form-horizontal " enctype="multipart/form-data">
+		<form action="{:U('Newsadmin/yzzbadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
@@ -60,12 +60,24 @@
 							</li>
 						</script>
 						<tr>
-							<th><b>标签</b></th>
+							<th><b>鸽主标签</b></th>
 						</tr>
 						<tr>
 							<td>
-								<foreach name="arr" item="vo">
-									<label class="radio"><input type="checkbox" name="post[bid][{$key}]" value="{$key}" >{$vo}</label>
+								<foreach name="gezhu" item="vo">
+									<label class="radio"><input type="checkbox" name="post[bid][{$vo['id']}]" value="{$vo['id']}" >{$vo['name']}</label>
+								</foreach>
+							</td>
+						</tr>
+					</table>
+					<table class="table table-bordered">
+						<tr>
+							<th><b>赛事标签</b></th>
+						</tr>
+						<tr>
+							<td>
+								<foreach name="saishi" item="vo">
+									<label class="radio"><input type="checkbox" name="post[bid][{$vo['id']}]" value="{$vo['id']}" >{$vo['name']}</label>
 								</foreach>
 							</td>
 						</tr>
@@ -73,7 +85,7 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<button class="btn btn-primary " type="submit">提交</button>
+				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
 				<a class="btn" href="{:U('Newsadmin/index')}">返回</a>
 			</div>
 		</form>

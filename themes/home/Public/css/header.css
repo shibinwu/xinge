@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/*ËÑË÷¿ò*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 
 .list .back {
     border-bottom: 3px solid #f27b04;
@@ -61,7 +61,7 @@
 }
 
 
-/*Í·²¿*/
+/*Í·ï¿½ï¿½*/
 
 .header {
     height: 245px;
@@ -117,11 +117,14 @@
 
 .header .list ul .last {
     margin: 0;
-	border-bottom: 4px solid #0876C3;
 }
-.header .list ul .last a{
-	color:#0876C3;
+.DJBL{
+	color:#0876C3 !important;
 }
+.DJBK{
+    border-bottom: 4px solid #0876C3;
+}
+
 .DL{
 	width:297px;
 	height:160px;

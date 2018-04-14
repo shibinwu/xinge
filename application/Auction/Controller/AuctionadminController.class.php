@@ -88,6 +88,7 @@ class AuctionadminController extends AdminbaseController
     {
         if (IS_POST) {
             $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+//            $image->thumb(150, 150)->save('./thumb.jpg');
             $_POST['post']['adduser'] = get_current_admin_id();
             $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
             $article = I("post.post");

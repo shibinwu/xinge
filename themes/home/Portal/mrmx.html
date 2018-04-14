@@ -85,34 +85,25 @@
                     <li id="tab1" class="yiji XUANZHONG fl1">
                         <a href="javascript:;">铭鸽资讯</a>
                     </li>
-                    <li id="tab2" class="yiji fudai1 fl2">
-                        <a href="{:U('Portal/ztndgz/index',array('id'=>1))}:;">欧洲战报</a>
+                    <li id="tab10" class="yiji fl1">
+                        <a href="javascript:;">名人铭系</a>
                     </li>
-                        <li id="tab3" class="ziji fudai1s none">
-                            <foreach name="data" item="vo">
-                            <a href="javascript:;" class="xuanzhong fl2">{$vo.yname}</a>
-                            <!--<a href="javascript:;" class="fl2">2017</a>-->
-                            <!--<a href="javascript:;" class="fl2">2017</a>-->
-                            <!--<a href="javascript:;" class="fl2">2017</a>-->
-                            <!--<a href="javascript:;" class="fl2">2017</a>-->
+                    <li id="tab2" class="yiji fudai1 fl2">
+                        <a href="javascript:;">欧洲战报</a>
+                    </li>
+                        <li id="tab3"  class="ziji fudai1s none tab3">
+                            <foreach name="yozzb" item="vo">
+                                <a href="javascript:;" class="xuanzhong fl2" id="{$key}">{$vo}</a>
                             </foreach>
                         </li>
-
-
                     <li id="tab6" class="yiji fudai2 fl3">
                         <a href="javascript:;">亚洲战报</a>
                     </li>
-                    <li id="tab3" class="ziji fudai2s none">
-                        <a href="javascript:;" class="xuanzhong fl3">2018</a>
-                        <a href="javascript:;" class="fl3">2017</a>
-                        <a href="javascript:;" class="fl3">2017</a>
-                    </li>
-                    <li id="tab10" class="yiji fl1">
-                        <a href="javascript:;">名人铭系</a>
-                    </li>
-                    <li id="tab10" class="yiji fl1">
-                        <a href="javascript:;">名人铭系</a>
-                    </li>
+                        <li id="tab4" class="ziji fudai2s none">
+                            <foreach name="yyzzb" item="vo">
+                                <a href="javascript:;" class="xuanzhong fl3">{$vo}</a>
+                            </foreach>
+                        </li>
                 </ul>
             </div>
             <div class="products" id="products">
@@ -120,49 +111,12 @@
                 <div class="SERVERLIST_one tab_content zyzy">
                     <ul id="MRMXS">
                         <volist name="mgzx" id="vo">
-                            <li>
-                                &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
+                            <li id="{$vo.id}" >
+                                &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/tuoyuan601.png" alt=""> &nbsp;&nbsp;&nbsp;
                                 <a href="javascript:;">{$vo.title}</a>
                                 <span class="SERVERLIST_time">{$vo.created_date|date="Y-m-d",###}</span>
                             </li>
                         </volist>
-
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">“无环号”的缔造者-&#45;&#45;根特.布朗格</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">欧冠霸主—安德烈斯.德拉帕</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">波治II：“所向无敌”迪克.凡戴克夺一岁鸽冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">2017年布瑞福国家赛9123羽全国总亚军—尼基.德佛斯</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">比利时波治先生&#45;&#45;吉诺.克里克</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">鸽坛传奇—卡尔.幕利门</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">林德劳夫父子（荷兰）</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">荷兰长距离名舍—乔.威德肖文</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">德国赛坛宿将—科特.保德曼</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">比利时艾力克.林伯格成为新一代KBDB全国最佳全能鸽舍得主</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">比利时全能强豪【超级种雄“尼克”之父—克里斯.德巴克】</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">亚利.迪克特拉的制胜秘方：黄金配对“里奥纳多×蜻蜓姑娘”</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">玛斯.安东尼登顶2016年亚精顿(查特路II)国家赛21644羽总冠军</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">比利时长距离新生代代表人物—优斯特.狄史麦特-瑞斯帝安</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li class="LISTCOLOR"> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">NPO当日归长距离及幼鸽赛强豪——荷兰艾尔辛加联合鸽舍</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
-                        <!--<li> &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;-->
-                            <!--<a href="javascript:;">2015大赢家：比利时“好战分子”马克.波林</a><span class="SERVERLIST_time">2018-01-18</span></li>-->
                     </ul>
                     <div class="JIAZAI"><a href="">查看更多</a></div>
                 </div>
@@ -177,7 +131,7 @@
                             <span style="margin-left:82px;">组织者</span>
                             <span style="margin-left:120px;">分类</span>
                         </li>
-                        <li class="OZZB_lione" style="border-bottom:none;" id="TSDK">
+                        <li class="OZZB_lion" style="border-bottom:none;" id="TSDK">
                             <span style="margin-left:85px;">25/05</span>
                             <span style="margin-left:135px;">27/05</span>
                             <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
@@ -185,243 +139,61 @@
                             <span style="margin-left:144px; ">BU-UB</span>
                             <span style="margin-left:110px; ">[o][yl]</span>
                         </li>
-                        <li style="height:142px;line-height:35px;" class="TSD YCB">
-                            <div class="imgs"><img src="__TMPL__Public/images/图层 825.png" alt=""></div>
-                            <div class="wenbensm">
-                                <span class="SSMZ">赛事名称：波治 I2018</span>
-                                <span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>
-                                <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
-                            </div>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;" id="TSDK">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
-                        <li class="OZZB_lione" style="background:#F0EFEF;border-bottom:none;">
-                            <span style="margin-left:85px;">25/05</span>
-                            <span style="margin-left:135px;">27/05</span>
-                            <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                            <span style="margin-left:90px; ">800</span>
-                            <span style="margin-left:144px; ">BU-UB</span>
-                            <span style="margin-left:110px; ">[o][yl]</span>
-                        </li>
+                        <!--<li style="height:142px;line-height:35px;" class="TSD YCB">-->
+                            <!--<div class="imgs"><img src="__TMPL__Public/images/图层 825.png" alt=""></div>-->
+                            <!--<div class="wenbensm">-->
+                                <!--<span class="SSMZ">赛事名称：波治 I2018</span>-->
+                                <!--<span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>-->
+                                <!--<span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>-->
+                            <!--</div>-->
+                        <!--</li>-->
                     </ul>
                     <div class="JIAZAI "><a href=" ">查看更多</a></div>
                 </div>
                 <!-- 亚洲战报 -->
                 <div class="none tab_content zyzy" id="tabss6" style="width:1124px;float:right;	padding:44px 57px 35px 0px; ">
                     <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
-                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTone"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTtwo"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTthree"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT FD">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
+
                     </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
-                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfour"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTfive"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTsix"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT FD">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 1.png" alt=""></div>
-                        <span class="YYZB_RM">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTseven"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTeight"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTnine"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT FD">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="YZZB">
-                        <div class="YZZB_BZ"><img src="__TMPL__Public/images/椭圆 2.png" alt=""></div>
-                        <span class="YYZB_RM2">恭喜获奖会员鸽友：天津-何滨</span>
-                        <span class="YYZB_XM">2016年秋文滨俱乐部500公里特比环第三关冠军，同一羽鸽获500公里第一关亚军！</span>
-                        <div class="YZZB_XT">
-                            <div style="width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XTten"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT11"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                            <div style="margin-left:9px;width:99px;height:99px;position:relative;" class="YZZB_XT1 YZZB_XT12"><img class="FDSX" style="position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;" src="__TMPL__Public/images/图层 18.png" alt=""></div>
-                        </div>
-                        <div class="DT FD">
-                            <a class="YZZB_XT4"><img src="__TMPL__Public/images/图层 19.png" alt=""></a>
-                        </div>
-                    </div>
+
                     <div class="YZZB_XT5"><a href=" ">查看更多</a></div>
                 </div>
                 <!-- 名人铭系二级页面 -->
-                <div class="SECTION none tab_content zyzy">
-                    <span class="SECTION_RM">林德劳夫父子（荷兰）</span>
+                <div class="SECTION none tab_content zyzy" id="xxym">
+                    <span class="SECTION_RM"></span>
                     <span class="SECTION_JPSJ CT">作者：China 时间：2018-01-27 </span>
                     <span class="SECTION_PMYS CT">点击次数：2214</span>
-                    <p class="SECTION_PMYS_XXJS">在荷兰，这对父子被称为所在赛区的“独裁者”，二人在100-800公里的全赛程内称霸多年，在欧洲甚至世界范围内享有盛誉。</p>
-                    <div class="SECTION_RWTP">
-                        <img src="__TMPL__Public/images/图层 23.png" alt="">
-                    </div>
-                    <p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>
-                    <p class="SECTION_PMYS_XXJS">
-                        <p class="SECTION_PMYS_XXJS">这对传奇父子十几年来坚持走“精锐部队”路线，在每年的参赛队伍中成鸽不超过40羽，然而就是这样的小股部队却获得了大量优秀赛绩，超高入赏率是这对父子拍档立足赛坛的根本。每年赛季结束，林德劳夫的鸽舍里都不乏纷至沓来的求鸽者；日本鸽友买走了“668”！在2007年2月举办整舍拍卖会后，利奥贺尔曼斯以个人名义单飞的强势回归，以前所未见的气势在速度赛的国家赛赛场上独占鳌头。</p>
-                        <div class="SECTION_RWTP">
-                            <img src="__TMPL__Public/images/图层 15 拷贝.png" alt="">
-                        </div>
-                    </p>
-                    <p class="SECTION_PMYS_XXJS">2012赛季，是亨德里克斯父子收获的一年：短距离-中距离综合最佳鸽舍、大中距离最佳鸽舍冠军、综合1区中距离最佳鸽舍冠军和中距离最佳鸽舍5位等重量级奖项都已被二人收入囊中...在2013赛季，父子二人又再次扬帆起航，在已经锁定入赏的3场赛事中的2场比赛中夺冠，相信不久即会有更多好消息传来！（以上成绩由EPW欧洲团队于2012年整合亨德里克斯父子联合鸽舍成绩得出，2013赛绩将陆续更新...）</p>
-                    <p class="SECTION_PMYS_XXJS">赛鸽对于这个家庭有着深远的意义，时至今日，杨年幼的孙子“达恩（Daan）”业已在父子二人的培养和影响下，成长为“小小赛鸽家”，这个有意思的小家伙甚至已经拥有只属于自己的4羽小鸽子了！相信在不久的将来，这个竞翔世家的赛鸽之梦将会越飞越高！ <br/>亨德里克斯父子超级赛雌：“DI女郎”
-                    </p>
-                    <p class="SECTION_PMYS_XXJS">“DI女郎(NL11-1965982)”是亨德里克斯父子舍内一羽超级赛雌，曾为鸽舍立下汗马功劳：荣获2012年全国当日归长距离鸽王亚军和2012年尼特拉奥林匹克代表鸽4位等多项重量级奖项，后由荷兰赛鸽名家汉斯.爱亚卡普经多方努力下成功高价收藏。</p>
-                    <p class="SECTION_PMYS_XXJS">“DI女郎”来自亨德里克斯父子的黄金配对：超级种雄NL09-1524173×超级种雌NL09-1836615，这一配对在鸽舍有着举足轻重的地位，可谓是名副其实的“镇舍配对”，两羽09年精英种鸽的后代为亨德里克斯家族迎来诸多殊荣，被一家人视为珍宝...经过EPW团队及布劳尔先生的不懈努力，本期将为您重磅推介该配对种鸽上线拍卖，相信拥有这对配对的您，一定能用这把金钥匙，打开制胜的大门，复制出更多“当日归鸽王”、“全国鸽王”甚至是“奥林匹克代表鸽”...请各位EPW鸽友一定不要错过！</p>
+                    <div id="content"></div>
+                    <!--<p class="SECTION_PMYS_XXJS">在荷兰，这对父子被称为所在赛区的“独裁者”，二人在100-800公里的全赛程内称霸多年，在欧洲甚至世界范围内享有盛誉。</p>-->
+                    <!--<div class="SECTION_RWTP">-->
+                        <!--<img src="__TMPL__Public/images/图层 23.png" alt="">-->
+                    <!--</div>-->
+                    <!--<p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">-->
+                        <!--<p class="SECTION_PMYS_XXJS">这对传奇父子十几年来坚持走“精锐部队”路线，在每年的参赛队伍中成鸽不超过40羽，然而就是这样的小股部队却获得了大量优秀赛绩，超高入赏率是这对父子拍档立足赛坛的根本。每年赛季结束，林德劳夫的鸽舍里都不乏纷至沓来的求鸽者；日本鸽友买走了“668”！在2007年2月举办整舍拍卖会后，利奥贺尔曼斯以个人名义单飞的强势回归，以前所未见的气势在速度赛的国家赛赛场上独占鳌头。</p>-->
+                        <!--<div class="SECTION_RWTP">-->
+                            <!--<img src="__TMPL__Public/images/图层 15 拷贝.png" alt="">-->
+                        <!--</div>-->
+                    <!--</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">2012赛季，是亨德里克斯父子收获的一年：短距离-中距离综合最佳鸽舍、大中距离最佳鸽舍冠军、综合1区中距离最佳鸽舍冠军和中距离最佳鸽舍5位等重量级奖项都已被二人收入囊中...在2013赛季，父子二人又再次扬帆起航，在已经锁定入赏的3场赛事中的2场比赛中夺冠，相信不久即会有更多好消息传来！（以上成绩由EPW欧洲团队于2012年整合亨德里克斯父子联合鸽舍成绩得出，2013赛绩将陆续更新...）</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">赛鸽对于这个家庭有着深远的意义，时至今日，杨年幼的孙子“达恩（Daan）”业已在父子二人的培养和影响下，成长为“小小赛鸽家”，这个有意思的小家伙甚至已经拥有只属于自己的4羽小鸽子了！相信在不久的将来，这个竞翔世家的赛鸽之梦将会越飞越高！ <br/>亨德里克斯父子超级赛雌：“DI女郎”-->
+                    <!--</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">“DI女郎(NL11-1965982)”是亨德里克斯父子舍内一羽超级赛雌，曾为鸽舍立下汗马功劳：荣获2012年全国当日归长距离鸽王亚军和2012年尼特拉奥林匹克代表鸽4位等多项重量级奖项，后由荷兰赛鸽名家汉斯.爱亚卡普经多方努力下成功高价收藏。</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">“DI女郎”来自亨德里克斯父子的黄金配对：超级种雄NL09-1524173×超级种雌NL09-1836615，这一配对在鸽舍有着举足轻重的地位，可谓是名副其实的“镇舍配对”，两羽09年精英种鸽的后代为亨德里克斯家族迎来诸多殊荣，被一家人视为珍宝...经过EPW团队及布劳尔先生的不懈努力，本期将为您重磅推介该配对种鸽上线拍卖，相信拥有这对配对的您，一定能用这把金钥匙，打开制胜的大门，复制出更多“当日归鸽王”、“全国鸽王”甚至是“奥林匹克代表鸽”...请各位EPW鸽友一定不要错过！</p>-->
+
                     <p class="SECTION_PMYS_XXJS">【EPW特别提示】<br/> 1、网站所标示的当岁幼鸽性别仅供参考，无法保证100%准确，敬请见谅。
                         <br/> 2、即日起大陆地区国际运费调整为220欧元/羽（含检疫＋装笼费）、国内运费200人民币/每羽。
                         <br/> 3、2017年起臺灣地區運費調整為220歐元/羽（大箱混裝/默認選擇）或250歐元/羽（1-2羽小箱裝/需洽古小姐）。
                         <br/> 4、本期拍卖大陆会员仅收取12%服务费，仅包含部分进口关税、增值税；剩余12.3%税款由EPW负责补贴；
                         <br/> 以结标价格为1000欧元举例，最终付款计算公式：【1000欧元+(1000欧元×12%)+220欧元国际运费】×当日汇率+200人民币国内运费（北京鸽友无需支付国内费用）。
                     </p>
-                    <p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>
-                    <p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>
-                    <p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>
-                    <p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>
+                    <!--<p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>-->
+                    <!--<p class="SECTION_PMYS_XXJS">令人印象深刻的小股精锐部队</p>-->
                     <div class="SECTION_XW">
                         <div class="SECTION_xw">
-                            <img src="__TMPL__Public/images/组 17.png" alt="">
+                            <img src="__TMPL__Public/images/suiyuan17.png" alt="">
                             <ul>
                                 <li>
                                     &nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/椭圆 601.png" alt=""> &nbsp;&nbsp;&nbsp;
@@ -492,7 +264,7 @@
         </div>
     </div>
     <!-- 右侧导航 -->
-    <div class="FJ hidden " id="FJ ">
+    <div class="FJ  " id="FJ ">
         <ul class="fj ">
             <li class="SUO " id="SUO ">
                 <div class="suo "><img src="__TMPL__Public/images/suo.png " alt=" "><span class="suos ">登录</span></div>
@@ -527,12 +299,13 @@
             $(this).siblings('.fudai1s').removeClass('show').addClass('none').hide();
             $(this).siblings('.fudai2s').removeClass('show').addClass('none').hide();
         })
-        $('.fudai1s a').click(function() {
-            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
-        })
-        $('.fudai2s a').click(function() {
-            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
-        })
+
+//        $('.fudai1s a').click(function() {
+//            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+//        })
+//        $('.fudai2s a').click(function() {
+//            $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+//        })
         var fd1 = 0;
         $('.fudai1').click(function() {
             if (fd1 == 0) {
@@ -566,22 +339,10 @@
         $('.fl3').click(function() {
             $('.tab_content:eq(2)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
         })
-        $('#MRMXS li').click(function() {
-                $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
-            })
-            // 亚洲战报人物图片放大
-        var i = 0;
-        $('.FDSX').click(function() {
-            var num = $('.FDSX').index(this);
-            if (i == 0) {
-                $(this).parent().css('background-image', 'url(images/123.png)').siblings('div').css('background-image', 'none').parent().siblings('.FD').removeClass('DT');
-                i = 1;
-            } else {
-                $(this).parent().css('background-image', 'none');
-                $(this).parent().parent().siblings('.FD').addClass('DT');
-                i = 0;
-            }
-        })
+//        $('#MRMXS li').click(function() {
+//            console.log(111222)
+//                $('.tab_content:eq(3)').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+//            })
 
 
         var q = 0;
@@ -596,15 +357,139 @@
 
         })
 
-
-
-
-
     });
 </script>
 <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
 <script type="text/javascript">
-    $(document).pjax('a', '#MRMXS')
+//    $(document).pjax('a', '#MRMXS')
+//获取铭鸽资讯下的数据
+$("#tab1").click(function () {
+    window.location.reload();
+});
+$('#MRMXS li').click(function() {
+    var id  = $(this).attr("id");
+    $.ajax({
+        type : "GET",  //提交方式
+        url : "{:U('Portal/mrmx/mrmgxq')}",//路径
+        data : {
+            "id" : id
+        },//数据，这里使用的是Json格式进行传输
+        success : function(msg) {
+            console.log(msg)
+                $(".SECTION_RM").html(msg['data']['title']);
+                $(".SECTION_JPSJ").html("作者："+msg['data']['zuozhe']+" 时间："+msg['data']['time']);
+                $(".SECTION_PMYS").html("点击次数："+msg['data']['hits']);
+                $("#content").html(msg['data']['content']);
+        },
+    });
+
+//                $('.tab_content').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+    $('#xxym').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+})
+//获取名人铭系下的数据
+$("#tab10").click(function () {
+    $.ajax({
+        type : "GET",  //提交方式
+        url : "{:U('Portal/mrmx/mrmx')}",//路径
+        data : {
+            "id" : 1
+        },//数据，这里使用的是Json格式进行传输
+        success : function(msg) {
+            $("#MRMXS").empty();
+            $.each(msg['data'],function (k,vo) {
+                console.log(vo)
+                $("#MRMXS").append("<li> &nbsp;&nbsp;&nbsp;<img src='/xinge/themes/home/Public/images/tuoyuan601.png' alt=''> &nbsp;&nbsp;&nbsp; <a href=\"javascript:;\">"+vo['title']+"</a> <span class=\"SERVERLIST_time\">"+vo['time']+"</span> </li>");
+                $('#MRMXS li').click(function() {
+                    var id = vo['id'];
+                    console.log(id)
+//                $('.tab_content').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+                    $('#xxym').show().addClass('show').siblings('.tab_content').removeClass('show').hide().addClass('none');
+                })
+            })
+        },
+    });
+});
+
+//点击欧洲战报默认出现最晚一年内容
+$("#tab2").click(function () {
+    $("#tab3 a:first").addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+    $.ajax({
+        type : "GET",  //提交方式
+        url : "{:U('Portal/mrmx/ozzb')}",//路径
+        data : {
+            "id" : ""
+        },//数据，这里使用的是Json格式进行传输
+        success : function(msg) {
+            $("#TSDK").empty();
+            $.each(msg['data'],function (k,vo) {
+                $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                $(".yanse:odd").css("background","#F0EFEF");
+
+            })
+        },
+    });
+});
+//欧洲战报点击年份出现相对应内容
+$('.fudai1s a').click(function() {
+    $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+    var h  = $(this).attr("id");
+    $.ajax({
+        type : "GET",  //提交方式
+        url : "{:U('Portal/mrmx/ozzb')}",//路径
+        data : {
+            "id" : h
+        },//数据，这里使用的是Json格式进行传输
+        success : function(msg) {
+            $("#TSDK").empty();
+            $.each(msg['data'],function (k,vo) {
+                $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                $(".yanse:odd").css("background","#F0EFEF");
+            })
+        },
+    });
+})
+//点击亚洲战报内容
+$("#tab6").click(function () {
+    $("#tab4 a:first").addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+    $.ajax({
+        type : "GET",  //提交方式
+        url : "{:U('Portal/mrmx/yzzb')}",//路径
+        data : {
+            "id" : ""
+        },//数据，这里使用的是Json格式进行传输
+        success : function(msg) {
+            console.log(msg)
+            $("#tabss6").empty();
+            var pics;
+            $.each(msg['data'],function (k,vo) {
+                $("#tabss6").append("<div class='YZZB'> <div class='YZZB_BZ'><img src='/xinge/themes/home/Public/images/yzzb1.png'></div> <span class='YYZB_RM'>恭喜获奖会员鸽友："+vo['title']+"</span> <span class='YYZB_XM'>"+vo['content']+"</span> <div class='YZZB_XT' id='YZZB_XT"+vo['id']+"'> <div style='width:99px;height:99px;position:relative;' class='YZZB_XT1 YZZB_XTone'><img class='FDSX' style='position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;' src='' alt=''></div> <div class='DT FD'> <a class='YZZB_XT4'><img src='/xinge/themes/home/Public/images/19.png' alt=''></a> </div>");
+                pics = vo['pic'].split(",");
+                $("#YZZB_XT"+vo['id']).empty();
+                for (var i=0;i<pics.length;i++){
+                    console.log(i+'#'+pics[i])
+                    $("#YZZB_XT"+vo['id']).append("<div style='width:99px;height:99px;position:relative;' class='YZZB_XT1 YZZB_XTone'><img class='FDSX' style='position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;' src='/xinge/data/upload/"+pics[i]+"' alt=''></div>");
+                }
+            })
+            $(".YZZB_BZ img:odd").attr("src","/xinge/themes/home/Public/images/yzzb2.png");
+            // 亚洲战报人物图片放大
+            var i = 0;
+            $('.FDSX').click(function() {
+
+                var num = $('.FDSX').index(this);
+                if (i == 0) {
+                    $(this).parent().css('background-image', 'url(/xinge/themes/home/Public/images/123.png)').siblings('div').css('background-image', 'none').parent().siblings('.FD').removeClass('DT');
+                    i = 1;
+                } else {
+                    $(this).parent().css('background-image', 'none');
+                    $(this).parent().parent().siblings('.FD').addClass('DT');
+                    i = 0;
+                }
+            })
+        },
+    });
+});
+
+
 </script>
 
 </html>
