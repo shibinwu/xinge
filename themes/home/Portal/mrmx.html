@@ -430,7 +430,6 @@ $("#tab1").click(function () {
 
 //2、所有名人铭系的操作
 //获取名人铭系下的数据
-
 $("#tab10").click(function () {
     gengduo =2
     page2 = 1;
@@ -469,9 +468,8 @@ $("#tab10").click(function () {
 
 
 });
-
+//名人铭系加载更多
 var page2  =  1;
-
 $("#JIAZAI1").click(function () {
     if(gengduo == 2){
         $.ajax({
@@ -481,7 +479,6 @@ $("#JIAZAI1").click(function () {
                 "id" : ++page2
             },//数据，这里使用的是Json格式进行传输
             success : function(msg) {
-                alert(page2);
                 console.log(msg)
                 if(msg['code'] == 1){
                     $.each(msg['data'],function (k,vo) {
