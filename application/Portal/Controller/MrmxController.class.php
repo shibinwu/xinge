@@ -46,7 +46,10 @@ class MrmxController extends HomebaseController {
     //鸽闻中心首页面
 	public function index() {
 	    $data = $this->year_model->order('yname desc')->select();
-	    $mgzx = $this->article_model->where(array('cid' => 0))->select();
+        $mgzx = $this->article_model
+            ->where(array('cid' => 0))
+            -> page(1,1)
+            ->select();
 	    $this->assign('mgzx',$mgzx);
 	    foreach($data as $key => $vol){
 	        if($vol['type'] == 0){
@@ -59,9 +62,13 @@ class MrmxController extends HomebaseController {
         $this->assign('yozzb',$yozzb);
     	$this->display(":mrmx");
     }
-    //铭鸽资讯列表显示
-    public function mgzx() {
-        $mgzx = $this->article_model->where(array('cid' => 0))->select();
+//铭鸽资讯加载更多
+    public function mgzxgd() {
+        $id = I('post.id');
+        $mgzx = $this->article_model
+            ->where(array('cid' => 0))
+            -> page($id,1)
+            ->select();
         foreach ($mgzx as $key => $vol){
             $mgzx[$key]['time'] = date("Y-m-d",$vol['created_date']);
         }
@@ -71,11 +78,45 @@ class MrmxController extends HomebaseController {
             $mgz['data'] = $mgzx;
         }
         $this->ajaxReturn ($mgz);
-
     }
+//    //铭鸽资讯列表显示
+//    public function mgzx() {
+//        $mgzx = $this->article_model->where(array('cid' => 0))->select();
+//        foreach ($mgzx as $key => $vol){
+//            $mgzx[$key]['time'] = date("Y-m-d",$vol['created_date']);
+//        }
+//        if($mgzx){
+//            $mgz['code'] = 1;
+//            $mgz['message'] = '成功';
+//            $mgz['data'] = $mgzx;
+//        }
+//        $this->ajaxReturn ($mgz);
+//
+//    }
     //名人铭系列表显示
     public function mrmx() {
-        $mgzx = $this->article_model->where(array('cid' => 1))->select();
+        $mgzx = $this->article_model
+            ->where(array('cid' => 1))
+            ->page(1,1)
+            ->select();
+        foreach ($mgzx as $key => $vol){
+            $mgzx[$key]['time'] = date("Y-m-d",$vol['created_date']);
+        }
+        if($mgzx){
+            $mgz['code'] = 1;
+            $mgz['message'] = '成功';
+            $mgz['data'] = $mgzx;
+        }
+        $this->ajaxReturn ($mgz);
+    }
+
+    //铭鸽资讯加载更多
+    public function mrmxgd() {
+        $id = I('post.id');
+        $mgzx = $this->article_model
+            ->where(array('cid' => 1))
+            -> page($id,1)
+            ->select();
         foreach ($mgzx as $key => $vol){
             $mgzx[$key]['time'] = date("Y-m-d",$vol['created_date']);
         }
