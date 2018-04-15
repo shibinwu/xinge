@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$info['name']} - 铭鸽拍卖 - {$site_name}</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/ztndgz.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+</head>
+<style>
+.YC p{
+font-size: 18px;
+font-family: "微软雅黑";
+text-weight: Regular;
+color: #fff;
+}
+</style>
+<script>
+function is_show(id){
+	if ($('#YCYC'+id).is(':hidden')) { //如果当前隐藏
+		$('#YCYC'+id).show(); //那么就显示div
+	} else { //否则
+		$('#YCYC'+id).hide(); //就隐藏div
+	}
+}
+function is_hidden(id){
+	$('#YCYC'+id).hide();
+}
+</script>
+<body>
+    <div class="main">
+        <tc_include file="Public:head" />
+        <!-- 标题 -->
+        <div class="hengtiao">
+            <span><a href="{:U('Portal/index/index')}" style="color:#FFF;">首页</a> > <a href="{:U('Portal/mgpm/index')}" style="color:#FFF;">铭鸽拍卖</a> > {$info['name']}</span>
+        </div>
+        <!-- 人物介绍 -->
+        <div class="rwjs">
+            <span class="mingzi">{$ztinfo[tname]|msubstr=0,16}</span>
+            <span class="chenghu">{$ztinfo[ptname]}</span>
+            <span class="xiangxijieshao">
+                {$ztinfo.zhaiyao}
+            </span>
+                    <span class="more"><a href="{:U('Portal/mgpm/rwjs',array('id' => $ztinfo['id']))}">更多信息</a></span>
+            <div class="changci"><img src="__TMPL__Public/images/suiyuan5.png" alt=""></div>
+            <div class="tupian">
+                <img src="{:sp_get_image_preview_url($ztinfo['pics'])}" alt="">
+            </div>
+            <div class="zhezhao"></div>
+        </div>
+        <!-- 场次 -->
+		<?php
+			$cishu = count($changciList);
+			if($cishu > 1){
+		?>
+        <ul class="changci">
+            <volist name="changciList" id="vo">
+                <li class="teshu">
+                    <a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" <if condition="$vo['id'] eq $id">class="a1 XZ1"<else />class="a1"</if> id="chang" >场 {$vo.seq}</a>
+                        <a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" class="a2">k1<if condition="$vo['count']">-k{$vo.count}</if></a>
+                </li>
+            </volist>
+        </ul>
+		<?php } ?>
+        <div class="MGPMSS" <if condition="$cishu lt 2">style="margin-rop:0px;"</if>>
+            <ul>
+                <li class="zhanshishijian">
+                    <span class="ssq">本场拍卖</span>
+                    <span class="ssq">剩余时间</span>
+                    <span class="daojishi">{$times}</span>
+                    <span class="B1 B3">> 注册会员</span>
+                    <span class="B2">提供手机号码提交短信验证码</span>
+                    <span class="B1">> 缴纳保证金</span>
+                    <span class="B2">保证金最低为1000人民币,数额随标的递增，可申请退回</span>
+                    <span class="B1">> 参与竞拍</span>
+                    <span class="B2">全球同步竞拍最高价者得标</span>
+                    <span class="B1">> 完成付款</span>
+                    <span class="B2">根据账单所示人民币金额
+                                         于2工作日内完成付款</span>
+                    <span class="B1">> 等待运输</span>
+                    <span class="B2">由国际运输公司统一安排，
+                                运抵前一周联系鸽友告知提鸽信息</span>
+                    <a href="" class="zuoyi">拍卖规则</a>
+                    <a href="" class="yuoyi">帮助中心</a>
+                </li>
+                <volist name="article" id="vo">
+                    <li class="li1 lis1">
+                        <if condition="$vo['gezi_sex'] eq 1">
+                            <span class="niaoming">{$vo['title'] | msubstr=0,10}</span>
+                            <img src="__TMPL__Public/images/niaogong.png" alt="" style="width: 50px" class="niaoren">
+						<else />
+                            <span class="niaoming2">{$vo['title'] | msubstr=0,10}</span>
+                            <img src="__TMPL__Public/images/niaomu.png" alt="" style="width: 50px" class="niaoren">
+                        </if>
+                        <span class="RENMING">{$vo.huanhao}</span>
+                        <div class="niaomao">
+                            <a href="{:U('mgpm/gezishow',array('id'=>$vo['huanhao']))}"><img src="{:sp_get_image_preview_url('default/tupian/'.$vo['huanhao'].'-pigeon.jpg')}" alt="" ></a>
+                        </div>
+                        <span class="price">€  755,-</span>
+                        <span class="wode1">最新出价：佚名01</span>
+                        <span class="wode2">剩余时间：2天</span>
+                        <div class="SSSJ">立即出价</div>
+
+                        <div class="ZZPM_list_JG" onclick="is_show({$vo['id']})"> <img src="__TMPL__Public/images/suiyuan15.png" alt=""> </div>
+                        <div class="SC"><img src="__TMPL__Public/images/fx.png" alt=""></div>
+                        <div class="QF"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+
+                        <!-- 隐藏信息框 -->
+                        <div class="YC hidden" id="YCYC{$vo['id']}">
+                            <span class="MM">{$vo['title']}</span>
+                            <span class="MM" style="margin-bottom: 28px;">{$vo['huanhao']}</span>
+							<volist name="vo.xuetong" id="c">
+								{$c}
+							</volist>
+							<!--
+							<p class="JS JLA">雄 “扑克脸”</p>
+                            <p class="JS">安德烈.德拉帕原舍世界铭鸽</p>
+                            <p class="JS">“冠军号×国家4号”直子</p>
+                            <p class="JS">“卡尔全兄弟”直子</p>
+                            <p class="JS">“皇室配对”直孙</p>
+							-->
+                            <span class="qq dd">性别</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee dd"><if condition="$vo['gezi_sex'] eq 1">雄<elseif condition="$vo['gezi_sex'] eq 2" />未知<else />雌</if></span><br/>
+                            <span class="qq">眼睛颜色</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee">{$vo['gezi_eyes']}</span><br/>
+                            <span class="qq">羽毛颜色</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee">{$vo['gezi_color']}</span><br/>
+                            <span class="qq">尺寸</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['figure'] eq 1">偏大<elseif condition="$vo['figure'] eq 2" />中等<elseif condition="$vo['figure'] eq 3" />偏小<else />-</if></span><br/>
+                            <span class="qq">长度</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['keel'] eq 1">偏短<elseif condition="$vo['keel'] eq 2" />中等<elseif condition="$vo['keel'] eq 3" />偏长<else />-</if></span><br/>
+                            <span class="qq">腰背</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['waist_tail'] eq 1">强壮<elseif condition="$vo['waist_tail'] eq 2" />正常<elseif condition="$vo['waist_tail'] eq 3" />一般<else />-</if></span><br/>
+                            <span class="qq">肌肉</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['muscle'] eq 1">很好<elseif condition="$vo['muscle'] eq 2" />正常<elseif condition="$vo['muscle'] eq 3" />一般<else />-</if></span><br/>
+                            <span class="qq">平衡</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['balance'] eq 1">很好<elseif condition="$vo['balance'] eq 2" />正常<elseif condition="$vo['balance'] eq 3" />一般<else />-</if></span><br/>
+                            <span class="qq">耻骨</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['pubis'] eq 1">紧合<elseif condition="$vo['pubis'] eq 2" />正常<elseif condition="$vo['pubis'] eq 3" />稍松<else />-</if></span><br/>
+                            <span class="qq">羽毛</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ee"><if condition="$vo['feather'] eq 1">柔软<elseif condition="$vo['feather'] eq 2" />一般<else />-</if></span><br/>
+                            <div class="cha" onclick="is_hidden({$vo['id']})"><img src="__TMPL__Public/images/cao.png" alt=""></div>
+                            <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
+                        </div>
+                        <!--  -->
+                    </li>
+                </volist>
+            </ul>
+        </div>
+        <!-- 底部 -->
+       <tc_include file="Public:footer" />
+    </div>
+	<tc_include file="Public:piaofu" />
+</body>
+</html>
