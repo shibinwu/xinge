@@ -143,10 +143,16 @@ class MrmxController extends HomebaseController {
     public function ozzb() {
         $id = I('get.id');
         if($id){
-            $mgzx = $this->ozzb_model->where(array('yid' => $id))->select();
+            $mgzx = $this->ozzb_model
+                ->where(array('yid' => $id))
+                ->page(1,1)
+                ->select();
         }else{
             $yname = $this->year_model->where(array('type' => 0))->order('yname desc')->getField('id');
-            $mgzx = $this->ozzb_model->where(array('yid' => $yname))->select();
+            $mgzx = $this->ozzb_model
+                ->where(array('yid' => $yname))
+                ->page(1,1)
+                ->select();
         }
         foreach ($mgzx as $key => $vol){
             $mgzx[$key]['jige'] = date("d/m",$vol['jige']);
@@ -160,6 +166,34 @@ class MrmxController extends HomebaseController {
         $this->ajaxReturn ($mgz);
     }
 
+    //欧洲战报查看更多
+    public function ozzbgd() {
+        $page = I('post.page');
+        $id = I('post.id');
+        if($id){
+            $mgzx = $this->ozzb_model
+                ->where(array('yid' => $id))
+                ->page($page,1)
+                ->select();
+        }else{
+            $yname = $this->year_model->where(array('type' => 0))->order('yname desc')->getField('id');
+            $mgzx = $this->ozzb_model
+                ->where(array('yid' => $yname))
+                ->page($page,1)
+                ->select();
+        }
+        foreach ($mgzx as $key => $vol){
+            $mgzx[$key]['jige'] = date("d/m",$vol['jige']);
+            $mgzx[$key]['fangfei'] = date("d/m",$vol['fangfei']);
+        }
+        if($mgzx){
+            $mgz['code'] = 1;
+            $mgz['message'] = '成功';
+            $mgz['data'] = $mgzx;
+        }
+        $this->ajaxReturn ($mgz);
+    }
+//亚洲战报列表显示
     public function yzzb() {
         $id = I('get.id');
         if($id){

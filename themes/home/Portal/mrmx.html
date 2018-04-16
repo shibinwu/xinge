@@ -103,8 +103,8 @@
                         <a href="javascript:;">亚洲战报</a>
                     </li>
                         <li id="tab4" class="ziji fudai2s none">
-                            <foreach name="yyzzb" item="vo">
-                                <a href="javascript:;" class="xuanzhong fl3">{$vo}</a>
+                            <foreach name="yyzzb" item="vo" key="k">
+                                <a href="javascript:;" class="xuanzhong fl3" id="{$k}">{$vo}</a>
                             </foreach>
                         </li>
                     <li id="tab10" class="yiji fl1">
@@ -138,8 +138,6 @@
                                 <span style="margin-left:82px;">组织者</span>
                                 <span style="margin-left:120px;">分类</span>
                             </li>
-
-
                                     <li class="OZZB_lion" style="border-bottom:none;" id="TSDK">
                                         <span style="margin-left:85px;">25/05</span>
                                         <span style="margin-left:135px;">27/05</span>
@@ -148,10 +146,6 @@
                                         <span style="margin-left:144px; ">BU-UB</span>
                                         <span style="margin-left:110px; ">[o][yl]</span>
                                     </li>
-
-
-
-
                             <!--<li style="height:142px;line-height:35px;" class="TSD YCB">-->
                                 <!--<div class="imgs"><img src="__TMPL__Public/images/图层 825.png" alt=""></div>-->
                                 <!--<div class="wenbensm">-->
@@ -162,7 +156,7 @@
                             <!--</li>-->
                         </ul>
                     </div>
-                    <div class="JIAZAI "><a href="javascript:;" class="get_more">查看更多</a></div>
+                    <div class="JIAZAI "  id="JIAZAI2" ><a href="javascript:;" >查看更多</a></div>
 
                 </div>
                 <!-- 亚洲战报 -->
@@ -170,7 +164,6 @@
                     <div class="YZZB">
 
                     </div>
-
                     <div class="YZZB_XT5"><a href=" ">查看更多</a></div>
                 </div>
                 <!-- 名人铭系二级页面 -->
@@ -419,7 +412,6 @@ $("#JIAZAI1").click(function () {
             },
         });
     }
-
 });
 //点击铭鸽资讯从新加载页面
 $("#tab1").click(function () {
@@ -427,7 +419,6 @@ $("#tab1").click(function () {
     gengduo = 1;
     window.location.reload();
 });
-
 //2、所有名人铭系的操作
 //获取名人铭系下的数据
 $("#tab10").click(function () {
@@ -465,8 +456,6 @@ $("#tab10").click(function () {
             })
         },
     });
-
-
 });
 //名人铭系加载更多
 var page2  =  1;
@@ -483,7 +472,7 @@ $("#JIAZAI1").click(function () {
                 if(msg['code'] == 1){
                     $.each(msg['data'],function (k,vo) {
                         $("#MRMXS").append("<li> &nbsp;&nbsp;&nbsp;<img src='/xinge/themes/home/Public/images/tuoyuan601.png' alt=''> &nbsp;&nbsp;&nbsp; <a href=\"javascript:;\">" + vo['title'] + "</a> <span class=\"SERVERLIST_time\">" + vo['time'] + "</span> </li>");
-//                                        获取铭鸽资讯下的数据
+//                 获取铭鸽资讯下的数据
                         $('#MRMXS li').click(function() {
                             var id = vo['id'];
                             $.ajax({
@@ -491,7 +480,7 @@ $("#JIAZAI1").click(function () {
                                 url : "{:U('Portal/mrmx/mrmgxq')}",//路径
                                 data : {
                                     "id" : id
-                                },//数据，这里使用的是Json格式进行传输
+                                },
                                 success : function(msg) {
                                     $(".SECTION_RM").html(msg['data']['title']);
                                     $(".SECTION_JPSJ").html("作者："+msg['data']['zuozhe']+" 时间："+msg['data']['time']);
@@ -508,9 +497,7 @@ $("#JIAZAI1").click(function () {
             },
         });
     }
-
 });
-
 //获取铭鸽资讯和名人铭系下的数据
 $('#MRMXS li').click(function() {
     var id  = $(this).attr("id");
@@ -533,6 +520,7 @@ $('#MRMXS li').click(function() {
 
 //点击欧洲战报默认出现最晚一年内容
 $("#tab2").click(function () {
+    gengduo1 = 1;
     $("#tab3 a:first").addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
     var a = $("#tab3 a:first").html();
     $("#tiaoti").html("欧洲战报"+a)
@@ -547,14 +535,15 @@ $("#tab2").click(function () {
             $.each(msg['data'],function (k,vo) {
                 $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
                 $(".yanse:odd").css("background","#F0EFEF");
-
             })
-
         },
     });
 });
+
 //欧洲战报点击年份出现相对应内容
 $('.fudai1s a').click(function() {
+    page3 = 1;
+    gengduo1 = 2;
     $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
     var a = $(this).html();
     $("#tiaoti").html("欧洲战报"+a)
@@ -574,6 +563,50 @@ $('.fudai1s a').click(function() {
         },
     });
 })
+//欧洲战报查看更多
+var gengduo1 = 1;
+var page3 = 1;
+$("#JIAZAI2").click(function () {
+    if(gengduo1 == 1){
+        $.ajax({
+            type : "POST",  //提交方式
+            url : "{:U('Portal/mrmx/ozzbgd')}",//路径
+            data : {
+                "page" : ++page3
+            },//数据，这里使用的是Json格式进行传输
+            success : function(msg) {
+                if(msg['code'] == 1){
+                    $.each(msg['data'],function (k,vo) {
+                        $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                        $(".yanse:odd").css("background","#F0EFEF");
+                    })
+                }else{
+                    alert("没有更多数据")
+                }
+            },
+        });
+    }else if(gengduo1 == 2){
+        var h  = $('.fudai1s .xuanzhong').attr("id");
+        $.ajax({
+            type : "POST",  //提交方式
+            url : "{:U('Portal/mrmx/ozzbgd')}",//路径
+            data : {
+                "id" : h,
+                "page" : ++page3
+            },//数据，这里使用的是Json格式进行传输
+            success : function(msg) {
+                if(msg['code'] == 1){
+                    $.each(msg['data'],function (k,vo) {
+                        $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                        $(".yanse:odd").css("background","#F0EFEF");
+                    })
+                }else{
+                    alert("没有更多数据")
+                }
+            },
+        });
+    }
+});
 //点击亚洲战报内容
 $("#tab6").click(function () {
     $("#tab4 a:first").addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
@@ -586,7 +619,6 @@ $("#tab6").click(function () {
             "id" : ""
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
-            console.log(msg)
             $("#tabss6").empty();
             var pics;
             $.each(msg['data'],function (k,vo) {
@@ -594,7 +626,6 @@ $("#tab6").click(function () {
                 pics = vo['pic'].split(",");
                 $("#YZZB_XT"+vo['id']).empty();
                 for (var i=0;i<pics.length;i++){
-                    console.log(i+'#'+pics[i])
                     $("#YZZB_XT"+vo['id']).append("<div style='width:99px;height:99px;position:relative;' class='YZZB_XT1 YZZB_XTone'><img class='FDSX' style='position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;' src='/xinge/data/upload/"+pics[i]+"' alt=''></div>");
                 }
             })
@@ -602,7 +633,6 @@ $("#tab6").click(function () {
             // 亚洲战报人物图片放大
             var i = 0;
             $('.FDSX').click(function() {
-
                 var num = $('.FDSX').index(this);
                 if (i == 0) {
                     $(this).parent().css('background-image', 'url(/xinge/themes/home/Public/images/123.png)').siblings('div').css('background-image', 'none').parent().siblings('.FD').removeClass('DT');
@@ -619,21 +649,28 @@ $("#tab6").click(function () {
 //欧亚洲报点击年份出现相对应内容
 $('.fudai2s a').click(function() {
     $(this).addClass('xuanzhong').siblings('a').removeClass('xuanzhong');
+    //动态加载导航栏
     var a = $(this).html();
     $("#tiaoti").html("亚洲战报"+a)
     var h  = $(this).attr("id");
     $.ajax({
         type : "GET",  //提交方式
-        url : "{:U('Portal/mrmx/ozzb')}",//路径
+        url : "{:U('Portal/mrmx/yzzb')}",//路径
         data : {
             "id" : h
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
-            $("#TSDK").empty();
+            $("#tabss6").empty();
+            var pics;
             $.each(msg['data'],function (k,vo) {
-                $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
-                $(".yanse:odd").css("background","#F0EFEF");
+                $("#tabss6").append("<div class='YZZB'> <div class='YZZB_BZ'><img src='/xinge/themes/home/Public/images/yzzb1.png'></div> <span class='YYZB_RM'>恭喜获奖会员鸽友："+vo['title']+"</span> <span class='YYZB_XM'>"+vo['content']+"</span> <div class='YZZB_XT' id='YZZB_XT"+vo['id']+"'> <div style='width:99px;height:99px;position:relative;' class='YZZB_XT1 YZZB_XTone'><img class='FDSX' style='position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;' src='' alt=''></div> <div class='DT FD'> <a class='YZZB_XT4'><img src='/xinge/themes/home/Public/images/19.png' alt=''></a> </div>");
+                pics = vo['pic'].split(",");
+                $("#YZZB_XT"+vo['id']).empty();
+                for (var i=0;i<pics.length;i++){
+                    $("#YZZB_XT"+vo['id']).append("<div style='width:99px;height:99px;position:relative;' class='YZZB_XT1 YZZB_XTone'><img class='FDSX' style='position:absolute;vertical-align: middle;position: absolute;right: 3px;width: 93px;height: 84px;bottom: 12px;' src='/xinge/data/upload/"+pics[i]+"' alt=''></div>");
+                }
             })
+            $(".YZZB_BZ img:odd").attr("src","/xinge/themes/home/Public/images/yzzb2.png");
         },
     });
 })
