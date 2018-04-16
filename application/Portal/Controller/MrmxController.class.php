@@ -35,6 +35,7 @@ class MrmxController extends HomebaseController {
     protected $article_model;
     protected $ozzb_model;
     protected $yzzb_model;
+    protected $ozzbxq_model;
     function _initialize()
     {
         parent::_initialize();
@@ -42,6 +43,7 @@ class MrmxController extends HomebaseController {
         $this->article_model = M("Article");
         $this->ozzb_model = M("Ozzb");
         $this->yzzb_model = M("Yzzb");
+        $this->ozzbxq_model = M("Ozzbxq");
     }
     //鸽闻中心首页面
 	public function index() {
@@ -153,10 +155,18 @@ class MrmxController extends HomebaseController {
                 ->where(array('yid' => $yname))
                 ->page(1,1)
                 ->select();
+
+
         }
+//        $arr = array();
         foreach ($mgzx as $key => $vol){
+//            $arr = $this->ozzbxq_model->where(array('sid' => $vol['id']))->field('title,name,pic')->select();
+            $mgzx[$key]['xtitle'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('title');
+            $mgzx[$key]['xcontent'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('content');
+            $mgzx[$key]['pic'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('pic');
             $mgzx[$key]['jige'] = date("d/m",$vol['jige']);
             $mgzx[$key]['fangfei'] = date("d/m",$vol['fangfei']);
+
         }
         if($mgzx){
             $mgz['code'] = 1;
@@ -190,6 +200,18 @@ class MrmxController extends HomebaseController {
             $mgz['code'] = 1;
             $mgz['message'] = '成功';
             $mgz['data'] = $mgzx;
+        }
+        $this->ajaxReturn ($mgz);
+    }
+    //欧洲战报详情
+    public function ozzbxq(){
+        $id = I('get.id');
+        $ozzb = $this->ozzbxq_model->where(array('sid'=> $id))->find();
+        $ozzb['sname'] = $this->ozzb_model->where(array('id' => $ozzb['sid']))->getField('name');
+        if($ozzb){
+            $mgz['code'] = 1;
+            $mgz['message'] = '成功';
+            $mgz['data'] = $ozzb;
         }
         $this->ajaxReturn ($mgz);
     }

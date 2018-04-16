@@ -161,7 +161,6 @@
 
 }
 .SERVERLIST_three ul li{
-	height:72px;
 	width:1180px;
 	line-height:72px; 
 	border-bottom:1px solid #CFCFCF;
@@ -183,7 +182,6 @@
 	font-size:20px;
 }
 .TSD{
-	height:18px;
 	width:1128px !important;
 	padding-left:52px;
 }
@@ -375,6 +373,7 @@
 .zyzy{
 	border-left:1px solid #CFCFCF;
 	background: #FFF;
+	min-height:723px;
 }
 .YCB{
 	display:none;
