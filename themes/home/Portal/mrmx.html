@@ -138,24 +138,24 @@
                                 <span style="margin-left:82px;">组织者</span>
                                 <span style="margin-left:120px;">分类</span>
                             </li>
-                            <li class="OZZB_lion OZXQS" style="border-bottom:none;" id="TSDK">
-                                <span style="margin-left:85px;">25/05</span>
-                                <span style="margin-left:135px;">27/05</span>
-                                <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                                <span style="margin-left:90px; ">800</span>
-                                <span style="margin-left:144px; ">BU-UB</span>
-                                <span style="margin-left:110px; ">[o][yl]</span>
-                            </li>
-                            <li style="height:142px;line-height:35px;" class="TSD YCB">
-                                <div id="OZXQ">
-                                <div class="imgs"><img src="__TMPL__Public/images/suiyuan825.png" alt=""></div>
-                                <div class="wenbensm">
-                                    <span class="SSMZ">赛事名称：波治 I2018</span>
-                                    <span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>
-                                    <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
-                                </div>
-                                </div>
-                            </li>
+                            <div class="xq">
+                                <li class="OZZB_lion OZXQS" style="border-bottom:none;" id="TSDK">
+                                    <span style="margin-left:85px;">25/05</span>
+                                    <span style="margin-left:135px;">27/05</span>
+                                    <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
+                                    <span style="margin-left:90px; ">800</span>
+                                    <span style="margin-left:144px; ">BU-UB</span>
+                                    <span style="margin-left:110px; ">[o][yl]</span>
+                                </li>
+                                <li style="height:142px;line-height:35px;" class="TSD YCB">
+                                        <div class="imgs"><img src="__TMPL__Public/images/suiyuan825.png" alt=""></div>
+                                        <div class="wenbensm">
+                                            <span class="SSMZ">赛事名称：波治 I2018</span>
+                                            <span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>
+                                            <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
+                                        </div>
+                                </li>
+                            </div>
                         </ul>
                     <div class="JIAZAI "  id="JIAZAI2" ><a href="javascript:;" >查看更多</a></div>
                 </div>
@@ -519,47 +519,29 @@ $("#tab2").click(function () {
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
             console.log(msg['data'])
-            $(".OZZB_lion").empty();
+            $(".xq").empty();
+            //添加列表
             $.each(msg['data'],function (k,vo) {
-                console.log(vo['id'])
-                $(".OZZB_lion").append("<li class='OZZB_lione yanse' style='border-bottom:none;' onclick='uuu("+vo['id']+")'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
-
-//                $(".TSD").empty();
-//                $(".TSD").append("<div class='imgs'><img src='/xinge/data/upload/"+vo['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vo['xtitle']+"</span> <span class='GJJS'>"+vo['xcontent']+"</span> </div>")
-//
+                $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
                 $(".yanse:odd").css("background","#F0EFEF");
+                //添加详情
+                $.each(vo['xq'],function (k,vol) {
+                    $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                })
             })
             var q = 0;
             $('.OZXQS').click(function() {
-                if (q == 0) {
-                    $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
-                    q = 1;
-                } else {
-                    $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
-                    q = 0;
-                }
-
+            if (q == 0) {
+                $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                q = 1;
+            } else {
+                $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
+                q = 0;
+            }
             })
         },
     });
 });
-//点击展开详情
-//onclick='uuu("+vo['id']+")'
-function uuu(id) {
-    $.ajax({
-        type : "GET",
-        url : "{:U('Portal/mrmx/ozzbxq')}",
-        data : {
-            id : id
-        },
-        success : function (msg) {
-            console.log(msg['data'])
-            $("#OZXQ").empty();
-            $("#OZXQ").append(" <div class='imgs'><img src='/xinge/data/upload/"+msg['data']['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+msg['data']['sname']+"</span> <span class='ZGFS'>"+msg['data']['title']+"</span> <span class='GJJS'>"+msg['data']['content']+"</span> </div>")
-//            after(content)
-        }
-    })
-}
 
 //欧洲战报点击年份出现相对应内容
 $('.fudai1s a').click(function() {
@@ -576,10 +558,26 @@ $('.fudai1s a').click(function() {
             "id" : h
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
-            $("#TSDK").empty();
+            console.log(msg['data'])
+            $(".xq").empty();
+            //添加列表
             $.each(msg['data'],function (k,vo) {
-                $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
                 $(".yanse:odd").css("background","#F0EFEF");
+                //添加详情
+                $.each(vo['xq'],function (k,vol) {
+                    $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                })
+            })
+            var q = 0;
+            $('.OZXQS').click(function() {
+                if (q == 0) {
+                    $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                    q = 1;
+                } else {
+                    $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
+                    q = 0;
+                }
             })
         },
     });
@@ -598,8 +596,22 @@ $("#JIAZAI2").click(function () {
             success : function(msg) {
                 if(msg['code'] == 1){
                     $.each(msg['data'],function (k,vo) {
-                        $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                        $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
                         $(".yanse:odd").css("background","#F0EFEF");
+                        //添加详情
+                        $.each(vo['xq'],function (k,vol) {
+                            $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                        })
+                    })
+                    var q = 0;
+                    $('.OZXQS').click(function() {
+                        if (q == 0) {
+                            $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                            q = 1;
+                        } else {
+                            $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
+                            q = 0;
+                        }
                     })
                 }else{
                     alert("没有更多数据")
@@ -618,8 +630,22 @@ $("#JIAZAI2").click(function () {
             success : function(msg) {
                 if(msg['code'] == 1){
                     $.each(msg['data'],function (k,vo) {
-                        $("#TSDK").append("<li class='OZZB_lione yanse' style='border-bottom:none;' id='TSDK'> <span style='margin-left:85px;'>"+vo['jige']+"</span> <span style='margin-left:135px;'>"+vo['fangfei']+"</span> <span style='margin-left:125px; color:#007bc1;'>"+vo['name']+"</span> <span style='margin-left:90px; '>"+vo['distance']+"</span> <span style='margin-left:144px; '>"+vo['organizer']+"</span> <span style='margin-left:110px; '>"+vo['fenlei']+"</span> </li>");
+                        $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
                         $(".yanse:odd").css("background","#F0EFEF");
+                        //添加详情
+                        $.each(vo['xq'],function (k,vol) {
+                            $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                        })
+                    })
+                    var q = 0;
+                    $('.OZXQS').click(function() {
+                        if (q == 0) {
+                            $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                            q = 1;
+                        } else {
+                            $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
+                            q = 0;
+                        }
                     })
                 }else{
                     alert("没有更多数据")

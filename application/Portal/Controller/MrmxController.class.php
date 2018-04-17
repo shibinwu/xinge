@@ -47,7 +47,7 @@ class MrmxController extends HomebaseController {
     }
     //鸽闻中心首页面
 	public function index() {
-	    $data = $this->year_model->order('yname desc')->select();
+        $data = $this->year_model->order('yname desc')->select();
         $mgzx = $this->article_model
             ->where(array('cid' => 0))
             -> page(1,1)
@@ -158,15 +158,11 @@ class MrmxController extends HomebaseController {
 
 
         }
-//        $arr = array();
         foreach ($mgzx as $key => $vol){
-//            $arr = $this->ozzbxq_model->where(array('sid' => $vol['id']))->field('title,name,pic')->select();
-            $mgzx[$key]['xtitle'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('title');
-            $mgzx[$key]['xcontent'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('content');
-            $mgzx[$key]['pic'] = $this->ozzbxq_model->where(array('sid' => $vol['id']))->getField('pic');
+            $arr = $this->ozzbxq_model->where(array('sid' => $vol['id']))->field('title,content,pic')->select();
             $mgzx[$key]['jige'] = date("d/m",$vol['jige']);
             $mgzx[$key]['fangfei'] = date("d/m",$vol['fangfei']);
-
+            $mgzx[$key]['xq'] = $arr;
         }
         if($mgzx){
             $mgz['code'] = 1;
@@ -193,8 +189,10 @@ class MrmxController extends HomebaseController {
                 ->select();
         }
         foreach ($mgzx as $key => $vol){
+            $arr = $this->ozzbxq_model->where(array('sid' => $vol['id']))->field('title,content,pic')->select();
             $mgzx[$key]['jige'] = date("d/m",$vol['jige']);
             $mgzx[$key]['fangfei'] = date("d/m",$vol['fangfei']);
+            $mgzx[$key]['xq'] = $arr;
         }
         if($mgzx){
             $mgz['code'] = 1;
@@ -204,17 +202,17 @@ class MrmxController extends HomebaseController {
         $this->ajaxReturn ($mgz);
     }
     //欧洲战报详情
-    public function ozzbxq(){
-        $id = I('get.id');
-        $ozzb = $this->ozzbxq_model->where(array('sid'=> $id))->find();
-        $ozzb['sname'] = $this->ozzb_model->where(array('id' => $ozzb['sid']))->getField('name');
-        if($ozzb){
-            $mgz['code'] = 1;
-            $mgz['message'] = '成功';
-            $mgz['data'] = $ozzb;
-        }
-        $this->ajaxReturn ($mgz);
-    }
+//    public function ozzbxq(){
+//        $id = I('get.id');
+//        $ozzb = $this->ozzbxq_model->where(array('sid'=> $id))->find();
+//        $ozzb['sname'] = $this->ozzb_model->where(array('id' => $ozzb['sid']))->getField('name');
+//        if($ozzb){
+//            $mgz['code'] = 1;
+//            $mgz['message'] = '成功';
+//            $mgz['data'] = $ozzb;
+//        }
+//        $this->ajaxReturn ($mgz);
+//    }
 //亚洲战报列表显示
     public function yzzb() {
         $id = I('get.id');
