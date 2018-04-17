@@ -487,8 +487,9 @@ class NewsadminController extends AdminbaseController
             //把时间转换成时间戳
             $article['jige'] = strtotime($article['jige']);
             $article['fangfei'] = strtotime($article['fangfei']);
-            if($article['tags']){
-                $article['tags'] =  implode(',',$article['tags']);
+            if($article['bid']){
+                $bid =  implode(',',$article['bid']);
+                $article['bid'] = ','.$bid.',';
             }
             $result = $this->ozzb_model->add($article);
             if ($result) {
@@ -498,6 +499,7 @@ class NewsadminController extends AdminbaseController
             }
             exit;
         }
+        //年份
         $data = $this->year_model->where(array('type'=>0))->order('yname desc')->getField('id,yname',true);
         $this->assign('data',$data);
 		//标签
