@@ -9,16 +9,17 @@
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
 			<li><a href="{:U('Newsadmin/ozzbxqindex')}">{:L('NEWS_OZZBXQ_INDEX')}</a></li>
-			<li class="active"><a href="{:U('Newsadmin/ozzbxqadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZBXQ_ADD')}</a></li>
+			<li class="active"><a href="{:U('Newsadmin/ozzbxqadd',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">{:L('NEWS_OZZBXQ_EDIT')}</a></li>
 		</ul>
-		<form action="{:U('Newsadmin/ozzbxqadd')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+		<form action="{:U('Newsadmin/ozzbxqedit')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
 			<div class="row-fluid">
 				<div class="span9">
 					<table class="table table-bordered">
+						<input type="hidden" name="post[id]" value="{$post.id}">
 						<tr>
 							<th width="80">标题</th>
 							<td>
-								<input type="text" style="width:400px;" name="post[title]"  required value="" placeholder="请输入标题"/>
+								<input type="text" style="width:400px;" name="post[title]"  required value="{$post.title}" placeholder="请输入标题"/>
 								<span class="form-required">*</span>
 							</td>
 						</tr>
@@ -28,7 +29,7 @@
 								<select name="post[sid]" style="width:415px;">
 									<option >请选择</option>
 									<foreach name="data" item="vo" >
-										<option value="{$key}" <if condition="$key eq $fid"> selected="selected"</if>>{$vo}</option>
+										<option value="{$key}" <if condition="$key eq $post['sid']"> selected="selected"</if>>{$vo}</option>
 										<!--<option value="{$key}" <if condition="$key eq $post[yid]">selected="selected"</if>>{$vo}</option>-->
 									</foreach>
 								</select>
@@ -37,7 +38,7 @@
 						<tr>
 							<th>内容</th>
 							<td>
-								<script type="text/plain" id="content" name="post[content]"></script>
+								<script type="text/plain" id="content" name="post[content]" value="{$post.content}">{$post.content}</script>
 							</td>
 						</tr>
 					</table>
@@ -50,9 +51,13 @@
 						<tr>
 							<td>
 								<div style="text-align: center;">
-									<input type="hidden" name="smeta[thumb]" id="thumb" value="">
+									<input type="hidden" name="smeta[thumb]" id="thumb" value="{$post.pic|default=''}">
 									<a href="javascript:upload_one_image('图片上传','#thumb');">
-										<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb-preview" width="135" style="cursor: hand" />
+										<if condition="empty($post['pic'])">
+											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb-preview" width="135" style="cursor: hand"/>
+											<else />
+											<img src="{:sp_get_image_preview_url($post['pic'])}" id="thumb-preview" width="135" style="cursor: hand"/>
+										</if>
 									</a>
 									<input type="button" class="btn btn-small" onclick="$('#thumb-preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
 								</div>

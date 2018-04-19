@@ -15,6 +15,7 @@ class MgpmController extends HomebaseController {
 	protected $pmjilu_model;
 	protected $gezi_model;
 	protected $xuetongshu_model;
+	protected $pmgezi_offer_model;
     function _initialize()
     {
         parent::_initialize();
@@ -24,6 +25,7 @@ class MgpmController extends HomebaseController {
 		$this->pmjilu_model = M("Pmjilu");
 		$this->gezi_model = M("Gezi");
 		$this->xuetongshu_model = M("Xuetongshu");
+		$this->pmgezi_offer_model = M("Pmgezi_offer");
 		$this->assign('MENU', 'mgpm');
     }
     
@@ -44,11 +46,21 @@ class MgpmController extends HomebaseController {
             $remain_time = $val['end_time'] - $time; //剩余的秒数
             $remain_hours = floor($remain_time/(60*60)); //剩余的小时
             $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
-            $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
-            $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
-            $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
-            $remain_second=sprintf("%02d",$remain_seconds);
-            $paimaList[$k]['daojishi'] = $remain_hour.':'.$remain_minute.':'.$remain_second;
+			if($remain_hour < 24){
+				$remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+				$remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+				$remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+				$remain_second=sprintf("%02d",$remain_seconds);
+				$times = $remain_hour.':'.$remain_minute.':'.$remain_second;
+				if($remain_time > 0){
+					$times = $times;
+				}else{
+					$times = '已结束';
+				}
+			}else{
+				$times = intval($remain_hour/24).'天';
+			}
+			$paimaList[$k]['daojishi'] = $times;
         }
         //即将上线的条件
 		$paimaiWhereD['country1'] = 1;
@@ -86,19 +98,23 @@ class MgpmController extends HomebaseController {
         $remain_time = $info['end_time'] - time(); //剩余的秒数
         $remain_hours = floor($remain_time/(60*60)); //剩余的小时
         $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
-        $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
-        $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
-        $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
-        $remain_second=sprintf("%02d",$remain_seconds);
-        $times = $remain_hour.':'.$remain_minute.':'.$remain_second;
-        if($times > 0){
-            $times = $times;
-        }else{
-            $times = '已结束';
-        }
+		if($remain_hour < 24){
+			$remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+			$remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+			$remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+			$remain_second=sprintf("%02d",$remain_seconds);
+			$times = $remain_hour.':'.$remain_minute.':'.$remain_second;
+			if($remain_time > 0){
+				$times = $times;
+			}else{
+				$times = '已结束';
+			}
+		}else{
+			$times = intval($remain_hour/24).'天';
+		}
        //获取该场次下面的所有鸽子信息
         $map['cid'] = $id;
-        $geziList = $this->pmgezi_model->where($map)->field('huanhao,cid,sequence,addtime')->select();
+        $geziList = $this->pmgezi_model->where($map)->field('id,huanhao,cid,sequence,addtime')->order('id ASC')->select();
 		$article = array();
         foreach ($geziList as $k => $val){
             $gzmap = array('huanhao'=>$val['huanhao']);
@@ -108,6 +124,8 @@ class MgpmController extends HomebaseController {
 			//血统 前4个p标签内容
 			$xuetong = array_slice($this->preg_get($xuetongInfo),0,5);
 			$geziInfo['xuetong'] = $xuetong;
+			$geziInfo['gid'] = $val['id'];
+			$geziInfo['cid'] = $id;
 			$article[$k] = $geziInfo;
         }
         //专题信息
@@ -125,7 +143,43 @@ class MgpmController extends HomebaseController {
 	//鸽子页面的信息
 	public function gezishow() {
         //鸽子环号
-        $huanhao = I('get.id');
+        $id = I('get.id');
+		$cid = I('get.cid');
+		//场次  鸽子
+		$gzWhere = array();
+		$gzWhere['id'] = $id;
+		$gzWhere['cid'] = $cid;
+		$geziInfo = $this->pmgezi_model->where($gzWhere)->find();
+		$this->pmgezi_model->where($gzWhere)->setInc('hits',1);
+		//dump($geziInfo);exit;
+		if(empty($geziInfo)){
+			$this->error('参数有误!');exit;
+		}
+		//获取结拍时间
+		$end_time = $this->changci_model->where(array('id'=>$cid))->getField('end_time');
+		
+		//结拍时间倒计时
+		$remain_time = $end_time - time(); //剩余的秒数
+		$remain_hours = floor($remain_time/(60*60)); //剩余的小时
+		$remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
+		if($remain_hour < 24){
+			$remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+			$remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+			$remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+			$remain_second=sprintf("%02d",$remain_seconds);
+			$times = $remain_hour.':'.$remain_minute.':'.$remain_second;
+			if($remain_time > 0){
+				$times = $times;
+			}else{
+				$times = '已结束';
+			}
+		}else{
+			$times = intval($remain_hour/24).'天';
+		}
+		$this->assign('remain_time', $remain_time);
+		$this->assign('times', $times);
+		//获取鸽子信息
+		$huanhao = $geziInfo['huanhao'];
         $where = array();
         $where['huanhao'] = $huanhao;
         $data = $this->gezi_model->where($where)->find();
@@ -134,12 +188,51 @@ class MgpmController extends HomebaseController {
 		$data['pic'] = "$path"."$huanhao".'-pigeon.jpg';
 		$data['yjpic'] = "$path"."$huanhao".'-eye.jpg';
 		$data['xtpic'] = "$path"."$huanhao".'-ancestry.jpg';
-        $geziInfo = $this->xuetongshu_model->where($where)->field('info,finfo,minfo')->find();
-        $data['xuetong'] = $geziInfo;//htmlspecialchars_decode($data['info']);
-
-        $list = $this->pmgezi_model->where($where)->find();
-        $this->assign('data', $data);
-        $this->assign('list', $list);
+        $gezixueTong = $this->xuetongshu_model->where($where)->field('info,finfo,minfo')->find();
+        $data['xuetong'] = $gezixueTong;//htmlspecialchars_decode($data['info']);
+		//鸽子竞拍次数
+		$geziInfo['count'] = $this->pmgezi_offer_model->where(array('cid'=>$geziInfo['id']))->count();
+		if($geziInfo['count'] > 0){
+			//获取最近出价记录
+			$userOffer = $this->pmgezi_offer_model->where(array('cid'=>$geziInfo['id']))->order('id DESC')->find();
+			$this->assign('userOffer', $userOffer);
+			$fudu = lanhai_margin_price($userOffer['price']);
+			$price = $fudu+$userOffer['price'];
+			//获取最近出价者
+			$userMod = M('Users');
+			$userInfo = $userMod->where(array('id'=>$userOffer['uid']))->find();
+			$this->assign('userInfo', $userInfo);
+			//竞拍记录
+			$geziJiLu = $this->pmgezi_offer_model->where(array('cid'=>$geziInfo['id']))->order('id DESC')->field('uid,price,addtime')->limit(8)->select();
+			foreach($geziJiLu as $k=>$val){
+				$geziJiLu[$k]['user_nicename'] = $userMod->where(array('id'=>$val['uid']))->getField('user_nicename');
+			}
+			$this->assign('geziJiLu', $geziJiLu);
+		}else{
+			$fudu = lanhai_margin_price($geziInfo['start_price']);
+			$price = $geziInfo['start_price'];
+		}
+		$this->assign('fudu', $fudu);
+		//上一个
+		$listWhere = array();
+		$listWhere['cid'] = $cid;
+		$listWhere['id'] = array('GT',$id);
+		$update = $list = $this->pmgezi_model->where($listWhere)->order('id DESC')->find();
+		$this->assign('update',$update);
+		//下一个
+		$listWhere['id'] = array('LT',$id);
+		$downdate = $list = $this->pmgezi_model->where($listWhere)->order('id DESC')->find();
+		$this->assign('downdate',$downdate);
+		//所有鸽子
+		$allList = $this->pmgezi_model->where(array('cid'=>$cid))->order('id DESC')->select();
+		foreach($allList as $k=>$val){
+			$allList[$k]['title'] = $this->gezi_model->where(array('huanhao'=>$val['huanhao']))->getField('title');
+		}
+		$this->assign('allList',$allList);
+		
+		$this->assign('data', $data);
+        $this->assign('price', $price);
+        $this->assign('list', $geziInfo);
     	$this->display();
     }
 	//专题页面显示

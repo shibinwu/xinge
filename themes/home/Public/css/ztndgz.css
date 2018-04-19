@@ -117,7 +117,15 @@
 	font-size:25px;
 	color:#575756;
 	display:inline-block;
-	text-align:center; 
+}
+.changci li .a2 .a2_1s{
+	width:67px;text-align:center;display:inline-block;
+}
+.changci li .a2 .a2_2s{
+	width:7px;text-align:center;display:inline-block;
+}
+.changci li .a2 .a2_3s{
+	width:78px;text-align: left;text-indent:4px;display:inline-block;
 }
 .XZ1{
 	background:#127CC1 !important;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>信鸽</title>
+    <title>{$site_name}</title>
     <link rel="stylesheet" href="__TMPL__Public/css/style.css">
     <link rel="stylesheet" href="__TMPL__Public/css/index.css">
     <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
@@ -21,46 +21,7 @@
 
 <body>
     <div class="main">
-        <!-- 顶部搜索框 -->
-        <div class="search">
-            <span class="lxdh">电话:010-85175305 13146616133   |   邮箱:epw@xingezhan.com</span>
-            <div class="kuang">
-                <input type="search" placeholder="搜索你想要的项目" name="搜索" id="">
-                <div class="fdj"><img src="__TMPL__Public/images/search.png" alt="" srcset=""></div>
-                <div class="gq"><img src="__TMPL__Public/images/NL.png" alt="" srcset="">
-                    <a><img src="__TMPL__Public/images/xiasanjiao.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-        <!-- 头部 -->
-        <div class="header">
-            <div class="logo">
-                <a href=""><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
-            </div>
-            <div class="list" id="list">
-                <ul>
-                    <li class="list1 queding"><a href="{:U('Portal/index/index')}">首页</a></li>
-                    <li class="list2"><a href="{:U('Portal/mgpm/index')}">铭鸽拍卖</a></li>
-                    <li class="list3"><a href="{:U('Portal/mgcp/index')}">铭鸽产品</a></li>
-                    <li class="list4"><a href="{:U('Portal/mrmx/index')}">鸽闻天下</a></li>
-                    <li id="DL" class="last list5"><a href="javascript:;">用户登录</a></li>
-                </ul>
-            </div>
-            <!-- 用户登录框 -->
-            <div class="DL hidden">
-                <span class="yhdl">用户登录</span>
-                <span class="wfdl"><a href="">忘记密码？</a></span>
-                <input type="username" style="margin-top:35px;" placeholder="您的手机号" name="搜索" id="">
-                <input type="password" style="margin-top:11px;" placeholder="密码" name="搜索" id="">
-                <div class="TS">
-                    <ul>
-                        <li class="dl"><a href="">注册</a></li>
-                        <li class="zc"><a href="">登录</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!--  -->
-        </div>
+	  <tc_include file="Public:head" />
         <!-- 轮播 -->
         <div class="lunbo swiper-container">
             <div class="img swiper-wrapper">
@@ -130,34 +91,15 @@
             <!-- 即将上线拍卖 -->
             <div class="JJ">
                 <span class="jj white">即将上线拍卖</span>
-                <div class="rw">
-                    <div class="tx">
-                        <img src="__TMPL__Public/images/Laag 842.png" alt="">
-                        <img class="tx_gj" src="__TMPL__Public/images/BE.png" alt="">
-                        <span class="name white">乔斯和朱尔斯·恩格斯</span>
-                    </div>
-                </div>
-                <div class="rw">
-                    <div class="tx">
-                        <img src="__TMPL__Public/images/Laag 843.png" alt="">
-                        <img class="tx_gj" src="__TMPL__Public/images/BE.png" alt="">
-                        <span class="name white">加·比·橡子</span>
-                    </div>
-                </div>
-                <div class="rw">
-                    <div class="tx">
-                        <img src="__TMPL__Public/images/Laag 844.png" alt="">
-                        <img class="tx_gj" src="__TMPL__Public/images/BE.png" alt="">
-                        <span class="name white">EPW·裕中·格罗</span>
-                    </div>
-                </div>
-                <div class="rw">
-                    <div class="tx">
-                        <img src="__TMPL__Public/images/Laag 842.png" alt="">
-                        <img class="tx_gj" src="__TMPL__Public/images/BE.png" alt="">
-                        <span class="name white">乔斯和朱尔斯·恩格斯</span>
-                    </div>
-                </div>
+				<volist name="paimaListed" id="paimd">
+					<div class="rw">
+						<div class="tx">
+							<img src="{:sp_get_image_preview_url($paimd['thumb'])}" alt="" style="width:82px;">
+							<img class="tx_gj" src="__TMPL__Public/images/BE.png" alt="">
+							<span class="name white">{$paimd['name']}</span>
+						</div>
+					</div>
+				</volist>
             </div>
             <!-- 最新要闻 -->
             <div class="YW">
@@ -181,102 +123,21 @@
                 <span class="zzpm">正在拍卖</span>
                 <div class="ZZPM_list">
                     <ul>
-                        <foreach name="list" item="vol">
+						<foreach name="paimaList" item="paimavo">
                             <li class="ZZPM_list_one">
                                 <div class="img">
-                                    <a href="./mgpm.html"><img src="{:sp_get_image_preview_url($vol['pics'])}" alt=""></a>
+                                    <a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}"><img src="{:sp_get_image_preview_url($paimavo['thumb'])}" alt=""></a>
                                 </div>
-                                <span class="ppl"><a href="./mgpm.html" class="mores">{$vol[tname] | msubstr=0,13}</a></span>
-                                <span class="ppo">结拍时间：{$vol[end_time]|date="Y-m-d H:i:s",###}</span>
-                                <div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 <if condition="$vol.daojishi lt 0">已结束<else/>{$vol.daojishi}</if></a></div>
-                                <div class="ZZPM_list_JG">{$vol.gezicount}羽</div>
+                                <span class="ppl"><a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}" class="mores">{$paimavo[name] | msubstr=0,13}</a></span>
+                                <span class="ppo">结拍时间：{$paimavo[end_time]|date="Y-m-d H:i:s",###}</span>
+                                <div class="SSSJ"><a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}" class="moress">剩余时间 <if condition="$paimavo.daojishi lt 0">已结束<else/>{$paimavo.daojishi}</if></a></div>
+                                <div class="ZZPM_list_JG">{$paimavo.gezinum}羽</div>
                                 <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
                             </li>
                         </foreach>
-
-                        <!--<li class="ZZPM_list_one">-->
-                            <!--<div class="img">-->
-                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding02.png" alt=""></a>-->
-                            <!--</div>-->
-                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                            <!--<div class="ZZPM_list_JG">20羽</div>-->
-                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class=" ZZPM_list_one">-->
-                        <!--<div class="img">-->
-                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding03.png" alt=""></a>-->
-                        <!--</div>-->
-                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                        <!--<div class="ZZPM_list_JG">20羽</div>-->
-                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class="ZZPM_list_one">-->
-                        <!--<div class="img">-->
-                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding04.png" alt=""></a>-->
-                        <!--</div>-->
-                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                        <!--<div class="ZZPM_list_JG">20羽</div>-->
-                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class=" ZZPM_list_one">-->
-                        <!--<div class="img">-->
-                        <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding05.png" alt=""></a>-->
-                        <!--</div>-->
-                        <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                        <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                        <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                        <!--<div class="ZZPM_list_JG">20羽</div>-->
-                        <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class=" ZZPM_list_one">-->
-                            <!--<div class="img">-->
-                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding03.png" alt=""></a>-->
-                            <!--</div>-->
-                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                            <!--<div class="ZZPM_list_JG">20羽</div>-->
-                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class="ZZPM_list_one">-->
-                            <!--<div class="img">-->
-                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding04.png" alt=""></a>-->
-                            <!--</div>-->
-                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                            <!--<div class="ZZPM_list_JG">20羽</div>-->
-                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class=" ZZPM_list_one">-->
-                            <!--<div class="img">-->
-                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding05.png" alt=""></a>-->
-                            <!--</div>-->
-                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                            <!--<div class="ZZPM_list_JG">20羽</div>-->
-                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
-                        <!--<li class="liuwu">-->
-                            <!--<div class="img">-->
-                                <!--<a href="./mgpm.html"><img src="__TMPL__Public/images/Schermafbeelding06.png" alt=""></a>-->
-                            <!--</div>-->
-                            <!--<span class="ppl"><a href="./mgpm.html" class="mores">克里斯· 赫伯瑞</a></span>-->
-                            <!--<span class="ppo">结拍时间：2017年12月5日  22:30:00</span>-->
-                            <!--<div class="SSSJ"><a href="./mgpm.html" class="moress">剩余时间 08:33:48</a></div>-->
-                            <!--<div class="ZZPM_list_JG">20羽</div>-->
-                            <!--<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>-->
-                        <!--</li>-->
                     </ul>
                 </div>
-                <div class="JZGD"><a href="./mgpm.html" class="more">查看所有拍卖</a></div>
+                <div class="JZGD"><a href="{:U('mgpm/index')}" class="more">查看所有拍卖</a></div>
             </div>
             <!-- 广告图 -->
             <div class="GGT"><img src="__TMPL__Public/images/AD SPACE.png" alt=""></div>
@@ -401,70 +262,10 @@
                 </div>
             </div>
         </div>
-        <!-- 底部 -->
-        <div class="footer">
-            <div class="t1"></div>
-            <div class="t2"></div>
-            <div class="t3">
-                <div class="logos"><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_diap.png" alt="" srcset=""></div>
-                <div class="lxwm">
-                    <span class="lxwms">联系我们</span>
-                    <p class="p11">电话（大陆） 010-85175305</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;13146616133</p>
-                    <p class="p3">邮件（大陆） EPW@xingezhan.com</p>
-                    <p class="p20">電話（臺灣） 0912-496-188</p>
-                    <p class="p3">電郵（臺灣） maggieku1219@gmail.com</p>
-                </div>
-                <div class="wx">
-                    <span>微信公众号</span>
-                    <img src="__TMPL__Public/images/wx.png" alt="">
-                </div>
-                <div class="xz">
-                    <span>下载APP</span>
-                    <img src="__TMPL__Public/images/wx.png" alt="">
-                </div>
-                <div class="jh">
-                    <span><img src="__TMPL__Public/images/pm.png" alt="">&nbsp;拍卖规则</span>
-                    <span class="span3"><img src="__TMPL__Public/images/fk.png" alt="">&nbsp;付款方式</span>
-                    <span class="span3"><img src="__TMPL__Public/images/gj.png" alt="">&nbsp;冠军计划</span>
-                </div>
-                <div class="liebiao">
-                    <ul>
-                        <li>关于我们</li>
-                        <li class="bor">服务条款</li>
-                        <li>帮助中心</li>
-                        <li class="bor">汇率查询</li>
-                        <li>联系EPW</li>
-                        <li class="bor">友情链接</li>
-                        <li>APP下载</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="shangbiao">
-            <span>© Copyright  2009 - 2018     |     all rights reserved     |     xingezhan.com</span>
-        </div>
+       <tc_include file="Public:footer" />
     </div>
-    <!-- 右侧导航 -->
-    <div class="FJ" id="FJ">
-        <ul class="fj">
-            <li class="SUO" id="SUO">
-                <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>
-            </li>
-            <li class="APP">
-                <div class="app"><img src="__TMPL__Public/images/niao.png" alt=""><span class="apps">APP</span></div>
-            </li>
-            <li class="PHONE">
-                <div class="phone"><img src="__TMPL__Public/images/phone.png" alt=""><span class="phones">联系我们</span></div>
-            </li>
-            <li class="FEIJI" id="FB">
-                <div class="feiji"><img src="__TMPL__Public/images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
-            </li>
-            <li class="guanbi" id="guanbi">
-                <div class="guanbis"><img src="__TMPL__Public/images/img602.png" alt="" srcset=""></div>
-            </li>
-        </ul>
-    </div>
+	<tc_include file="Public:piaofu" />
+    
 </body>
 <script>
     // 轮播控制

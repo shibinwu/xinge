@@ -1,27 +1,6 @@
 <?php
-/*
- *      _______ _     _       _     _____ __  __ ______
- *     |__   __| |   (_)     | |   / ____|  \/  |  ____|
- *        | |  | |__  _ _ __ | | _| |    | \  / | |__
- *        | |  | '_ \| | '_ \| |/ / |    | |\/| |  __|
- *        | |  | | | | | | | |   <| |____| |  | | |
- *        |_|  |_| |_|_|_| |_|_|\_\\_____|_|  |_|_|
- */
-/*
- *     _________  ___  ___  ___  ________   ___  __    ________  _____ ______   ________
- *    |\___   ___\\  \|\  \|\  \|\   ___  \|\  \|\  \ |\   ____\|\   _ \  _   \|\  _____\
- *    \|___ \  \_\ \  \\\  \ \  \ \  \\ \  \ \  \/  /|\ \  \___|\ \  \\\__\ \  \ \  \__/
- *         \ \  \ \ \   __  \ \  \ \  \\ \  \ \   ___  \ \  \    \ \  \\|__| \  \ \   __\
- *          \ \  \ \ \  \ \  \ \  \ \  \\ \  \ \  \\ \  \ \  \____\ \  \    \ \  \ \  \_|
- *           \ \__\ \ \__\ \__\ \__\ \__\\ \__\ \__\\ \__\ \_______\ \__\    \ \__\ \__\
- *            \|__|  \|__|\|__|\|__|\|__| \|__|\|__| \|__|\|_______|\|__|     \|__|\|__|
- */
 // +----------------------------------------------------------------------
-// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013-2014 http://www.thinkcmf.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: Dean <zxxjjforever@163.com>
+// | 首页面
 // +----------------------------------------------------------------------
 namespace Portal\Controller;
 use Common\Controller\HomebaseController; 
@@ -42,73 +21,54 @@ class IndexController extends HomebaseController {
         $this->changci_model = M("Changci");
         $this->pmgezi_model = M("Pmgezi");
         $this->yaopin_model = M("Yaopin");
+		$this->assign('MENU', 'index');
     }
 
     //正在拍卖的专题页面显示
     public function index() {
-        $where = array();
-        $request = I('request.');
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
-        if (!empty($request['keyword'])) {
-            $keyword = $request['keyword'];
-            $where['title'] = array('like', "%$keyword%");
-        }
-        $where['l'] = LANG_SET;
-        $count = $this->pmzt_model->where($where)->count();
-        $page = $this->page($count, 8);
-        $list = $this->pmzt_model
-            ->where($where)
-            ->order("addtime DESC")
-            ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,adduser,seq,tname,start_time,end_time,cn_show,zhaiyao,pics,tuijian,addtime')
-            ->select();
-        foreach ($list as $key => $val){
-            $list[$key]['end_time']= $this->changci_model->where(array('cid'=>$val['id']))->order('end_time desc')->getField('end_time');
-        }
-        foreach ($list as $k => $val) {
-            //专题下鸽子总数
-            $gezicount = 0;
-            $arr =  $this->changci_model->where(array('cid' => $val['id']))->field('id')->select();
-            foreach ($arr as $key => $vo){
-                $gezinum = $this->pmgezi_model->where(array('cid' => $vo['id']))->count();
-                $gezicount += $gezinum;
-            }
-            $list[$k]['gezicount'] = $gezicount;
-
+		/*正在拍卖块*/
+		$time = time();
+        $paimaiWhere = $paimaiWhereD = array();
+		$paimaiWhere['country1'] = 1;
+		$paimaiWhere['tuijian'] = 1;
+		$paimaiWhere['start_time'] = array('ELT',$time);
+		$paimaiWhere['end_time'] = array('EGT',$time);
+        $paimaList = $this->changci_model->where($paimaiWhere)->field('id,cid,name,start_time,end_time')->order('end_time ASC')->select();
+        foreach ($paimaList as $k => $val) {
+			$paimaList[$k]['gezinum'] = $this->pmgezi_model->where(array('cid' => $val['id']))->count();//场次下鸽子数
+			$paimaList[$k]['thumb'] = $this->pmzt_model->where(array('id' => $val['cid']))->getField('small_pics');//专题图片
             //倒计时
-            $remain_time = $val['end_time'] - time(); //剩余的秒数
+            $remain_time = $val['end_time'] - $time; //剩余的秒数
             $remain_hours = floor($remain_time/(60*60)); //剩余的小时
             $remain_hour = sprintf("%02d",$remain_hours); //剩余的小时
-            $remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
-            $remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
-            $remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
-            $remain_second=sprintf("%02d",$remain_seconds);
-            $list[$k]['daojishi'] = $remain_hour.':'.$remain_minute.':'.$remain_second;
+			if($remain_hour < 24){
+				$remain_minutes = floor(($remain_time - $remain_hour*60*60)/60); //剩余的分钟数
+				$remain_minute = sprintf("%02d",$remain_minutes); //剩余的分钟数
+				$remain_seconds = ($remain_time - $remain_hour*60*60 - $remain_minute*60); //剩余的秒数
+				$remain_second=sprintf("%02d",$remain_seconds);
+				$times = $remain_hour.':'.$remain_minute.':'.$remain_second;
+				if($remain_time > 0){
+					$times = $times;
+				}else{
+					$times = '已结束';
+				}
+			}else{
+				$times = intval($remain_hour/24).'天';
+			}
+			$paimaList[$k]['daojishi'] = $times;
         }
-
-        $where['l'] = LANG_SET;
-        //即将上线的条件
-        $temp = time();
-        $where['start_time'] = array('gt',"$temp");
-        $count = $this->pmzt_model->where($where)->count();
-        $page = $this->page($count, 3);
-        $data = $this->pmzt_model
-            ->where($where)
-            ->order("addtime DESC")
-            ->limit($page->firstRow . ',' . $page->listRows)
-            ->field('id,tname,start_time,end_time,cn_show,zhaiyao,content,pics,tuijian,addtime')
-            ->select();
-
-        foreach ($data as $k => $val) {
-            $data[$k]['nums'] = $this->pmproduct_model->where(array('cid' => $val['id']))->count();
+        /*即将拍卖块*/
+		$paimaiWhereD['country1'] = 1;
+		$paimaiWhereD['tuijian'] = 1;
+        $paimaiWhereD['start_time'] = array('EGT',$time);
+        $paimaListed = $this->changci_model->where($paimaiWhereD)->field('id,cid,name,start_time,end_time,country')->order('start_time ASC')->limit(3)->select();
+        foreach ($paimaListed as $k => $val) {
+			$paimaListed[$k]['thumb'] = $this->pmzt_model->where(array('id' => $val['cid']))->getField('small_pics');
         }
         $yaopin = $this->yaopin_model->limit(6)->select();
-        $this->assign('list', $list);
+        $this->assign('paimaList', $paimaList);
         $this->assign('yaopin', $yaopin);
-        $this->assign('data', $data);
-        $this->assign("page", $page->show('Admin'));
+        $this->assign('paimaListed', $paimaListed);
         $this->display(":index");
     }
 

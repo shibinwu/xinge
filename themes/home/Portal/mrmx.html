@@ -22,6 +22,8 @@
         .tab_content.show {
             display: block;
         }
+        .YCB{display:block}
+        .ksfdhki{display: none}
     </style>
 </head>
 
@@ -139,22 +141,26 @@
                                 <span style="margin-left:120px;">分类</span>
                             </li>
                             <div class="xq">
-                                <li class="OZZB_lion OZXQS" style="border-bottom:none;" id="TSDK">
-                                    <span style="margin-left:85px;">25/05</span>
-                                    <span style="margin-left:135px;">27/05</span>
-                                    <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
-                                    <span style="margin-left:90px; ">800</span>
-                                    <span style="margin-left:144px; ">BU-UB</span>
-                                    <span style="margin-left:110px; ">[o][yl]</span>
-                                </li>
-                                <li style="height:142px;line-height:35px;" class="TSD YCB">
-                                        <div class="imgs"><img src="__TMPL__Public/images/suiyuan825.png" alt=""></div>
-                                        <div class="wenbensm">
-                                            <span class="SSMZ">赛事名称：波治 I2018</span>
-                                            <span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>
-                                            <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
-                                        </div>
-                                </li>
+                                <div class="fsdas">
+                                    <li class="OZZB_lion OZXQS abcbbb" style="border-bottom:none;" >
+                                        <span style="margin-left:85px;">25/05</span>
+                                        <span style="margin-left:135px;">27/05</span>
+                                        <span style="margin-left:125px; color:#007bc1;">波治 I2018</span>
+                                        <span style="margin-left:90px; ">800</span>
+                                        <span style="margin-left:144px; ">BU-UB</span>
+                                        <span style="margin-left:110px; ">[o][yl]</span>
+                                    </li>
+                                    <div class="ksfdhki" value="0">
+                                        <li style="height:142px;line-height:35px;" class="TSD YCB abcbbb">
+                                            <div class="imgs"><img src="__TMPL__Public/images/suiyuan825.png" alt=""></div>
+                                            <div class="wenbensm">
+                                                <span class="SSMZ">赛事名称：波治 I2018</span>
+                                                <span class="ZGFS">43692羽最高分速：卡沙特·摩利斯（Casaert Maurice）</span>
+                                                <span class="GJJS">冠军鸽是在比利时时间星期六11：35:35归巢，翔距401.954km，创下平均分速1458.56米/分,创下平均分速1458.56米/分</span>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
                             </div>
                         </ul>
                     <div class="JIAZAI "  id="JIAZAI2" ><a href="javascript:;" >查看更多</a></div>
@@ -518,26 +524,29 @@ $("#tab2").click(function () {
             "id" : ""
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
-            console.log(msg['data'])
-            $(".xq").empty();
-            //添加列表
+            var nummmm = [];
             $.each(msg['data'],function (k,vo) {
-                $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
-                $(".yanse:odd").css("background","#F0EFEF");
+                nummmm += "<li class='OZZB_lione OZXQS  O"+vo['id']+" yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>";
+                nummmm += "<div class='ksfdhki' value='0'>";
                 //添加详情
                 $.each(vo['xq'],function (k,vol) {
-                    $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                     nummmm += "<li style='height:142px;line-height:35px;' class='TSD "+vol['id']+" YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>"
                 })
+                nummmm += "</div>";
             })
-            var q = 0;
+            $(".xq").html(nummmm)
             $('.OZXQS').click(function() {
-            if (q == 0) {
-                $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
-                q = 1;
-            } else {
-                $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
-                q = 0;
-            }
+
+
+                if ($(this).attr('value') == 0) {
+                    $(this).attr('value',1)
+                    $(this).next().show();
+                } else {
+                    $(this).next().hide();
+                    $(this).attr('value',0)
+                }
+
+
             })
         },
     });
@@ -573,6 +582,7 @@ $('.fudai1s a').click(function() {
             $('.OZXQS').click(function() {
                 if (q == 0) {
                     $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+
                     q = 1;
                 } else {
                     $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
@@ -607,6 +617,7 @@ $("#JIAZAI2").click(function () {
                     $('.OZXQS').click(function() {
                         if (q == 0) {
                             $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                            $(this).parent('div').siblings('div').children('.TSD').hide().css('display', 'none').addClass('YCB');
                             q = 1;
                         } else {
                             $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
@@ -641,6 +652,7 @@ $("#JIAZAI2").click(function () {
                     $('.OZXQS').click(function() {
                         if (q == 0) {
                             $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
+                            $(this).parent('div').siblings('div').children('.TSD').hide().css('display', 'none').addClass('YCB');
                             q = 1;
                         } else {
                             $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>铭鸽拍卖 - {$site_name}</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/mgpm.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+</head>
+<style>
+.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    
+    filter: grayscale(100%);
+	
+    filter: gray;
+}
+</style>
+<body>
+    <div class="main">
+       <tc_include file="Public:head" />
+        <!-- 铭鸽拍卖 -->
+        <div class="hengtiao">
+            <span>铭鸽拍卖</span>
+        </div>
+        <div class="MGPMSS">
+            <ul>
+                <foreach name="paimaList" item="paimavo">
+                    <li class="li1">
+                        <div class="REN">
+                            <a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}"><img src="{:sp_get_image_preview_url($paimavo['thumb'])}" alt=""></a>
+                        </div>
+                        <span class="RENMING"><a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}" class="REMI">{$paimavo.name|msubstr=0,13}</a></span>
+                        <span class="JIEPAISHIJIAN">结拍时间：{$paimavo[end_time] | date="Y-m-d H:i:s",###}</span>
+                        <span class="JIESHAO">{$paimavo.zhaiyao}</span>
+                        <div class="SSSJ"><a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}" class="sssj" >剩余时间 <if condition="$paimavo.daojishi lt 0">已结束<else/>{$paimavo.daojishi} </if></a></div>
+                        <div class="ZZPM_list_JG"><a href="{:U('Portal/mgpm/paimaishow',array('id'=>$paimavo['id']))}" class="jg">{$paimavo.gezinum}羽</a></div>
+                        <div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+
+        <!-- 即将上线的拍卖 -->
+        <div class="JJSX">
+            <div class="JJSXBT">
+                <span>即将上线的拍卖</span>
+            </div>
+            <div class="JJSXPMLB">
+                <ul>
+                    <foreach name="paimaListed" item="paimavoed">
+						<li class="li1">
+							<div class="REN"><img class="gray" src="{:sp_get_image_preview_url($paimavoed['thumb'])}" alt=""></div>
+							<span class="RENMING">{$paimavoed.name|msubstr=0,13}</span>
+							<span class="JIEPAISHIJIAN">结拍时间：{$paimavoed[end_time] | date="Y-m-d H:i:s",###}</span>
+							<span class="JIESHAO">{$paimavoed.zhaiyao}</span>
+							<div class="SSSJ">开始时间&nbsp&nbsp{$paimavoed[start_time] | date="m月d日",###}</div>
+							<div class="ZZPM_list_JG">{$paimavoed.gezinum}羽</div>
+							<div class="SC"><img src="__TMPL__Public/images/Laag.png" alt=""></div>
+						</li>
+						
+					</foreach>
+
+                    <li class="li2">
+                        <div class="wenzilianjie">
+                            <span><a href="">> 竞拍流程及规则</a></span>
+                            <span><a href="">> 代理出价流程及规则</a></span>
+                            <span><a href="">> 国际运输相关</a></span>
+                            <span><a href="">> 会员服务条款</a></span>
+                            <span><a href="">> 售后服务</a></span>
+                        </div>
+                        <div class="XHX"></div>
+                        <span class="GDWT"><a href="">更多常见问题请进入帮助中心查看>> </a></span>
+                        <div class="SSSJ">帮助中心</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <tc_include file="Public:footer" />
+    </div>
+	<tc_include file="Public:piaofu" />
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 2000, //可选选项，自动滑动
+        pagination: '.swiper-pagination', //分页
+        paginationClickable: true,
+
+    })
+
+    function dealData(id,value){
+        var place = document.getElementById(daojishi);
+        place.innerHTML = 10;
+    }
+    window.setInterval(function(){  // 每秒从服务器取一次数据
+        var ajax = new Ajax();
+        ajax.get(":U('Portal/ztndgz/index')?a="+Math.random(),function(data){
+            eval("var dtime = "+data);
+            dealData('hour',dtime.hour);
+            dealData('minute',dtime.minute);
+            dealData('second',dtime.second);
+        });
+    },1000);
+</script>
+
+</html>

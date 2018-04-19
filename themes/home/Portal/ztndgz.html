@@ -82,7 +82,9 @@
                 <li class="teshu">
                     <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" <if condition="$vo['id'] eq $changci">class="a1 XZ1"<else />class="a1"</if> id="chang" >场 {$vo.seq}</a>
                         <if condition="$vo[min]">
-                            <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">k{$vo.min}-k{$vo.max}</a>
+                            <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">
+                                <span class="a2_1s">k{$vo.min}</span><span  class="a2_2s">-</span><span  class="a2_3s">k{$vo.max}</span>
+                            </a>
                             <else/>
                             <a href="{:U('Ztndgz/index',array('id'=>$id,'cid'=>$vo['id']))}" class="a2">0</a>
                         </if>

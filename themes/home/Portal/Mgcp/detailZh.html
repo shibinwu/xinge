@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>铭鸽产品</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/mgcp.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <script src="__TMPL__Public/js/autosize.min.js"></script>
+</head>
+
+<body>
+    <!-- 遮罩层 -->
+    <div id="mask" class="mask"></div>
+    <div class="main">
+        <!-- 顶部 -->
+        <tc_include file="Public:head" />
+        <!-- 标题 -->
+        <div class="hengtiao">
+            <span>首页 > 铭鸽产品 > 汉斯鸽药 > {$data['title']}</span>
+        </div>
+        <!-- 左侧信息 -->
+        <div class="M_LEFT">
+            <span class="FANHUI"><a href="{:U('Portal/mgcp/index')}">< 返回产品列表</a></span>
+            <select class="xiala" id="allList">
+                <volist name="allList" id="val">
+                    <option value="{$val['id']}">{$val['title']}</option>
+                </volist>
+            </select>
+            <div class="page">
+                <span class="left_page"><a href="<if condition='$thePrevious'>{:U('Portal/mgcp/detailZh',array('id' =>$thePrevious['id']))}<else/>javascript:void(0);" onclick="alert('没有上一页')</if>">< 上一页</a></span>
+                <span class="right_page"><a href="<if condition='$theLast'>{:U('Portal/mgcp/detailZh',array('id' =>$theLast['id']))}<else/>javascript:void(0);" onclick="alert('没有下一页')</if>">下一页 ></a></span>
+            </div>
+            <!-- 立即出价 --><?php $rmb = array(1=>'€',2=>'￥');?>
+            <div class="ZUIXINCHUJIA">
+                <span class="FUSHU">{$rmb[$data['bz']]}  {$data['price']} , -</span>
+                <ul class="type">
+                    <li>产品规格</li>
+                    <li>所属系列</li>
+                    <li>原产国</li>
+                    <li>库存状态</li>
+                    <li>浏览次数</li>
+                </ul>
+                <ul class="value">
+                    <li>{$data.guige}</li>
+                    <li>汉斯制药</li>
+                    <li>荷兰</li>
+                    <li>充足</li>
+                    <li>{$data['hits']}次</li>
+                </ul>
+                <div class="LIJICHUJIA">
+                    <a href="javascript:void(0)" id="btn_price">立即订购</a>
+                </div>
+            </div>
+            <!-- 最新出价 -->
+            <div class="BJ">
+                <span class="bj white">最新出价</span>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+                <div class="xx">
+                    <span class="df">2017 奥林匹亚 德国</span>
+                    <span class="mc">K2|鸽子 30803</span>
+                    <span class="jg">€ 225</span>
+                    <span class="data">13分钟之前</span>
+                </div>
+            </div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="MGMG">
+            <span class="mgmg">{$data.title}</span>
+            <span class="mgmgs">Ornicure</span>
+            <div class="FENXIANG">
+                <a href="" class="fenxiang"><img src="__TMPL__Public/images/fx.png" alt=""></a>
+                <a href="" class="shoucang"><img src="__TMPL__Public/images/Laag.png" alt=""></a>
+            </div>
+            <div class="GEZIA">
+                <img src="__TMPL__Public/images/GEYAO.png" alt="" srcset="">
+            </div>
+            <div class="ZHENGSHU">
+                <ul>
+                    <li id="GE1"><img src="{:sp_get_image_preview_url($data['small_pic'])}" alt="">
+                        <!--<span>血统书</span>-->
+                    </li>
+                    <!--<li id="GE4"><img src="__TMPL__Public/images/zhengshu.png" alt="">-->
+                        <!--<span>血统书</span></li>-->
+                </ul>
+                <!--<ul>-->
+                    <!--<li id="GE2"><img src="__TMPL__Public/images/zhengshu2.png" alt="">-->
+                        <!--<span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span>-->
+                    <!--</li>-->
+                    <!--<li id="GE5"><img src="__TMPL__Public/images/zhengshu2.png" alt="">-->
+                        <!--<span>“盖兰托斯直孙”-100%利奥.贺尔曼斯</span></li>-->
+                <!--</ul>-->
+                <!--<ul>-->
+                    <!--<li id="GE3"><img src="__TMPL__Public/images/zhengshu3.png" alt="">-->
+                        <!--<span>鸽眼</span>-->
+                    <!--</li>-->
+                    <!--<li id="GE6"><img src="__TMPL__Public/images/zhengshu3.png" alt="">-->
+                        <!--<span>鸽眼</span></li>-->
+                <!--</ul>-->
+            </div>
+            <div class="SHUOMING">
+                <!--{$data.content}-->
+                <!--<span class="YAONAMES">{$data.content}</span>-->
+                <span class="YAOSM">主治与功能：{$data.content}</span>
+                <!--<span class="YAOSM">本品是一种水溶性粉剂，强效针对由伤风综合性病原体（如：敏感性衣原体、披衣菌、以及细菌）引起的各类感染。</span>-->
+                <!--<span class="YAOSM">【适应症状】</span>-->
+                <!--<span class="YAOSM">本品对于赛鸽眼鼻内有分泌物增多，鼻/眼涩（湿），呼吸异样，喉内红肿，张嘴飞行等症状适用。</span>-->
+                <!--<span class="YAOSM">用法与用量：</span>-->
+                <!--<span class="YAOSM">【用法】</span>-->
+                <!--<span class="YAOSM">治愈 连续用6天。严重感染者，建议使用(病毒注射液)加强治疗。治愈后，应连用2天(多维康)，帮助赛鸽尽快恢复体力。</span>-->
+                <!--<span class="YAOSM">预防 上笼前1-2天，使用本品，可以有效预防赛鸽感染病菌，增强抵抗力。</span>-->
+                <!--<span class="YAOSM">【用量】</span>-->
+                <!--<span class="YAOSM">1.量匙本品加入2升饮用水中，连续使用6天。通常情况下，每20羽鸽子一天的饮水量为1升水。</span>-->
+                <!--<span class="YAOSM">【规格】250克/瓶</span>-->
+                <!--<span class="YAOSM">【产地】荷兰</span>-->
+            </div>
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 左右箭头 -->
+    <div class="JTZ">
+        <a href="<if condition='$thePrevious'>{:U('Portal/mgcp/detailZh',array('id' =>$thePrevious['id']))}<else/>javascript:void(0);" onclick="alert('没有上一页')</if>"><img src="__TMPL__Public/images/xiangzuo.png" class="JTT"></a>
+    </div>
+    <div class="JTY">
+        <a href="<if condition='$theLast'>{:U('Portal/mgcp/detailZh',array('id' =>$theLast['id']))}<else/>javascript:void(0);" onclick="alert('没有下一页')</if>"><img src="__TMPL__Public/images/xiangyou.png" class="JTT"></a>
+    </div>
+    <!-- 弹框 -->
+    <div class="ALERT hidden" id="alert">
+        <span class="BBT BBC">订购</span>&nbsp;&nbsp;&nbsp;<span class="BBC">{$data['title']} </span>
+        <div class="jisuan">
+            <div class="typez">
+                <span class="typesa typesab">单价</span>
+                <span class="typesa typesas">数量</span>
+                <span class="typesa">价格</span>
+            </div>
+            <div class="valuez">
+                <span class="typesa typesab">{$rmb[$data['bz']]}{$data['price']}</span>
+                <div class="jiajian">
+                    <a href="javascript:;" class="plus btn">-</a>
+                    <input type="text" class="num" value="1" />
+                    <a href="javascript:;" style="float:right;" class="add btn">+</a>
+                </div>
+                <span class="typesa" id="shoujia"></span>
+            </div>
+        </div>
+        <div class="GEZIA">
+            <img src="__TMPL__Public/images/alert2.png" alt="">
+        </div>
+        <div class="XINGHAO">
+            <span>* 本产品价格以“人民币”为单位。</span>
+            <span>* 本产品价格以“人民币”为单位。</span>
+            <span>* 本产品价格以“人民币”为单位。</span>
+            <span>* 如您确认购买则视同同意本站拍卖规则及服务  
+                条款等。</span>
+        </div>
+        <div class="XXX" id="close_img">
+            <a href=""><img src="__TMPL__Public/images/X.png" alt=""></a>
+        </div>
+        <if condition="$sess eq 1"><form name="buyoneinfo" id="buyoneinfo" action="{:U('Portal/mgcp/buyinfo',array('id' =>$theLast['id']))}" method="post"></if>
+            <div class="lianxidizhi">
+                <span class="JPXX">订购人信息</span>
+                <div class="THM">
+                    <span class="strong">用户名：</span>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="color:#5e5e5d;">
+                        <if condition="$sess eq 1">{$_SESSION['user']['username']}<else/>您还未登录</if>
+                    </span>
+                </div>
+                <div class="YHM">
+                    <span class="strong">收件人：</span>&nbsp; &nbsp;&nbsp;
+                    <input type="text" placeholder="请输入收件人" <if condition="$sess eq 1">id="realname" name="realname" <else/>readonly</if>>
+                </div>
+                <div class="YHM">
+                    <span class="strong">电话：</span>&nbsp; &nbsp;&nbsp;
+                    <input type="text" placeholder="010-00000000" <if condition="$sess eq 1">id="tel" name="tel" <else/>readonly</if>>
+                </div>
+                <div class="YHM">
+                    <span class="strong">手机：</span>&nbsp; &nbsp;&nbsp;
+                    <input type="text" placeholder="15222222222" <if condition="$sess eq 1">id="phone" name="phone" onkeyup="value=value.replace(/[^-?\d\.]/g,'');if (this.value >18999999999 || this.value <0) {alert('手机号码填写错误');this.value = '';}"<else/>readonly</if>>
+                </div>
+                <div class="YHM">
+                    <span class="strong">邮箱：</span>&nbsp; &nbsp;&nbsp;
+                    <input type="text" placeholder="15222222222@163.com" <if condition="$sess eq 1">id="email" name="email" <else/>readonly</if>>
+                </div>
+                <div class="YHM">
+                    <span class="strong">地址：</span>&nbsp; &nbsp;&nbsp;
+                    <textarea type="text" placeholder="请输入地址" <if condition="$sess eq 1">id="address" name="address" <else/>disabled</if>></textarea>
+                </div>
+                <div class="YHM">
+                    <span class="strong">备注：</span>&nbsp; &nbsp;&nbsp;
+                    <textarea type="text" placeholder="请输入备注" <if condition="$sess eq 1">id="remark" name="remark" <else/>disabled</if>></textarea>
+                </div>
+            </div>
+        <if condition="$sess eq 1"></form></if>
+        <a href="javascript:void(0)" class="over" id="infoForm">生成订单</a>
+    </div>
+    <!-- 右侧导航 -->
+    <tc_include file="Public:piaofu" />
+</body>
+<script>
+    //兼容火狐、IE8
+    //显示遮罩层
+    var infa = false;
+    $(function() {
+        $('#btn_price').click(function(e) {
+            if (infa == false) {
+                $('#shoujia').html("{$rmb[$data['bz']]}{$data['price']}");
+            }
+            infa = true;
+            <?php if ($sess == 1) { ?>
+                e.preventDefault();
+                $("#mask").css("height", $(document).height());
+                $("#mask").css("width", $(document).width());
+                $("#alert").addClass('best');
+                $("#alert").show();
+                $("#mask").show();
+            <?php }else{ ?>
+               alert('您还没有登录，请先登录');
+            <?php } ?>
+        })
+            // //隐藏遮罩层  
+        $('#close_img').click(function() {
+            $("#alert").hide();
+            $("#alert").removeClass('best');
+            $("#mask").hide();
+        })
+        // 证书图片互换
+        $('#GE1').click(function() {
+            $('.GEZIA').find('img').attr('src', '{:sp_get_image_preview_url($data[small_pic])}');
+        });
+        $('#GE2').click(function() {
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu2.png');
+        });
+        $('#GE3').click(function() {
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu3.png');
+        });
+        $('#GE4').click(function() {
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu.png');
+        });
+        $('#GE5').click(function() {
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu2.png');
+        });
+        $('#GE6').click(function() {
+            $('.GEZIA').find('img').attr('src', '__TMPL__Public/images/zhengshu3.png');
+        });
+
+        //切换页面药品
+        $('.JTZ').hover(function() {
+            $('.JTZ').find('img').attr('src', '__TMPL__Public/images/xiangzuo2.png');
+        }, function() {
+            $('.JTZ').find('img').attr('src', '__TMPL__Public/images/xiangzuo.png');
+        });
+        $('.JTY').hover(function() {
+            $('.JTY').find('img').attr('src', '__TMPL__Public/images/xiangyou2.png');
+        }, function() {
+            $('.JTY').find('img').attr('src', '__TMPL__Public/images/xiangyou.png');
+        });
+        // 加减
+        $(".jiajian .add").click(function() {
+            var $num = $(this).prev(".num");
+            var number = $num.attr("value");
+            $num.attr("value", parseInt(number) + 1);
+        });
+        $(".jiajian .plus").click(function() {
+            var $num = $(this).next(".num");
+            var number = $num.attr("value");
+            $num.attr("value", parseInt(number) - 1);
+        });
+        $("#allList").change(function(){
+            var s = $(this).val();
+            window.location.href="{:U('Portal/mgcp/detailZh')}&id="+s;
+            
+        })
+    });
+    $("#infoForm").click(function(){
+        <?php if ($sess == 1) { ?>
+            var phone,realname,email,address
+            phone = $('#phone').val();realname=$('#realname').val();email=$('#email').val();address=$('#address').val();
+            /*if (!phone || !realname || !email || !address ) {
+                alert('收件人/手机号码/邮箱/地址为必填项');return false;
+            }else{
+                var regphone = /^[1][3,4,5,6,7,8,9][0-9]{9}$/ ,regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+                if (!regphone.test(phone) || !regex.test(email)) {
+                    alert('手机/邮箱格式不正确');return false;
+                }
+            }*/
+            var data = $('#buyoneinfo').serialize();
+            $.post("{:U('Mgcp/buyinfo')}",data,function(s){
+                console.log(s);
+                return false;
+            });
+        <?php }else{ ?>
+           alert('您还没有登录，请先登录');
+        <?php } ?>
+    })
+    autosize(document.querySelectorAll('textarea'));
+</script>
+
+</html>

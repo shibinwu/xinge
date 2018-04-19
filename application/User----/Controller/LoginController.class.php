@@ -212,10 +212,10 @@ hello;
     		$this->error("验证码错误！");
     	}
     */	
-    	$users_model=M("members");
+    	$users_model=M("Users");
     	$rules = array(
     			//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
-    			array('username', 'require', '手机号不能为空！', 1 ),
+    			array('username', 'require', '手机号/邮箱/用户名不能为空！', 1 ),
     			array('password','require','密码不能为空！',1),
     	
     	);
@@ -224,8 +224,7 @@ hello;
     	}
     	
     	$username=I('post.username');
-    	$this->_do_mobile_login();
-		exit;
+    	
     	if(preg_match('/(^(13\d|15[^4\D]|17[13678]|18\d)\d{8}|170[^346\D]\d{7})$/', $username)){//手机号登录
     	    $this->_do_mobile_login();
     	}else{
@@ -236,21 +235,19 @@ hello;
 	
     // 处理前台用户手机登录
     private function _do_mobile_login(){
-        $users_model=M('members');
-        $where = array("working"=>1);
+        $users_model=M('Users');
+        $where = array("user_status"=>1);
         $where['mobile']=I('post.username');
         $password=I('post.password');
         $result = $users_model->where($where)->find();
         
         if(!empty($result)){
-            if(md5($password, $result['user_pass'])){
+            if(sp_compare_password($password, $result['user_pass'])){
                 session('user',$result);
                 //写入此次登录信息
                 $data = array(
-                    'lastlogintime' => date("Y-m-d H:i:s"),
-                    'lastloginip' => get_client_ip(0,true),
-					'logintimes' => $result['logintimes']+1,
-					
+                    'last_login_time' => date("Y-m-d H:i:s"),
+                    'last_login_ip' => get_client_ip(0,true),
                 );
                 $users_model->where(array('id'=>$result["id"]))->save($data);
                 $session_login_http_referer=session('login_http_referer');

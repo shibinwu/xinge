@@ -1,0 +1,26 @@
+<!-- 右侧导航 -->
+    <div class="FJ" id="FJ" style="z-index:999;">
+        <ul class="fj">
+		<if condition="sp_is_user_login()">
+            <li class="SUO">
+				<a href="{:U('User/member/index')}"><div class="suo"><img src="__TMPL__Public/images/wdjp.png" alt=""><span class="suos">我的竞拍</span></div></a>
+            </li>
+		<else />
+			<li class="SUO" id="SUO"  id="FB">
+                <div class="suo"><img src="__TMPL__Public/images/suo.png" alt=""><span class="suos">登录</span></div>
+            </li>
+		</if>
+            <li class="APP">
+                <div class="app"><img src="__TMPL__Public/images/niao.png" alt=""><span class="apps">APP</span></div>
+            </li>
+            <li class="PHONE">
+                <div class="phone"><img src="__TMPL__Public/images/phone.png" alt=""><span class="phones">联系我们</span></div>
+            </li>
+            <li class="FEIJI" id="FB">
+                <div class="feiji"><img src="__TMPL__Public/images/fj.png" alt=""><span class="feijis">返回顶部</span></div>
+            </li>
+            <li class="guanbi" id="guanbi">
+                <div class="guanbis"><img src="__TMPL__Public/images/img602.png" alt="" srcset=""></div>
+            </li>
+        </ul>
+    </div>

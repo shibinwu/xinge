@@ -510,7 +510,6 @@ class NewsadminController extends AdminbaseController
 		$this->assign('saishi', $saishi);
         $this->display();
     }
-
     // 后台欧洲战报编辑
     public function ozzbedit()
     {
@@ -520,8 +519,9 @@ class NewsadminController extends AdminbaseController
             //把时间转换成时间戳
             $article['jige'] = strtotime($article['jige']);
             $article['fangfei'] = strtotime($article['fangfei']);
-			if($article['tags']){
-                $article['tags'] =  implode(',',$article['tags']);
+			if($article['bid']){
+                $bid =  implode(',',$article['bid']);
+                $article['bid'] = ','.$bid.',';
             }
             $result = $this->ozzb_model->save($article);
             if ($result !== false) {
@@ -536,6 +536,7 @@ class NewsadminController extends AdminbaseController
         $where['id'] = $id;
         $info = $this->ozzb_model->where($where)->find();
         $data = $this->year_model->where(array('type'=>0))->order('yname desc')->getField('id,yname',true);
+
 		//标签
 		$labelMod = M('Label');
 		$gezhu = $labelMod->where('type=0')->select();
@@ -570,7 +571,7 @@ class NewsadminController extends AdminbaseController
         }
     }
 
-    //后台欧洲战报列表
+    //后台欧洲战报详情列表
     public function ozzbxqindex()
     {
         $where = array();
@@ -609,9 +610,41 @@ class NewsadminController extends AdminbaseController
             }
             exit;
         }
+        $id = I("get.id");
         $data = $this->ozzb_model->getField('id,name',true);
 
+
         $this->assign('data',$data);
+        $this->assign('fid',$id);
+        $this->display();
+    }
+
+    // 后台欧洲战报详情编辑
+    public function ozzbxqedit()
+    {
+        if (IS_POST) {
+            $post_id = intval($_POST['post']['id']);
+            $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['addtime'] = time();
+
+            $result = $this->ozzbxq_model->save($article);
+            if ($result !== false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where = array();
+        $id = I('get.id');
+        $where['id'] = $id;
+        $info = $this->ozzbxq_model->where($where)->find();
+        $data = $this->ozzb_model->where(array('type'=>0))->getField('id,name',true);
+        $this->assign('post', $info);
+        $this->assign('data', $data);
         $this->display();
     }
 

@@ -38,15 +38,96 @@ class MgcpController extends HomebaseController {
         parent::_initialize();
         $this->yaopin_model = M("Yaopin");
         $this->article_model = M("Article");
+        $this->assign('MENU', 'mgcp');
     }
 
 	public function index() {
-	    $data = $this->yaopin_model->select();
-
-        $this->assign('data',$data);
-    	$this->display(":mgcp");
+	 	// $data1 = $this->yaopin_model->where('class_id =1')->select();
+		// $data2 = $this->yaopin_model->where('class_id =2')->select();
+		// $data3 = $this->yaopin_model->where('class_id =3')->select();
+        $data = $this->yaopin_model->where('l = "zh-cn" and hiden = 0')->select();
+        $data1 = $data2 = $data3 = array();
+        foreach ($data as $val) {
+        	if ($val['class_id'] == 1) {
+        		$data1[] = $val;
+        	}elseif ($val['class_id'] == 2) {
+        		$data2[] = $val;
+        	}elseif ($val['class_id'] == 3) {
+        		$data3[] = $val;
+        	}
+        }
+        $this->assign('data1',$data1);
+        $this->assign('data2',$data2);
+        $this->assign('data3',$data3);
+    	$this->display();
     }
-	public function chaxun() {
+    public function detailZh()
+    {
+    	$id = I('get.id');
+    	if (!$id) {
+        	$this->error('缺少铭鸽的id');exit;
+        }
+		// $class_id = I('get.class_id');
+        $where = $listWhere = array();
+        $where['id'] = $id;
+
+	    $data = $this->yaopin_model->where($where)->find();
+	    if (!$data) {
+        	$this->error('此铭鸽id错误，请再次确认');exit;
+        }
+	    // dump($data);
+	    $class_id = $data['class_id'];
+        $this->assign('data',$data);
+		//访问量加1
+		$this->yaopin_model->where($where)->setInc('hits',1);
+		//鸽子列表
+		// $this->assign('id',$id);
+		$whereclass = 'l = "zh-cn" and hiden = 0 and class_id='.$class_id;
+		//select所有
+		$allList = $this->yaopin_model->where($whereclass)->field('id,title')->order('id DESC')->select();
+		//上一个
+		$thePrevious = $this->yaopin_model->where('id < '.$id.' and '.$whereclass)->field('id')->order('id DESC')->limit(1)->find();
+		//下一个
+		$theLast = $this->yaopin_model->where('id > '.$id.' and '.$whereclass)->field('id')->order('id ASC')->limit(1)->find();
+		if(sp_is_user_login()) {$sess = '1';}else{$sess = '2';}//判断用户是否登录
+		$this->assign('thePrevious',$thePrevious);
+		$this->assign('theLast',$theLast);
+		$this->assign('allList',$allList);
+		$this->assign('sess',$sess);
+    	$this->display();
+    }
+    public function buyinfo()
+    {
+    	$info=I("post.");
+    	$rt = array();
+    	/*if (!$info['realname'] || !$info['phone'] || !$info['email'] || !$info['address']) {
+    		$rt['code'] = 2;
+    		$rt['msg'] = '收件人/手机号码/邮箱/地址为必填项';
+    		echo json_encode($rt);exit;
+    	}else{
+    		$phonereg = "/^1[3456789]\d{9}$/";
+    		$emailreg = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/";
+			if (!preg_match($phonereg, $info['phone'], $phonematches) || !preg_match($emailreg, $info['email'], $emailmatches)) {
+				$rt['code'] = 3;
+    			$rt['msg'] = '手机号码/邮箱格式错误';
+    			echo json_encode($rt);exit;
+			}
+    	}*/
+    	$zsorderMod = M('Zsorder');
+    	$add['order_sn'] = $this->orderNum();//20
+    	echo $add['order_sn'];
+    	
+    	// $zsorderMod->add($add);
+    }
+    public function orderNum()
+    {
+    	$strnum = date('YmdHis').rand(100000,999999);
+    	if (M('Zsorder')->where('order_sn='.$strnum)->count() > 0) {
+    		$this->orderNum();
+    	}
+    	return $strnum;
+    }
+	/*public function chaxun() {
 		$url = 'http://202.85.213.155/youpintong/AgentNewQueryInterfaceServlet';
 		$data = array();
 		
@@ -57,12 +138,12 @@ class MgcpController extends HomebaseController {
 		$json = $this->http_get($url,$data);
 		$data = json_decode($json,true);
 		dump($data);
-	}
+	}*/
 	/**
 	 * GET 请求
 	 * @param string $url
 	*/
-	private function http_get($url){
+	/*private function http_get($url){
 		$oCurl = curl_init();
 		if(stripos($url,"https://")!==FALSE){
 			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -78,14 +159,14 @@ class MgcpController extends HomebaseController {
 		}else{
 			return false;
 		}
-	}
+	}*/
 	/**
 	 * POST 请求
 	 * @param string $url 
 	 * @param array $param 
 	 * @return string content
 	*/
-	public function http_post($url,$param){
+	/*public function http_post($url,$param){
 		$oCurl = curl_init();
 		if(stripos($url,"https://")!==FALSE){
 			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -118,7 +199,7 @@ class MgcpController extends HomebaseController {
 		}else{
 			return false;
 		}
-	}
+	}*/
 
 }
 

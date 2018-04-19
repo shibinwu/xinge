@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>铭鸽产品</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/mgcp.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <!-- <link rel="stylesheet" href="__TMPL__Public/css/mgpm.css"> -->
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <!-- 顶部搜索框 -->
+        <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container" style="height:429px;">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"> <img src="__TMPL__Public/images/banner2.png" alt="" srcset=""></div>
+                <div class="swiper-slide"> <img src="__TMPL__Public/images/banner2.png" alt="" srcset=""></div>
+                <div class="swiper-slide"> <img src="__TMPL__Public/images/banner2.png" alt="" srcset=""></div>
+                <div class="swiper-slide"> <img src="__TMPL__Public/images/banner2.png" alt="" srcset=""></div>
+                <div class="swiper-slide"> <img src="__TMPL__Public/images/banner2.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <div class="ZJ">
+            <span class="GEN">首页 > 铭鸽产品</span>
+            <div class="YAO1">
+                <div class="YAO" style="margin-bottom:10px;">
+                    <div class="ZYZYZY">
+                        <span class="LEFT">汉斯凡得斯路斯制药</span>
+                        <span class="RIGHT"><  <a href="./mgcpgd.html">更多相关资讯</a></span>
+                    </div>
+                    <div class="YAO_LIST">
+                        <ul>
+                            <foreach name="data1" item="vo">
+                                <li class="MARGIN MARGIN2 YC_one">
+                                    <div class="img">
+                                        <a href="{:U('Portal/mgcp/detailZh',array('id' =>$vo['id']))}"><img src="{:sp_get_image_preview_url($vo['small_pic'])}" alt=""></a>
+                                    </div>
+                                    <span class="ppq">{$vo.title}</span>
+                                    <span class="ppd">{$vo.guige}</span>
+                                    <div class="SSJG">¥ {$vo.price}元</div>
+                                    <!-- 隐藏信息框 -->
+                                    <div class="YC  hidden">
+                                        <span class="MM">主治与功能：</span>
+                                        <p class="JS">{$vo.ms}</p>
+                                        <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
+                                        <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="TH THONE" onclick="yaopin({$vo.id})"><img src="__TMPL__Public/images/th.png" alt=""></div>
+                                    <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="YAO1">
+                <div class="YAO" style="margin-bottom:10px;">
+                    <div class="ZYZYZY">
+                        <span class="LEFT">EPW 荣誉出品</span>
+                        <span class="RIGHT"><  <a href="./mgcpgd.html">更多相关资讯</a></span>
+                    </div>
+                    <div class="YAO_LIST">
+                        <ul>
+                            <foreach name="data2" item="vo">
+                                <li class="MARGIN MARGIN2">
+                                    <div class="img">
+                                        <a href="{:U('Portal/mgcp/detailZh',array('id' =>$vo[id]))}"><img src="{:sp_get_image_preview_url($vo['small_pic'])}" alt=""></a>
+                                    </div>
+                                    <span class="ppq">{$vo.title}</span>
+                                    <span class="ppd">{$vo.guige}</span>
+                                    <div class="SSJG">¥ {$vo.price}元</div>
+                                    <!-- 隐藏信息框 -->
+                                    <div class="YC YC{$vo.id} hidden">
+                                        <span class="MM">主治与功能：</span>
+                                        <p class="JS">{$vo.ms}</p>
+                                        <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
+                                        <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="TH THTWO" onclick="yaopin({$vo.id})"><img src="__TMPL__Public/images/th.png" alt=""></div>
+                                    <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="YAO1">
+                <div class="YAO" style="margin-bottom:10px;">
+                    <div class="ZYZYZY">
+                        <span class="LEFT">欧洲热销推荐</span>
+                        <span class="RIGHT"><  <a href="./mgcpgd.html">更多相关资讯</a></span>
+                    </div>
+                    <div class="YAO_LIST">
+                        <ul>
+                            <foreach name="data3" item="vo">
+                                <li class="MARGIN MARGIN2 YC_one">
+                                    <div class="img">
+                                        <a href="{:U('Portal/mgcp/detailZh',array('id' =>$vo[id]))}"><img src="{:sp_get_image_preview_url($vo['small_pic'])}" alt=""></a>
+                                    </div>
+                                    <span class="ppq">{$vo.title}</span>
+                                    <span class="ppd">{$vo.guige}</span>
+                                    <div class="SSJG">¥ {$vo.price}元</div>
+                                    <!-- 隐藏信息框 -->
+                                    <div class="YC hidden">
+                                    <!--<div class="YC YC{$vo.id} hidden">-->
+                                        <span class="MM">主治与功能：</span>
+                                        <p class="JS">{$vo.ms}</p>
+                                        <div class="cha"><img src="__TMPL__Public/images/cao.png" alt=""></div>
+                                        <div class="xiasanjiaolan"><img src="__TMPL__Public/images/xiasanjiaolan.png" alt="" srcset=""></div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="TH THTHREE" onclick="yaopin({$vo.id})"><img src="__TMPL__Public/images/th.png" alt=""></div>
+                                    <div class="GWC"><img src="__TMPL__Public/images/gwc.png" alt=""></div>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+    <tc_include file="Public:piaofu" />
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 2000, //可选选项，自动滑动
+        // pagination: '.swiper-pagination', //分页小点
+        paginationClickable: true,
+
+    })
+//    $(function() {
+//        var thone = 0;
+//        $('.THONE').click(function() {
+//            if (thone == 0) {
+//                $(this).siblings('.YC').removeClass('hidden').show();
+//                thone = 1;
+//            } else {
+//                $(this).siblings('.YC').addClass('hidden').hide();
+//                thone = 0;
+//            }
+//
+//        })
+//        var thtwo = 0;
+//        $('.THTWO').click(function() {
+//            if (thtwo == 0) {
+//                $(this).siblings('.YC').removeClass('hidden').show();
+//                thtwo = 1;
+//            } else {
+//                $(this).siblings('.YC').addClass('hidden').hide();
+//                thtwo = 0;
+//            }
+//
+//        })
+//        var ththree = 0;
+//        $('.THTHREE').click(function() {
+//            if (ththree == 0) {
+//                $(this).siblings('.YC').removeClass('hidden').show();
+//                ththree = 1;
+//            } else {
+//                $(this).siblings('.YC').addClass('hidden').hide();
+//                ththree = 0;
+//            }
+//
+//        })
+//    })
+</script>
+
+</html>
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 2000, //可选选项，自动滑动
+        // pagination: '.swiper-pagination', //分页小点
+        paginationClickable: true,
+
+    })
+    $(function() {
+        var thone = 0;
+        $('.THONE').click(function() {
+            if (thone == 0) {
+                $(this).siblings('.YC').removeClass('hidden').show();
+                $(this).parent('li').siblings('li').children('.YC').addClass('hidden').hide();
+//                $('.THTWO').siblings('.YC').addClass('hidden').hide();
+//                $('.THTHREE').siblings('.YC').addClass('hidden').hide();
+                thone = 1;
+            } else {
+                $('div').siblings('.YC').addClass('hidden').hide();
+//                $(this).parent('li').siblings('li').children('.YC').addClass('hidden').hide();
+//                $('.THTWO').siblings('.YC').addClass('hidden').hide();
+//                $('.THTHREE').siblings('.YC').addClass('hidden').hide();
+                thone = 0;
+            }
+
+        })
+        var thtwo = 0;
+        $('.THTWO').click(function() {
+            if (thtwo == 0) {
+                $(this).siblings('.YC').removeClass('hidden').show();
+                $(this).parent('li').siblings('li').children('.YC').addClass('hidden').hide();
+//                $('.THONE').siblings('.YC').addClass('hidden').hide();
+//                $('.THTHREE').siblings('.YC').addClass('hidden').hide();
+                thtwo = 1;
+            } else {
+                $(this).siblings('.YC').addClass('hidden').hide();
+                thtwo = 0;
+            }
+
+        })
+        var ththree = 0;
+        $('.THTHREE').click(function() {
+            if (ththree == 0) {
+                $(this).siblings('.YC').removeClass('hidden').show();
+                $(this).parent('li').siblings('li').children('.YC').addClass('hidden').hide();
+//                $('.THONE').siblings('.YC').addClass('hidden').hide();
+//                $('.THTWO').siblings('.YC').addClass('hidden').hide();
+                ththree = 1;
+            } else {
+                $(this).siblings('.YC').addClass('hidden').hide();
+                ththree = 0;
+            }
+
+        })
+    })
+</script>
+
+</html>

@@ -65,8 +65,7 @@ function is_hidden(id){
             <volist name="changciList" id="vo">
                 <li class="teshu">
                     <a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" <if condition="$vo['id'] eq $id">class="a1 XZ1"<else />class="a1"</if> id="chang" >场 {$vo.seq}</a>
-                        <!--<a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" class="a2">k1<if condition="$vo['count']">-k{$vo.count}</if></a>-->
-                        <a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" class="a2"><span class="a2_1s">k1</span><if condition="$vo['count']"><span  class="a2_2s">-</span><span  class="a2_3s">k{$vo.count}</span></if></a>
+                        <a href="{:U('mgpm/paimaishow',array('id'=>$vo['id']))}" class="a2">k1<if condition="$vo['count']">-k{$vo.count}</if></a>
                 </li>
             </volist>
         </ul>

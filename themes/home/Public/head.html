@@ -1,33 +1,48 @@
-	<tc_include file=":function"/>
-	<tc_include file=":config"/>
-	<meta name="author" content="ThinkCMF">
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-    <!-- Set render engine for 360 browser -->
-    <meta name="renderer" content="webkit">
-
-   	<!-- No Baidu Siteapp-->
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-
-    <!-- HTML5 shim for IE8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <![endif]-->
-	<link rel="icon" href="__TMPL__Public/assets/images/favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="__TMPL__Public/assets/images/favicon.ico" type="image/x-icon">
-    <link href="__TMPL__Public/assets/simpleboot/themes/simplebootx/theme.min.css" rel="stylesheet">
-    <link href="__TMPL__Public/assets/simpleboot/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="__TMPL__Public/assets/simpleboot/font-awesome/4.4.0/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
-	<!--[if IE 7]>
-	<link rel="stylesheet" href="__TMPL__Public/assets/simpleboot/font-awesome/4.4.0/css/font-awesome-ie7.min.css">
-	<![endif]-->
-	<link href="__TMPL__Public/assets/css/style.css" rel="stylesheet">
-	<style>
-		/*html{filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(1);}*/
-		#backtotop{position: fixed;bottom: 50px;right:20px;display: none;cursor: pointer;font-size: 50px;z-index: 9999;}
-		#backtotop:hover{color:#333}
-		#main-menu-user li.user{display: none}
-	</style>
-	
+ <!-- 顶部搜索框 -->
+        <div class="search">
+            <span class="lxdh">电话:010-85175305 13146616133   |   邮箱:epw@xingezhan.com</span>
+            <div class="kuang">
+                <input type="search" placeholder="搜索你想要的项目" name="搜索" id="">
+                <div class="fdj"><img src="__TMPL__Public/images/search.png" alt="" srcset=""></div>
+                <div class="gq"><img src="__TMPL__Public/images/NL.png" alt="" srcset="">
+                    <a><img src="__TMPL__Public/images/xiasanjiao.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="header">
+            <div class="logo">
+                <a href=""><img src="__TMPL__Public/images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
+            </div>
+            <div class="list" id="list">
+                <ul>
+                    <li class="list1 <if condition="$MENU eq 'index'">queding</if>"><a href="{:U('Portal/index/index')}">首页</a></li>
+                    <li class="list2 <if condition="$MENU eq 'mgpm'">queding</if>"><a href="{:U('Portal/mgpm/index')}">铭鸽拍卖</a></li>
+                    <li class="list3 <if condition="$MENU eq 'mgcp'">queding</if>"><a href="{:U('Portal/mgcp/index')}">铭鸽产品</a></li>
+                    <li class="list4"><a href="{:U('Portal/mrmx/index')}">鸽闻天下</a></li>
+					<if condition="sp_is_user_login()">
+					<li id="DLH" class="list5" style="margin-right:0px;">
+                        <a href="{:U('User/member/index')}"><img src="__TMPL__Public/images/dl.png" alt="">&nbsp;&nbsp;会员中心</a>
+                    </li>
+					<else />
+                    <li id="DL" class="last list5"><a href="javascript:;">用户登录</a></li>
+					</if>
+                </ul>
+            </div>
+            <!-- 用户登录框 -->
+            <div class="DL hidden">
+			<form class="form-horizontal js-ajax-form" action="{:U('user/login/dologin')}" method="post">
+                <span class="yhdl">用户登录</span>
+                <span class="wfdl"><a href="">忘记密码？</a></span>
+                <input type="text" style="margin-top:35px;" id="input_username" name="username" placeholder="您的手机号" id="">
+                <input type="password" id="input_password" name="password" style="margin-top:11px;" placeholder="密码" id="">
+                <div class="TS">
+                    <ul>
+                        <li class="dl"><a href="{:U('User/register/index')}">注册</a></li>
+                        <li class="zc"><button class="btn btn-primary js-ajax-submit span4" type="submit" style="background:#71C01C;width: 134px;height: 39px;line-height: 39px;text-align: center;float:left;color:#FFF;font-size:20px;border-top:0px;">登录</button></li>
+                    </ul>
+                </div>
+			</form>
+            </div>
+            <!--  -->
+        </div>

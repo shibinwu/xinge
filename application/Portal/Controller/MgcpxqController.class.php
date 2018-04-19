@@ -42,10 +42,34 @@ class MgcpxqController extends HomebaseController {
 
 	public function index() {
         $id = I('get.id');
-        $where = array();
+		$class_id = I('get.class_id');
+        $where = $listWhere = array();
         $where['id'] = $id;
 	    $data = $this->yaopin_model->where($where)->find();
         $this->assign('data',$data);
+		//访问量加1
+		$this->yaopin_model->where($where)->setInc('hits',1);
+		//鸽子列表
+		$listWhere['class_id'] = $class_id;
+	    $list = $this->yaopin_model->where($listWhere)->order('addtime DESC')->select();
+		foreach($list as $val){
+			unset($val['id']);
+			$val['class_id'] = 2;
+			$this->yaopin_model->add($val);
+			$val['class_id'] = 3;
+			$this->yaopin_model->add($val);
+		}
+        $this->assign('list',$list);
+		$this->assign('id',$id);
+		//上一个
+		$listWhere['id'] = array('GT',$id);
+		$update = $list = $this->yaopin_model->where($listWhere)->order('addtime DESC')->find();
+		$this->assign('update',$update);
+		//下一个
+		$listWhere['id'] = array('LT',$id);
+		$downdate = $list = $this->yaopin_model->where($listWhere)->order('addtime DESC')->find();
+		$this->assign('downdate',$downdate);
+		
     	$this->display(":mgcpxq");
     }
 }
