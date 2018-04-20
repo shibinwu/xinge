@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/personalcenter.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <style>
+        .tab_content.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li class="yiji fudai1 XUANZHONG">
+                    <a href="{:U('User/member/index')}"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/auction/index')}"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG gygls">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabdown.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="gygl">
+                    <a href="{:U('User/product/index')}">鸽药关注</a>
+                    <a href="{:U('User/product/order')}" class="xuanzhong">鸽药订单</a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/finance/index')}"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <tc_include file="Public:memberkhfw" />
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <div class="products" id="products">
+            <!-- 鸽药订单 -->
+            <div class="GYGZ">
+                <div class="HYBT4">
+                    <span class="span1">
+                                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;鸽药订单
+                                </span>
+                </div>
+                <div class="cg">
+                </div>
+                <div class="TABS1">
+                    <div class="MC dddse">
+                        <span class="a">鸽药名称</span>
+                        <span class="d">购买数量</span>
+                        <span class="e">单价(￥)</span>
+                        <span class="f">总价(￥)</span>
+                        <span class="g">状态</span>
+                        <span class="h">操作</span>
+                    </div>
+                    <volist name="yaopinInfo" id="val" key="k">
+                        <div class="MCNR <if condition='$k%2 eq 0'>bgc1</if>">
+                            <span class="a">{$val['title']}</span>
+                            <span class="d">{$val['num']}</span>
+                            <span class="e">￥{$val['price']}</span>
+                            <span class="f">￥{$val['totalprice']}</span>
+                            <if condition="$val['pay_status'] eq 1">
+                                <span class="g">已付款</span>
+                                <else/>
+                                <span class="g red">未付款</span>
+                            </if>
+                            
+                            <span class="h">查看详情</span>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 2000, //可选选项，自动滑动
+            pagination: '.swiper-pagination', //分页
+            paginationClickable: true,
+
+        })
+        // 拍卖管理点击显示子级隐藏
+    jQuery(window).ready(function() {
+        var l = 0;
+        $('.gygls').click(function() {
+            if (l == 0) {
+                $(this).siblings('.gygl').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.gygl').hide().addClass('none');
+                l = 0;
+            }
+        })
+    });
+</script>
+
+</html>

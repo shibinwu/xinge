@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link rel="stylesheet" href="../css/personalcenter.css">
+    <link rel="stylesheet" href="../css/FJ.css">
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/index.js"></script>
+    <style>
+        .tab_content.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- 顶部搜索框 -->
+        <div class="search">
+            <span class="lxdh">电话:010-85175305 13146616133   |   邮箱:epw@xingezhan.com</span>
+            <div class="kuang">
+                <input type="search" placeholder="搜索你想要的项目" name="搜索" id="">
+                <div class="fdj"><img src="../images/search.png" alt="" srcset=""></div>
+                <div class="gq"><img src="../images/NL.png" alt="" srcset="">
+                    <a><img src="../images/xiasanjiao.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="header">
+            <div class="logo">
+                <a href=""><img src="../images/LG_EuropeanPigeonWebsite_FC.png" alt="" srcset=""></a>
+            </div>
+            <div class="list" id="list">
+                <ul>
+                    <li class="list1 queding"><a href="./index.html">首页</a></li>
+                    <li class="list2"><a href="./mgpm.html">铭鸽拍卖</a></li>
+                    <li class="list3"><a href="./mgcp.html">铭鸽产品</a></li>
+                    <li class="list4"><a href="./mrmx.html">鸽闻天下</a></li>
+                    <li id="DL" class="last list5 none"><a href="javascript:;">用户登录</a></li>
+                    <li id="DLH" class="list5" style="margin-right:0px;">
+                        <a href="javascript:;"><img src="../images/dl.png" alt="">&nbsp;&nbsp;会员中心</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 用户登录框 -->
+            <div class="DL hidden">
+                <span class="yhdl">用户登录</span>
+                <span class="wfdl"><a href="">忘记密码？</a></span>
+                <input type="username" style="margin-top:35px;" placeholder="您的手机号" name="搜索" id="">
+                <input type="password" style="margin-top:11px;" placeholder="密码" name="搜索" id="">
+                <div class="TS">
+                    <ul>
+                        <li class="dl"><a href="">登录</a></li>
+                        <li class="zc"><a href="">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--  -->
+        </div>
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="../images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="../images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="../images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="../images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="../images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(../images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li class="yiji fudai1 XUANZHONG">
+                    <a href="../Personal Center/personalcenter.html"><img src="../images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG pmgls">
+                    <a href="javascript:;"><img src="../images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="../images/tabdown.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="pmgl">
+                    <a href="./gzpmh.html">关注拍卖会</a>
+                    <a href="./gzpmg.html" class="xuanzhong">关注拍卖鸽</a>
+                    <a href="./zzjpz.html">正在竞拍中</a>
+                    <a href="./cgdjp.html">成功的竞拍</a>
+                    <a href="./dlcjgl.html">代理出价管理</a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="../cpgl/gygz.html"><img src="../images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="../cwgl/zhxx.html"><img src="../images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="javascript:;"><img src="../images/kehufuwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>客户服务</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <div class="products" id="products">
+            <!-- 关注拍卖鸽 -->
+            <div class="GZPMG">
+                <div class="HYBT4">
+                    <span class="span1">
+                                    <img src="../images/huiyuanshouye.png" alt="">&nbsp;&nbsp;关注拍卖鸽
+                                </span>
+                </div>
+                <div class="TP">
+                    <img src="../images/pmlc.png" alt="">
+                </div>
+                <div class="TABS1">
+                    <table border="1" class="tab1">
+                        <tr class="type">
+                            <th class="a"></th>
+                            <th class="b">所属目录</th>
+                            <th class="c">排序</th>
+                            <th class="d">环号</th>
+                            <th class="e">名称</th>
+                            <th class="f">当前价格</th>
+                            <th class="g">最高出价人</th>
+                            <th class="h">剩余时间</th>
+                        </tr>
+                        <tr class="value bgcs">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value bgcs">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value bgcs">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value bgcs">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                        <tr class="value bgcs">
+                            <td class="a" style="text-align:center;"><img src="../images/weixuan.png" alt="" value="1"></td>
+                            <td class="b">第1551期</td>
+                            <td class="c">K11</td>
+                            <td class="d">DV0824-15-169</td>
+                            <td class="e">奥林匹克03直孙</td>
+                            <td class="f">€300</td>
+                            <td class="g">asdfkj</td>
+                            <td class="h">48:56:32</td>
+                        </tr>
+                    </table>
+                    <div class="MCNR4 dddse">
+                        <span class="d alls"><img src="../images/weixuan.png" alt=""></span>
+                        <span class="a">全选</span>
+                        <a href="" class="b">批量删除</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <div class="footer ">
+            <div class="t1 "></div>
+            <div class="t2 "></div>
+            <div class="t3 ">
+                <div class="logos "><img src="../images/LG_EuropeanPigeonWebsite_diap.png " alt=" " srcset=" "></div>
+                <div class="lxwm ">
+                    <span class="lxwms ">联系我们</span>
+                    <p class="p11 ">电话（大陆） 010-85175305</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;13146616133</p>
+                    <p class="p3 ">邮件（大陆） EPW@xingezhan.com</p>
+                    <p class="p20 ">電話（臺灣） 0912-496-188</p>
+                    <p class="p3 ">電郵（臺灣） maggieku1219@gmail.com</p>
+                </div>
+                <div class="wx ">
+                    <span>微信公众号</span>
+                    <img src="../images/wx.png " alt=" ">
+                </div>
+                <div class="xz ">
+                    <span>下载APP</span>
+                    <img src="../images/wx.png " alt=" ">
+                </div>
+                <div class="jh ">
+                    <span><img src="../images/pm.png " alt=" ">&nbsp;拍卖规则</span>
+                    <span class="span3 "><img src="../images/fk.png " alt=" ">&nbsp;付款方式</span>
+                    <span class="span3 "><img src="../images/gj.png " alt=" ">&nbsp;冠军计划</span>
+                </div>
+                <div class="liebiao ">
+                    <ul>
+                        <li>关于我们</li>
+                        <li class="bor ">服务条款</li>
+                        <li>帮助中心</li>
+                        <li class="bor ">汇率查询</li>
+                        <li>联系EPW</li>
+                        <li class="bor ">友情链接</li>
+                        <li>APP下载</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="shangbiao ">
+            <span>© Copyright  2009 - 2018     |     all rights reserved     |     xingezhan.com</span>
+        </div>
+    </div>
+    <!-- 右侧导航 -->
+    <div class="FJ" id="FJ">
+        <ul class="fj">
+            <li class="SUO" id="SUO">
+                <div class="suo"><img src="../images/suo.png " alt=" "><span class="suos ">登录</span></div>
+            </li>
+            <li class="APP">
+                <div class="app"><img src="../images/niao.png " alt=" "><span class="apps ">APP</span></div>
+            </li>
+            <li class="PHONE">
+                <div class="phone"><img src="../images/phone.png " alt=" "><span class="phones ">联系我们</span></div>
+            </li>
+            <li class="FEIJI" id="FB">
+                <div class="feiji"><img src="../images/fj.png " alt=" "><span class="feijis ">返回顶部</span></div>
+            </li>
+            <li class="guanbi" id="guanbi">
+                <div class="guanbis"><img src="../images/img602.png " alt=" " srcset=" "></div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 2000, //可选选项，自动滑动
+        pagination: '.swiper-pagination', //分页
+        paginationClickable: true,
+
+    })
+</script>
+<script>
+    // 选择框切换
+    $(function() {
+        var l = 0;
+        $('.pmgls').click(function() {
+            if (l == 0) {
+                $(this).siblings('.pmgl').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '../images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '../images/tabright.png');
+                $(this).siblings('.pmgl').hide().addClass('none');
+                l = 0;
+            }
+
+
+        })
+        $('.a').click(function() {
+            var vl = $(this).children('img').attr('value');
+            if (vl == 1) {
+                $(this).children('img').attr('src', '../images/xuanze.png');
+                $(this).children('img').attr('value', 2);
+            } else {
+                $(this).children('img').attr('src', '../images/weixuan.png');
+                $(this).children('img').attr('value', 1);
+            }
+        })
+        var as = 0;
+        $('.alls').click(function() {
+            if (as == 0) {
+                $(this).children('img').attr('src', '../images/xuanze.png');
+                $('.a').children('img').attr('src', '../images/xuanze.png');
+                as = 1;
+            } else {
+                $(this).children('img').attr('src', '../images/weixuan.png');
+                $('.a').children('img').attr('src', '../images/weixuan.png');
+                as = 0;
+            }
+        })
+
+    });
+</script>
+
+</html>

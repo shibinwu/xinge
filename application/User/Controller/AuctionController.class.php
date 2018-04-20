@@ -105,12 +105,35 @@ class AuctionController extends MemberbaseController {
 		
     // 关注拍卖鸽子
     public function followg() {
+    	$auctionCollMod = M('auction_collection');
+    	$user = session('user');
+    	$auctionDoves = $auctionCollMod->alias('acol')->join('lanhai_pmgezi pm ON acol.cid = pm.id')->where('classify=2 AND userid='.$user['id'])->select();
+    	// dump($auctionDoves);
+    	$this->assign('auctionDoves',$auctionDoves);
 		$this->display();
     }
 	// 关注拍卖会
     public function followh() {
+    	$auctionCollMod = M('auction_collection');
+    	$user = session('user');
+    	$auctions = $auctionCollMod
+    				->alias('aucol')
+    				->join('lanhai_changci changci ON aucol.cid = changci.id')
+    				->field('aucol.id,changci.id cid,changci.name,changci.end_time')
+    				->where('classify=1 AND userid='.$user['id'])
+    				->order('aucol.addtime desc')
+    				->select();
+    	$geziMod = M("Pmgezi");
+    	foreach ($auctions as $k => $val) {
+    		$auctions[$k]['num'] = $geziMod->where('cid='.$val['cid'])->count();
+    	}
+    	$this->assign('auctions',$auctions);
 		$this->display();
     }
+    public function delauction()
+	{
+		echo "string";exit;
+	}
 	// 成功竞拍
     public function syccessj() {
 		$this->display();

@@ -147,13 +147,13 @@ class MrmxController extends HomebaseController {
         if($id){
             $mgzx = $this->ozzb_model
                 ->where(array('yid' => $id))
-                ->page(1,2)
+                ->page(1,1)
                 ->select();
         }else{
             $yname = $this->year_model->where(array('type' => 0))->order('yname desc')->getField('id');
             $mgzx = $this->ozzb_model
                 ->where(array('yid' => $yname))
-                ->page(1,2)
+                ->page(1,1)
                 ->select();
 
 

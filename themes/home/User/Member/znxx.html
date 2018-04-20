@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/personalcenter.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <style>
+        .tab_content.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Publ__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li class="yiji XUANZHONG grzxs">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="grzx">
+                    <a href="{:U('User/member/index')}">会员首页</a>
+                    <a href="{:U('User/member/xggrxx')}">修改个人信息</a>
+                    <a href="{:U('User/member/mmfw')}">密码服务</a>
+                    <a href="{:U('User/member/znxx')}" class="xuanzhong">站内信息</a>
+                    <a href="javascript:;">积分管理</a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/auction/index')}"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/product/index')}"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/finance/index')}"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+               <tc_include file="Public:memberkhfw" />
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <div class="products" id="products">
+            <!-- 站内信息 -->
+            <div class="ZNXX">
+                <div class="HYBT5">
+                    <span class="span1">
+                            <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;站内信息
+                    </span>
+                </div>
+                <div class="XTAB">
+                    <div class="XTB1 XTB x0"><a href="javascript:;">写信息</a></div>
+                    <div class="XTB1 XTB XUANZHONG XTAB1 x1"><a href="javascript:;">收件箱(&nbsp;<span>1</span>&nbsp;)</a></div>
+                    <div class="XTB1 XTB XTAB1 x2"><a href="javascript:;">草稿箱</a></div>
+                    <div class="XTB1 XTB XTAB1 x3"><a href="javascript:;">已发送</a></div>
+                    <!-- 收件箱 -->
+                    <div class="TABS1 XTABS" id="TABp1">
+                        <div class="MC">
+                            <span class="a">来自</span>
+                            <span class="b">标题</span>
+                            <span class="c">收信时间</span>
+                        </div>
+                        <div class="MCNR bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a  weidu">EPW欧洲信鸽站</span>
+                            <span class="b  weidu">竞拍成功</span>
+                            <span class="c  weidu">2018-03-13</span>
+                        </div>
+                        <div class="MCNR2 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">EPW欧洲信鸽站</span>
+                            <span class="b">竞拍成功</span>
+                            <span class="c">2018-03-13</span>
+                        </div>
+                        <div class="MCNR3 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">EPW欧洲信鸽站</span>
+                            <span class="b">竞拍成功</span>
+                            <span class="c">2018-03-13</span>
+                        </div>
+                        <div class="MCNR4">
+                            <span class="d alls"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">全选</span>
+                            <a href="" class="b">批量删除</a>
+                        </div>
+                    </div>
+                    <!-- 草稿箱 -->
+                    <div class="TABS2 XTABS none" id="TABp2">
+                        <div class="MC">
+                            <span class="a">标题</span>
+                            <span class="b">时间</span>
+                        </div>
+                        <div class="MCNR bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR2 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR3 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR4">
+                            <span class="d alls"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">全选</span>
+                            <a href="" class="b">批量删除</a>
+                        </div>
+                    </div>
+                    <!-- 已发送 -->
+                    <div class="TABS3 none" id="TABp3">
+                        <div class="MC">
+                            <span class="a">标题</span>
+                            <span class="b">时间</span>
+                        </div>
+                        <div class="MCNR bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR2 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR3 bgc">
+                            <span class="d all"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">如何竞拍ai</span>
+                            <span class="b">2018-03-13</span>
+                        </div>
+                        <div class="MCNR4">
+                            <span class="d alls"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                            <span class="a">全选</span>
+                            <a href="" class="b">批量删除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 写信 -->
+                <div class="TABS4 XTABS none" id="TABp4">
+                    <div class="BTA">
+                        收件人：EPW欧洲信鸽站
+                    </div>
+                    <div class="BT">
+                        <span>标题：</span>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="NR">
+                        <span>内容：</span>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <!--<div class="ZT">
+                        <span>发送状态：</span>&nbsp;&nbsp;&nbsp;<img value="1" class="AAA" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;<span>草稿箱</span>
+                    </div>-->
+                    <div class="FS">发送</div>
+                    <div class="QXFS">重置</div>
+                </div>
+            </div>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 2000, //可选选项，自动滑动
+            pagination: '.swiper-pagination', //分页
+            paginationClickable: true,
+
+        })
+        // 左侧tab栏切换
+    jQuery(window).ready(function() {
+        var l = 0;
+        $('.grzxs').click(function() {
+            if (l == 0) {
+                $(this).siblings('.grzx').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.grzx').hide().addClass('none');
+                l = 0;
+            }
+        })
+        $('.XTAB .XTAB1').click(function() {
+            $(this).addClass('XUANZHONG').siblings('.XTAB1').removeClass('XUANZHONG');
+        })
+        $('.x1').click(function() {
+            $('#TABp1').removeClass('none').show();
+            $('#TABp2').addClass('none').hide();
+            $('#TABp3').addClass('none').hide();
+            $('#TABp4').addClass('none').hide();
+        })
+        $('.x2').click(function() {
+            $('#TABp2').removeClass('none').show();
+            $('#TABp1').addClass('none').hide();
+            $('#TABp3').addClass('none').hide();
+            $('#TABp4').addClass('none').hide();
+        })
+        $('.x3').click(function() {
+            $('#TABp3').removeClass('none').show();
+            $('#TABp2').addClass('none').hide();
+            $('#TABp1').addClass('none').hide();
+            $('#TABp4').addClass('none').hide();
+        })
+        $('.x0').click(function() {
+            $('#TABp4').removeClass('none').show();
+            $('#TABp2').addClass('none').hide();
+            $('#TABp1').addClass('none').hide();
+            $('#TABp3').addClass('none').hide();
+            $(this).parent().hide();
+        })
+        var a = 0;
+        $('.all').click(function() {
+            if (a == 0) {
+                $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
+                a = 1;
+            } else {
+                $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
+                a = 0;
+            }
+        })
+        var as = 0;
+        $('.alls').click(function() {
+            if (as == 0) {
+                $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
+                $(this).parents().siblings('div').children('.all').children('img').attr('src', '__TMPL__Public/images/xuanze.png');
+                as = 1;
+            } else {
+                $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
+                $(this).parents().siblings('div').children('.all').children('img').attr('src', '__TMPL__Public/images/weixuan.png');
+                as = 0;
+            }
+        })
+		$('.AAA').click(function(){
+			var aaa = $('.AAA').attr('value');
+			if( aaa == 1){
+			$(this).attr('src', '__TMPL__Public/images/weixuan.png');
+			$(this).attr('value', 2);
+			}else{
+			$(this).attr('src', '__TMPL__Public/images/xuanze.png');
+			$(this).attr('value', 1);
+			}
+		})
+		
+    });
+</script>
+
+</html>

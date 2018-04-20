@@ -567,26 +567,24 @@ $('.fudai1s a').click(function() {
             "id" : h
         },//数据，这里使用的是Json格式进行传输
         success : function(msg) {
-            console.log(msg['data'])
-            $(".xq").empty();
-            //添加列表
+            var nummmm = [];
             $.each(msg['data'],function (k,vo) {
-                $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
-                $(".yanse:odd").css("background","#F0EFEF");
+                nummmm += "<li class='OZZB_lione OZXQS  O"+vo['id']+" yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>";
+                nummmm += "<div class='ksfdhki' value='0'>";
                 //添加详情
                 $.each(vo['xq'],function (k,vol) {
-                    $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                    nummmm += "<li style='height:142px;line-height:35px;' class='TSD "+vol['id']+" YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>"
                 })
+                nummmm += "</div>";
             })
-            var q = 0;
+            $(".xq").html(nummmm)
             $('.OZXQS').click(function() {
-                if (q == 0) {
-                    $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
-
-                    q = 1;
+                if ($(this).attr('value') == 0) {
+                    $(this).attr('value',1)
+                    $(this).next().show();
                 } else {
-                    $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
-                    q = 0;
+                    $(this).next().hide();
+                    $(this).attr('value',0)
                 }
             })
         },
@@ -605,24 +603,27 @@ $("#JIAZAI2").click(function () {
             },//数据，这里使用的是Json格式进行传输
             success : function(msg) {
                 if(msg['code'] == 1){
+                    var nummmm = $(".xq").html();
                     $.each(msg['data'],function (k,vo) {
-                        $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
-                        $(".yanse:odd").css("background","#F0EFEF");
+                        nummmm += "<li class='OZZB_lione OZXQS  O"+vo['id']+" yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>";
+                        nummmm += "<div class='ksfdhki' value='0'>";
                         //添加详情
                         $.each(vo['xq'],function (k,vol) {
-                            $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                            nummmm += "<li style='height:142px;line-height:35px;' class='TSD "+vol['id']+" YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>"
                         })
+                        nummmm += "</div>";
                     })
-                    var q = 0;
+                    $(".xq").html(nummmm)
                     $('.OZXQS').click(function() {
-                        if (q == 0) {
-                            $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
-                            $(this).parent('div').siblings('div').children('.TSD').hide().css('display', 'none').addClass('YCB');
-                            q = 1;
+                        if ($(this).attr('value') == 0) {
+                            $(this).attr('value',1)
+                            $(this).next().show();
                         } else {
-                            $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
-                            q = 0;
+                            $(this).next().hide();
+                            $(this).attr('value',0)
                         }
+
+
                     })
                 }else{
                     alert("没有更多数据")
@@ -640,23 +641,24 @@ $("#JIAZAI2").click(function () {
             },//数据，这里使用的是Json格式进行传输
             success : function(msg) {
                 if(msg['code'] == 1){
+                    var nummmm = $(".xq").html();
                     $.each(msg['data'],function (k,vo) {
-                        $(".xq").append("<li class='OZZB_lione OZXQS yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>");
-                        $(".yanse:odd").css("background","#F0EFEF");
+                        nummmm += "<li class='OZZB_lione OZXQS  O"+vo['id']+" yanse'  style='border-bottom:none;'> <span style='margin-left:85px;'>" + vo['jige'] + "</span> <span style='margin-left:135px;'>" + vo['fangfei'] + "</span> <span style='margin-left:125px; color:#007bc1;'>" + vo['name'] + "</span> <span style='margin-left:90px; '>" + vo['distance'] + "</span> <span style='margin-left:144px; '>" + vo['organizer'] + "</span> <span style='margin-left:110px; '>" + vo['fenlei'] + "</span> </li>";
+                        nummmm += "<div class='ksfdhki' value='0'>";
                         //添加详情
                         $.each(vo['xq'],function (k,vol) {
-                            $(".xq").append("<li style='height:142px;line-height:35px;' class='TSD YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>")
+                            nummmm += "<li style='height:142px;line-height:35px;' class='TSD "+vol['id']+" YCB'><div class='imgs'><img src='/xinge/data/upload/"+vol['pic']+"' alt='' style='width: 100px'></div> <div class='wenbensm'> <span class='SSMZ'>赛事名称："+vo['name']+"</span> <span class='ZGFS'>"+vol['title']+"</span> <span class='GJJS'>"+vol['content']+"</span> </div> </li>"
                         })
+                        nummmm += "</div>";
                     })
-                    var q = 0;
+                    $(".xq").html(nummmm)
                     $('.OZXQS').click(function() {
-                        if (q == 0) {
-                            $(this).siblings('.TSD').show().css('display', 'block').removeClass('YCB');
-                            $(this).parent('div').siblings('div').children('.TSD').hide().css('display', 'none').addClass('YCB');
-                            q = 1;
+                        if ($(this).attr('value') == 0) {H
+                            $(this).attr('value',1)
+                            $(this).next().show();
                         } else {
-                            $(this).siblings('.TSD').hide().css('display', 'none').addClass('YCB');
-                            q = 0;
+                            $(this).next().hide();
+                            $(this).attr('value',0)
                         }
                     })
                 }else{

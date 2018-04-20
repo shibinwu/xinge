@@ -111,6 +111,8 @@ class RegisterController extends HomebaseController {
 		$data['realname'] = $realname;//审核
 		$data['mobile'] = $mobile;//审核
 		$data['email'] = $email;//审核
+		$data['telephone'] = $telephone;
+		$data['xuexi'] = serialize(array_filter($_POST['xuexi']));
 		$data['province'] = $province;//审核
 		$data['address'] = $address;//审核
 		$data['reg_ip'] = $data['lastloginip'] = get_client_ip(0,true);

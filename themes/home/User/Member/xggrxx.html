@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/personalcenter.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <style>
+        .tab_content.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+       <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Publ__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li class="yiji XUANZHONG grzxs">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="grzx">
+                    <a href="{:U('User/member/index')}">会员首页</a>
+                    <a href="{:U('User/member/xggrxx')}" class="xuanzhong">修改个人信息</a>
+                    <a href="{:U('User/member/mmfw')}">密码服务</a>
+                    <a href="{:U('User/member/znxx')}">站内信息</a>
+                    <a href="javascript:;">积分管理</a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/auction/index')}"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/product/index')}"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/finance/index')}"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <tc_include file="Public:memberkhfw" />
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <div class="products" id="products">
+		<form action="{:U('User/member/xggrxx')}" method="post" id="form1" onSubmit="return chack();">
+            <!-- 修改个人信息 -->
+            <div class="XGGRXX">
+                <div class="HYBT3">
+                    <span class="span1">
+                            <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;修改个人信息
+                        </span>
+                </div>
+                <div class="TYPE1">
+                    <div class="VALUE1">
+                        <span>用户名：</span>
+                        <input type="text" value="{$user['username']}" name="username" readonly >
+                    </div>
+                    <div class="VALUE2">
+                        <span><span class="red">*</span>真实姓名：</span>
+                        <input type="text" value="{$user['realname']}" id="realname" name="realname" placeholder="请输入真实姓名">
+                    </div>
+                    <div class="VALUE2">
+                        <span><span class="red">*</span>手机号码：</span>
+                        <input type="text" value="{$user['mobile']}" name="mobile" placeholder="请输入11位手机号码">
+                    </div>
+                </div>
+                <div class="TYPE2">
+                    <div class="VALUE1">
+                        <span>备用电话：</span>
+                        <input type="text" value="{$user['telephone']}" name="telephone" placeholder="请填写备用联系电话">
+                    </div>
+                    <div class="VALUE2">
+                        <span>电子邮箱：</span>
+                        <input type="text" value="{$user['email']}" name="email" placeholder="请填写电子邮箱地址">
+                    </div>
+                    <div class="VALUE2">
+                        <span><span class="red">*</span>中国：</span>
+                        <select name="province" id="">
+                            <option value="0">请选择所属省/市</option>
+                            <option value="北京" <if condition="$user['province'] eq '北京'">selected</if>>北京</option>
+                            <option value="非京省市" <if condition="$user['province'] eq '非京省市'">selected</if>>非京省市</option>
+							<option value="港澳台地区" <if condition="$user['province'] eq '港澳台地区'">selected</if>>港澳台地区</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="TYPE3">
+                    <div class="VALUE1">
+                        <span>详细地址：</span>
+                        <input type="text" value="{$user['address']}" id="address" name="address" placeholder="请填写详细地址信息">
+                    </div>
+                </div>
+				<?php
+					$xuexi = ','.implode($user['xuexi']).',';
+				?>
+                <div class="TYPE4">
+                    <div class="VALUE1">
+                        <span>钟爱血系 （支持多选）：</span>
+                        <div class="XUAN">
+							
+							<?php
+								if(strpos($xuexi,'詹森')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="詹森" data-id="xuexi1" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;詹森</span>
+									<input type="hidden" name="xuexi[]" id="xuexi1" value="詹森">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="詹森" data-id="xuexi1" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;詹森</span>
+									<input type="hidden" name="xuexi[]" id="xuexi1" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'幕利门')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="幕利门" data-id="xuexi2" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;幕利门</span>
+									<input type="hidden" name="xuexi[]" id="xuexi2" value="幕利门">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="幕利门" data-id="xuexi2" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;幕利门</span>
+									<input type="hidden" name="xuexi[]" id="xuexi2" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'凡龙')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="凡龙" data-id="xuexi3" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;凡龙</span>
+									<input type="hidden" name="xuexi[]" id="xuexi3" value="凡龙">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="凡龙" data-id="xuexi3" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;凡龙</span>
+									<input type="hidden" name="xuexi[]" id="xuexi3" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'盖比')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="盖比" data-id="xuexi4" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;盖比</span>
+									<input type="hidden" name="xuexi[]" id="xuexi4" value="盖比">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="盖比" data-id="xuexi4" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;盖比</span>
+									<input type="hidden" name="xuexi[]" id="xuexi4" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'利奥')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="利奥" data-id="xuexi5" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;利奥</span>
+									<input type="hidden" name="xuexi[]" id="xuexi5" value="利奥">';
+								}else{
+									echo '<input type="hidden" name="xuexi[]" id="xuexi5" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'凡戴克')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="凡戴克" data-id="xuexi6" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;凡戴克</span>
+									<input type="hidden" name="xuexi[]" id="xuexi6" value="凡戴克">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="凡戴克" data-id="xuexi6" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;凡戴克</span>
+									<input type="hidden" name="xuexi[]" id="xuexi6" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'葛斯顿(奶酪)')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="葛斯顿(奶酪)" data-id="xuexi7" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;葛斯顿(奶酪)</span>
+									<input type="hidden" name="xuexi[]" id="xuexi7" value="葛斯顿(奶酪)">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="葛斯顿(奶酪)" data-id="xuexi7" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;葛斯顿(奶酪)</span>
+									<input type="hidden" name="xuexi[]" id="xuexi7" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'恩格斯')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="恩格斯" data-id="xuexi8" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;恩格斯</span>
+									<input type="hidden" name="xuexi[]" id="xuexi8" value="恩格斯">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="恩格斯" data-id="xuexi8" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;恩格斯</span>
+									<input type="hidden" name="xuexi[]" id="xuexi8" value="">';
+								}
+							?>
+							
+							<?php
+								if(strpos($xuexi,'爱亚卡普')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="爱亚卡普" data-id="xuexi9" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;爱亚卡普</span>
+									<input type="hidden" name="xuexi[]" id="xuexi9" value="爱亚卡普">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="爱亚卡普" data-id="xuexi9" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;爱亚卡普</span>
+									<input type="hidden" name="xuexi[]" id="xuexi9" value="">';
+								}
+							?>
+							<?php
+								if(strpos($xuexi,'胡曼斯(哈利)')){
+									echo '
+									<span class="XZ"><img value = "2" data-value="胡曼斯(哈利)" data-id="xuexi10" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;胡曼斯(哈利)</span>
+									<input type="hidden" name="xuexi[]" id="xuexi10" value="胡曼斯(哈利)">';
+								}else{
+									echo '
+									<span class="XZ"><img value = "1" data-value="胡曼斯(哈利)" data-id="xuexi10" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;胡曼斯(哈利)</span>
+									<input type="hidden" name="xuexi[]" id="xuexi10" value="">';
+								}
+							?>
+							
+							<if condition="$user['xuexi']['qita'] eq 1">
+								<span class="XZs"><img onclick="qitaorder()" id="qitas" src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;其他&nbsp;<input type="text" id="qita" value="{$user['xuexi']['qitas']}" name="xuexi[qitas]" placeholder="请填写您所钟爱的铭鸽血系" ></span>
+								<input type="hidden" name="xuexi[qita]" id="xuexi11" value="1">
+							<else />
+								<span class="XZs"><img onclick="qitaorder()" id="qitas" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;其他&nbsp;<input type="text" id="qita" value="{$user['xuexi']['qitas']}" name="xuexi[qitas]" placeholder="请填写您所钟爱的铭鸽血系" class="none"></span>
+								<input type="hidden" name="xuexi[qita]" id="xuexi11" value="0">
+							</if>
+                        </div>
+                    </div>
+                </div>
+                <div class="TYPE5">
+                    <div class="VALUE1">
+                        <span>
+                            接鸽地点：
+                            <span class="KS" onclick="jiege_address(1)"><img src="__TMPL__Public/images/weixuan.png" alt="" id="jiege_address" value="1">&nbsp;&nbsp;同详细地址</span>
+							<span class="XZ KS" onclick="jiege_address(2)"><img src="__TMPL__Public/images/xuanze.png" alt="" id="jiege_addresss" value="2">&nbsp;&nbsp;其他</span>
+                        </span>
+						<input type="hidden" id="jiege_addressss" value="{$user['jiege_address']}">
+                        <input type="text" name="jiege_address" id="jiege_addressval" value="{$user['jiege_address']}" class="KSA" placeholder="请输入接鸽地点">
+                    </div>
+                </div>
+                <div class="TYPE6">
+                    <div class="VALUE1">
+                        <span>
+                                接鸽人：
+                                <span onclick="jiegefunct('1')"><img src="__TMPL__Public/images/weixuan.png" id="jiege" alt="" value="2">&nbsp;&nbsp;本人</span>
+								<span class="XZ" onclick="jiegefunct('2')"><img src="__TMPL__Public/images/xuanze.png" id="jieges" alt="" value="1">&nbsp;&nbsp;其他</span>
+                        </span>
+						<input type="hidden" id="jiege_namess" value="{$user['jiege_name']}">
+                        <input type="text" name="jiege_name" id="jiege_nameval" value="{$user['jiege_name']}" class="ASA" placeholder="请输入接鸽人">
+                    </div>
+                </div>
+                <div class="TYPE7">
+                    <div class="VALUE1">
+                        <span>
+                                血统书邮寄地址：
+								<span class="CS" onclick="xuetong_address(1)"><img src="__TMPL__Public/images/weixuan.png" id="xuetong_address" alt="" value="1">&nbsp;&nbsp;同详细地址</span>
+								<span class="XZ CS" onclick="xuetong_address(2)"><img src="__TMPL__Public/images/xuanze.png" id="xuetong_addresss" alt="" value="2">&nbsp;&nbsp;其他</span>
+                        </span>
+						<input type="hidden" id="xuetong_addressss" value="{$user['xuetong_address']}">
+                        <input type="text" name="xuetong_address" id="xuetong_addressval" value="{$user['xuetong_address']}" class="CSA" placeholder="请输入血统书邮寄地址">
+                    </div>
+                </div>
+                <div class="TYPE8">
+                    <div class="VALUE1">
+                        <span>
+								血统书收件人：
+								<span class="BS"  onclick="xuetong_name(1)"><img src="__TMPL__Public/images/weixuan.png" id="xuetong" value="1" alt="">&nbsp;&nbsp;本人</span>
+								<span class="XZ BS"  onclick="xuetong_name(2)"><img src="__TMPL__Public/images/xuanze.png" id="xuetongs" value="2" alt="">&nbsp;&nbsp;其他</span>
+                        </span>
+						<input type="hidden" id="xuetong_names" value="{$user['xuetong_name']}">
+                        <input type="text" name="xuetong_name" id="xuetong_nameval" value="{$user['xuetong_name']}" class="BSA" placeholder="请输入血统书收件人">
+                    </div>
+                </div>
+				<input type="submit" class="BTN" name="button" id="button" value="保存" style="display: block;" />
+            </div>
+		</form>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 2000, //可选选项，自动滑动
+            pagination: '.swiper-pagination', //分页
+            paginationClickable: true,
+
+        })
+        // 左侧tab栏切换
+    jQuery(window).ready(function() {
+        var l = 0;
+        $('.grzxs').click(function() {
+            if (l == 0) {
+                $(this).siblings('.grzx').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.grzx').hide().addClass('none');
+                l = 0;
+            }
+        })
+        $(".XZ").click(function() {
+			var value = $(this).children('img').attr('value');
+            if (value == 1) {
+                $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
+                $(this).children('img').attr('value', 2);
+				var zhi = $(this).children('img').attr('data-value');
+				var id = $(this).children('img').attr('data-id');
+				$('#'+id).val(zhi);
+				
+            } else {
+                $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
+                $(this).children('img').attr('value', 1);
+				var id = $(this).children('img').attr('data-id');
+				$('#'+id).val('');
+            }
+        })
+        
+      
+
+    });
+	var s = 0;
+	function qitaorder(){
+		if (s == 0) {
+			$('#qita').removeClass('none').show();
+			$('#qitas').attr('src', '__TMPL__Public/images/xuanze.png');
+			s = 1;
+			$('#xuexi11').val(1);
+		} else {
+			$('#qita').addClass('none').hide();
+			$('#qitas').attr('src', '__TMPL__Public/images/weixuan.png');
+			s = 0;
+			$('#xuexi11').val('');
+		}
+	}
+	function jiegefunct(id){
+		if (id == '1') {
+			$('#jiege').attr('src', '__TMPL__Public/images/xuanze.png');
+			$('#jieges').attr('src', '__TMPL__Public/images/weixuan.png');
+			var jiege_name = $('#realname').val();
+			$('#jiege_nameval').val(jiege_name);
+		}else{
+			$('#jiege').attr('src', '__TMPL__Public/images/weixuan.png');
+			$('#jieges').attr('src', '__TMPL__Public/images/xuanze.png');
+			var jiege_name = $('#jiege_namess').val();
+			$('#jiege_nameval').val(jiege_name);
+		}
+	}
+	function jiege_address(id){
+		if (id == 1) {
+			$('#jiege_address').attr('src', '__TMPL__Public/images/xuanze.png');
+			$('#jiege_addresss').attr('src', '__TMPL__Public/images/weixuan.png');
+			var address = $('#address').val();
+			$('#jiege_addressval').val(address);
+		} else {
+			$('#jiege_address').attr('src', '__TMPL__Public/images/weixuan.png');
+			$('#jiege_addresss').attr('src', '__TMPL__Public/images/xuanze.png');
+			var address = $('#jiege_addressss').val();
+			$('#jiege_addressval').val(address);
+		}
+	}
+	function xuetong_name(id){
+		if (id == 1) {
+			$('#xuetong').attr('src', '__TMPL__Public/images/xuanze.png');
+			$('#xuetongs').attr('src', '__TMPL__Public/images/weixuan.png');
+			var realname = $('#realname').val();
+			$('#xuetong_nameval').val(realname);
+		} else {
+			$('#xuetong').attr('src', '__TMPL__Public/images/weixuan.png');
+			$('#xuetongs').attr('src', '__TMPL__Public/images/xuanze.png');
+			var realname = $('#xuetong_namess').val();
+			$('#xuetong_nameval').val(realname);
+		}
+	}
+	function xuetong_address(id){
+		if (id == 1) {
+			$('#xuetong_address').attr('src', '__TMPL__Public/images/xuanze.png');
+			$('#xuetong_addresss').attr('src', '__TMPL__Public/images/weixuan.png');
+			var address = $('#address').val();
+			$('#xuetong_addressval').val(address);
+		} else {
+			$('#xuetong_address').attr('src', '__TMPL__Public/images/weixuan.png');
+			$('#xuetong_addresss').attr('src', '__TMPL__Public/images/xuanze.png');
+			var address = $('#xuetong_addressss').val();
+			$('#xuetong_addressval').val(address);
+		}
+	}
+</script>
+
+</html>

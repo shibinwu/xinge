@@ -74,6 +74,22 @@ class MgpmController extends HomebaseController {
         }
         $this->assign('paimaList', $paimaList);
 		$this->assign('paimaListed', $paimaListed);
+		$user = session('user');
+		
+		//判断用户是否登录
+		$auctions = array();
+		if(sp_is_user_login()) {
+			$sess = '1';
+			$auction = M('auction_collection')->where('classify=1 AND userid='.$user['id'])->field('cid')->select();//拍卖会
+			foreach ($auction as $k => $val) {
+				$auctions[$val['cid']] = $val;
+			}
+		}else{
+			$sess = '2';
+		}
+        $this->assign('auctions', $auctions);
+        $this->assign('sess', $sess);
+
     	$this->display();
     }
 	public function paimaishow() {
@@ -138,6 +154,21 @@ class MgpmController extends HomebaseController {
         $this->assign('article', $article);
         //场次时间
         $this->assign('times', $times);
+        //判断用户是否登录
+		$auctions = array();
+		if(sp_is_user_login()) {
+			$sess = '1';
+			$user = session('user');
+			$auction = M('auction_collection')->where('classify=2 AND userid='.$user['id'])->field('cid')->select();//拍卖会
+			foreach ($auction as $k => $val) {
+				$auctions[$val['cid']] = $val;
+			}
+		}else{
+			$sess = '2';
+		}
+        $this->assign('auctions', $auctions);
+        $this->assign('sess', $sess);
+
     	$this->display();
     }
 	//鸽子页面的信息
@@ -263,6 +294,70 @@ class MgpmController extends HomebaseController {
 		$out = array();
 		preg_match_all( $pattern , $xuetongInfo, $out );
 		return $out[1];
+	}
+	//拍卖会收藏
+	public function auctionfollow()
+	{
+		$ac = $this->auction(1);
+		echo $ac;
+		/*$cid = I('post.sid')?I('post.sid'):1;
+		$rt = array();
+		if (!$cid) {
+			$rt['code'] = 2;
+			$rt['msg'] = '缺少拍卖id';
+			echo json_encode($rt);exit;
+		}
+		$auctionColMod = M('auction_collection');
+		$user = session('user');
+		$where = 'classify=1 AND userid='.$user['id'].' AND cid='.$cid;
+		$auctionid = $auctionColMod->where($where)->getField('id');
+		$cp = array();
+		$cp['addtime'] = time();
+		if ($auctionid) {
+			$f = $auctionColMod->where('id='.$cid)->save($cp);
+		}else{
+			$cp['cid'] = $cid;
+			$cp['userid'] = $user['id'];
+			$cp['classify'] = 1;
+			$f = $auctionColMod->add($cp);
+		}
+		if ($f) {
+			echo $cid;
+		}*/
+	}
+	//拍卖鸽子收藏
+	public function auctionDove()
+	{
+		$ac = $this->auction(2);
+		echo $ac;
+	}
+	//拍卖收藏
+	public function auction($classify)
+	{
+		$cid = I('post.sid');
+		$rt = array();
+		if (!$cid) {
+			$rt['code'] = 2;
+			$rt['msg'] = '缺少拍卖id';
+			return json_encode($rt);
+		}
+		$auctionColMod = M('auction_collection');
+		$user = session('user');
+		$where = 'classify='.$classify.' AND userid='.$user['id'].' AND cid='.$cid;
+		$auctionid = $auctionColMod->where($where)->getField('id');
+		$cp = array();
+		$cp['addtime'] = time();
+		if ($auctionid) {
+			$f = $auctionColMod->where('id='.$cid)->save($cp);
+		}else{
+			$cp['cid'] = $cid;
+			$cp['userid'] = $user['id'];
+			$cp['classify'] = $classify;
+			$f = $auctionColMod->add($cp);
+		}
+		if ($f) {
+			return $cid;
+		}
 	}
 }
 

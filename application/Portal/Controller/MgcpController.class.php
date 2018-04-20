@@ -76,14 +76,16 @@ class MgcpController extends HomebaseController {
         	$this->error('此铭鸽id错误，请再次确认');exit;
         }
 	    // dump($data);
+	    $user = session('user');
+	    $drug_collection_id = M('drug_collection')->where('userid='.$user['id'].' and ypid='.$id)->getField('id');
 	    $class_id = $data['class_id'];
-        $this->assign('data',$data);
+	    $data['drug_collection_id'] = $drug_collection_id;
 		//访问量加1
 		$this->yaopin_model->where($where)->setInc('hits',1);
 		//鸽子列表
 		// $this->assign('id',$id);
 		$whereclass = 'l = "zh-cn" and hiden = 0 and class_id='.$class_id;
-		//select所有
+		//select所有（下拉框）
 		$allList = $this->yaopin_model->where($whereclass)->field('id,title')->order('id DESC')->select();
 		//上一个
 		$thePrevious = $this->yaopin_model->where('id < '.$id.' and '.$whereclass)->field('id')->order('id DESC')->limit(1)->find();
@@ -94,29 +96,55 @@ class MgcpController extends HomebaseController {
 		$this->assign('theLast',$theLast);
 		$this->assign('allList',$allList);
 		$this->assign('sess',$sess);
+        $this->assign('data',$data);
     	$this->display();
     }
     public function buyinfo()
     {
     	$info=I("post.");
-    	$rt = array();
-    	/*if (!$info['realname'] || !$info['phone'] || !$info['email'] || !$info['address']) {
-    		$rt['code'] = 2;
-    		$rt['msg'] = '收件人/手机号码/邮箱/地址为必填项';
-    		echo json_encode($rt);exit;
+    	if (!$info['realname'] || !$info['phone'] || !$info['email'] || !$info['address']) {
+    		$msg = '收件人/手机号码/邮箱/地址为必填项';
+    		echo $msg;exit;
     	}else{
     		$phonereg = "/^1[3456789]\d{9}$/";
     		$emailreg = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/";
 			if (!preg_match($phonereg, $info['phone'], $phonematches) || !preg_match($emailreg, $info['email'], $emailmatches)) {
-				$rt['code'] = 3;
-    			$rt['msg'] = '手机号码/邮箱格式错误';
-    			echo json_encode($rt);exit;
+    			$msg = '手机号码/邮箱格式错误';
+    			echo $msg;exit;
 			}
-    	}*/
+			if ($info['tel']) {
+				$telreg = "/^([0-9]{3,4}-)?[0-9]{7,8}$/";
+				if (!preg_match($telreg,$info['tel'],$telmatches)) {
+	    			$msg = '电话号码格式错误';
+	    			echo $msg;exit;
+				}
+			}
+    	}
     	$zsorderMod = M('Zsorder');
     	$add['order_sn'] = $this->orderNum();//20
-    	echo $add['order_sn'];
-    	
+    	$add['pay_status'] = 0;
+    	$user = session('user');
+    	$add['user_id'] = $user['id'];
+    	$add['shangping_id'] = $info['shangping_id'];
+    	$add['num'] = $info['num'];
+    	$add['fwprice'] = 0;
+    	$add['fare'] = 0;
+    	$add['huilv'] = 0;
+    	$oneprice = $this->yaopin_model->where('id='.$info['shangping_id'])->getField('price');
+    	$add['price'] = $info['num'];
+    	$add['totalprice'] = $oneprice*$info['num'];
+    	$add['realname'] = $info['realname'];
+    	$add['address'] = $info['address'];
+    	$add['email'] = $info['email'];
+    	$add['tel'] = $info['tel'];
+    	$add['phone'] = $info['phone'];
+    	$add['remark'] = $info['remark'];
+    	$add['addtime'] = time();
+    	// print_r($add);
+    	$yaopinorderMod = M('yaopin_order');
+    	if (M('yaopin_order')->create($add)) {
+    		$yaopinorderMod->add($add);
+    	}
     	// $zsorderMod->add($add);
     }
     public function orderNum()
@@ -126,6 +154,40 @@ class MgcpController extends HomebaseController {
     		$this->orderNum();
     	}
     	return $strnum;
+    }
+    public function drugCollection()
+    {
+    	$ypid = I('post.ypid');
+    	$rt = array();
+    	if (!$ypid) {
+    		$rt['code'] = 2;
+    		$rt['mag'] = '商品不存在';
+    		echo json_encode($rt);exit;
+    	}
+    	$yaopinMod = M('yaopin');
+    	if ($yaopinMod->where('id='.$ypid)->count()<1) {
+    		$rt['code'] = 2;
+    		$rt['mag'] = '商品不存在';
+    		echo json_encode($rt);exit;
+    	}
+    	$user = session('user');
+    	$collectionMod = M('drug_collection');
+    	$whereyp = 'ypid='.$ypid.' and userid='.$user['id'];
+    	$add = array();
+    	$add['addtime'] = time();
+    	if ($collectionMod->where($whereyp)->count()>0) {
+    		$collectionMod->where($whereyp)->save($add);
+    		$rt['code'] = 1;
+    		echo json_encode($rt);exit;
+    	}else{
+	    	$add['userid'] = $user['id'];
+	    	$add['ypid'] = $ypid;
+	    	if ($collectionMod->create($add)) {
+	    		$collectionMod->add($add);
+	    		$rt['code'] = 1;
+    			echo json_encode($rt);exit;
+	    	}
+    	}
     }
 	/*public function chaxun() {
 		$url = 'http://202.85.213.155/youpintong/AgentNewQueryInterfaceServlet';

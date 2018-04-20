@@ -244,6 +244,7 @@ hello;
         
         if(!empty($result)){
             if(md5($password, $result['user_pass'])){
+				$result['xuexi'] = unserialize($result['xuexi']);
                 session('user',$result);
                 //写入此次登录信息
                 $data = array(

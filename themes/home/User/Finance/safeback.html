@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/personalcenter.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <style>
+        .tab_content.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/member/index')}"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/auction/index')}"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/product/index')}"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="yiji XUANZHONG cwgls">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabdown.png" alt="" class="tabfx"></a>
+                </li>
+                <li class="cwgl">
+                    <a href="{:U('User/finance/index')}">账户信息</a>
+                    <a href="{:U('User/finance/safeauth')}">保障金认证</a>
+                    <a href="{:U('User/finance/safeback')}" class="xuanzhong">保证金申退</a>
+                    <a href="{:U('User/finance/paymentrecord')}">付款登记</a>
+                </li>
+                <tc_include file="Public:memberkhfw" />
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <!-- 保证金申退(成功) -->
+        <div class="products" id="products">
+            <div class="BZJSTS" style="position:relative;">
+                <div class="BZJST">
+                    <span class="span1">
+                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;保证金申退
+                </span>
+                </div>
+                <div class="data">
+                    <div class="kuangs">
+                        <span>用户名：</span>
+                        <input type="text" readonly="value" placeholder="HEIHEI">
+                    </div>
+                    <div class="kuangs2">
+                        <span>退回金额：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="kuangs3">
+                        <span>联系电话：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="kuangs3">
+                        <span>收款人：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="kuangs3">
+                        <span>账号：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="kuangs3">
+                        <span>收款人账户所属银行：</span>
+                        <select name="" id=""><option value="0">请选择银行</option></select>
+                    </div>
+                    <div class="kuangs3">
+                        <span>开户行名称：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="kuangs3">
+                        <span>备注（选填）：</span>
+                        <input type="text" placeholder="">
+                    </div>
+                </div>
+                <div class="sqth">
+                    <a href="javascript:;">申请退回</a>
+                </div>
+                <div class="alert none">
+                    <div class="TS">提示</div>
+                    <div class="img"><img src="__TMPL__Public/images/lvdh.png" alt=""></div>
+                    <div class="wz1">您的退回申请已提交成功，</div>
+                    <div class="wz2">客服人员将尽快为您审核处理！</div>
+                    <div class="qxcx">确定</div>
+                </div>
+            </div>
+            <div class="BZJRZ">
+                <span class="span1">
+                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;保证金申退记录
+                </span>
+            </div>
+            <div class="LISTS">
+                <div class="LISTS-TYPE">
+                    <span class="a">用户名</span>
+                    <span class="b">退回金额</span>
+                    <span class="c">所属银行</span>
+                    <span class="d">收款人</span>
+                    <span class="e">开户行名称</span>
+                    <span class="f">申退时间</span>
+                    <span class="g">状态</span>
+                </div>
+                <div class="LISTS-VALUE">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g red">未处理</span>
+                </div>
+                <div class="LISTS-VALUE f2f2f2">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g">已处理</span>
+                </div>
+                <div class="LISTS-VALUE">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g">已处理</span>
+                </div>
+                <div class="LISTS-VALUE f2f2f2">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g red">未处理</span>
+                </div>
+                <div class="LISTS-VALUE">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g red">未处理</span>
+                </div>
+                <div class="LISTS-VALUE f2f2f2">
+                    <span class="a">heihei</span>
+                    <span class="b">￥1000</span>
+                    <span class="c">中国建设银行</span>
+                    <span class="d">黑娃</span>
+                    <span class="e">北京支行</span>
+                    <span class="f">2018-04-03</span>
+                    <span class="g red">未处理</span>
+                </div>
+            </div>
+            <div class="DB">
+                <a href="javascript:;" class="a1">上一页</a>
+                <a href="javascript:;" class="a2">1</a>
+                <a href="javascript:;" class="a3">2</a>
+                <a href="javascript:;" class="a4">3</a>
+                <a href="javascript:;" class="a5">下一页</a>
+            </div>
+        </div>
+        <!-- 保证金申退(失败) -->
+        <div class="products none" id="products">
+            <div class="BZJSTS" style="position:relative;">
+                <div class="BZJST">
+                    <span class="span1">
+                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;保证金申退
+                </span>
+                </div>
+                <span class="SB1">抱歉，您还没有取得本站拍卖权限，无法申请退回保证金，如有相关疑问请联系本站客服。</span>
+                <span class="SB2">客服热线：010-85175305 / 13146616133</span>
+            </div>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 2000, //可选选项，自动滑动
+            pagination: '.swiper-pagination', //分页
+            paginationClickable: true,
+
+        })
+        // 左侧tab栏切换
+    jQuery(window).ready(function() {
+        var l = 0;
+        $('.cwgls').click(function() {
+            if (l == 0) {
+                $(this).siblings('.cwgl').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.cwgl').hide().addClass('none');
+                l = 0;
+            }
+
+
+        })
+        $('.sqth').click(function() {
+            $('.alert').removeClass('none').show();
+        })
+        $('.qxcx').click(function() {
+            $('.alert').addClass('none').hide();
+        })
+
+
+    });
+</script>
+
+</html>

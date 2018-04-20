@@ -23,43 +23,54 @@
 <script>
 var i = 0;
     jQuery(window).ready(function() {
-        
-        $('.DG').click(function() {
+        var i = 0;
+        $(".DG").unbind("click").click(function() {
             if (i == 0) {
                 $(this).children('img').attr('src', '__TMPL__Public/images/dg.png');
+				$('#xieyi').val(1);
                 i = 1;
             } else {
                 $(this).children('img').attr('src', '__TMPL__Public/images/wdg.png');
                 i = 0;
+				$('#xieyi').val(0);
             }
         })
-        var k = 0;
-        $('.XZ').click(function() {
-            if (k == 0) {
+        $(".XZ").click(function() {
+			var value = $(this).children('img').attr('value');
+            if (value == 1) {
                 $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
-                k = 1;
+                $(this).children('img').attr('value', 2);
+				var zhi = $(this).children('img').attr('data-value');
+				var id = $(this).children('img').attr('data-id');
+				$('#'+id).val(zhi);
+				
             } else {
                 $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
-                k = 0;
+                $(this).children('img').attr('value', 1);
+				var id = $(this).children('img').attr('data-id');
+				$('#'+id).val('');
             }
         })
         var p = 0;
-        $('.XZs').click(function() {
+        $(".XZs").unbind("click").click(function() {
             if (p == 0) {
                 $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
                 $(this).siblings('#SR').show();
                 p = 1;
+				$('#xuexi11').val(1);
             } else {
                 $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
                 $(this).siblings('#SR').hide();
                 p = 0;
+				$('#xuexi11').val('');
             }
         })
 		
 
     });
 	function chack(){
-		if (i == 0) {
+		var xieyi = $('#xieyi').val();
+		if (xieyi != 1) {
 			alert('您未同意“服务条款”和“隐私权相关政策”');
 			return false;
 		}
@@ -78,7 +89,9 @@ $(document).ready(function(){
 		},
 		submitAfterAjaxPrompt : '有数据正在异步验证，请稍等...'
 	});
-
+	$('.xxdzs').click(function(){
+		$(this).attr('placeholder','请填写详细地址信息');
+	})
 	$("#username").formValidator({
 		onShow:"用户名请由5-16位英文大小写、数字组成",
 		onFocus:"用户名请由5-16位英文大小写、数字组成"
@@ -91,10 +104,10 @@ $(document).ready(function(){
 		async : true,
 		url : "{:U('User/register/username')}",
 		success : function(data){
-            if (data == "0") {
-				return true;
-			} else {
+            if (data > 0) {
 				return false;
+			} else {
+				return true;
 			}
 		},
 		buttons: $("#button"),
@@ -179,10 +192,11 @@ $(document).ready(function(){
 	});
 	
 	$("#email").formValidator({
-		onShow:"请填写您的电子邮箱地址",
+		empty:true,
+		onShow:"电子邮箱地址可留空",
 		onFocus:"邮箱6-100个字符",
 		onCorrect:"填写正确",
-		defaultValue:"@"
+		onEmpty:"你真的不想留电子邮箱地址了吗？"
 	}).inputValidator({
 		min:6,
 		max:100,
@@ -194,11 +208,11 @@ $(document).ready(function(){
 	
 	//请填写备用联系电话
 	$("#telephone").formValidator({
-		//empty:true,
-		onShow:"请填写备用联系电话",
+		empty:true,
+		onShow:"备用联系电话可留空",
 		onFocus:"格式例如：010-88888888或11位手机号码",
 		onCorrect:"填写正确",
-		//onEmpty:"你真的不想留手机或电话了吗？"
+		onEmpty:"你真的不想留备用联系电话了吗？"
 	}).regexValidator({
 		regExp:["tel","mobile"],
 		dataType:"enum",
@@ -356,9 +370,9 @@ function dosend() {
                 <div class="wbk">
                     <select class="bghui" name="province" id="province">
 						<option value ="">请选择所属省/市</option>
-						<volist name="cityList" id="province">
-							<option value="{$province['id']}">{$province['name']}</option>
-						</volist>
+						<option value="北京">北京</option>
+						<option value="非京省市">非京省市</option>
+						<option value="港澳台地区">港澳台地区</option>
                     </select>
                     <span class="right_ts" id="provinceTip"><img src="__TMPL__Public/images/gth.png" alt="">&nbsp;&nbsp;请选择您的接鸽省市</span>
                 </div>
@@ -367,30 +381,41 @@ function dosend() {
                 <span class="red">*</span>
                 <span class="usert">详细地址：</span>
                 <div class="wbk">
-                    <input type="text" id="address" name="address" placeholder="北京市昌平区珠江摩尔大厦3号楼" class="bghui">
+                    <input type="text" id="address" name="address" placeholder="请填写详细地址信息" class="bghui xxdzs">
                     <span class="right_ts" id="addressTip"></span>
                 </div>
             </div>
             <div class="user" style="margin-left: -135px;">
                 <span class="usert" style="display: inline-block;float: left;">钟爱血系 （支持多选）：</span>
                 <div class="kyl" style="display:inline-block;float:right;margin-top:5px;">
-                    <span class="XZ"><img src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;詹森</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;幕利门</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;凡龙</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;盖比</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;利奥</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;凡戴克</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;葛斯顿(奶酪)</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;恩格斯</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/xuanze.png" alt="">&nbsp;&nbsp;爱亚卡普</span>
-                    <span class="XZ"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;胡曼斯（哈利）</span>
+                    <span class="XZ"><img value = "1" data-value="詹森" data-id="xuexi1" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;詹森</span>
+					<input type="hidden" name="xuexi[]" id="xuexi1" value="">
+                    <span class="XZ"><img value = "1" data-value="幕利门" data-id="xuexi2" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;幕利门</span>
+					<input type="hidden" name="xuexi[]" id="xuexi2" value="">
+                    <span class="XZ"><img value = "1" data-value="凡龙" data-id="xuexi3" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;凡龙</span>
+					<input type="hidden" name="xuexi[]" id="xuexi3" value="">
+                    <span class="XZ"><img value = "1" data-value="盖比" data-id="xuexi4" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;盖比</span>
+					<input type="hidden" name="xuexi[]" id="xuexi4" value="">
+                    <span class="XZ"><img value = "1" data-value="利奥" data-id="xuexi5" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;利奥</span>
+					<input type="hidden" name="xuexi[]" id="xuexi5" value="">
+                    <span class="XZ"><img value = "1" data-value="凡戴克" data-id="xuexi6" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;凡戴克</span>
+					<input type="hidden" name="xuexi[]" id="xuexi6" value="">
+                    <span class="XZ"><img value = "1" data-value="葛斯顿(奶酪)" data-id="xuexi7" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;葛斯顿(奶酪)</span>
+					<input type="hidden" name="xuexi[]" id="xuexi7" value="">
+                    <span class="XZ"><img value = "1" data-value="恩格斯" data-id="xuexi8" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;恩格斯</span>
+					<input type="hidden" name="xuexi[]" id="xuexi8" value="">
+                    <span class="XZ"><img value = "1" data-value="爱亚卡普" data-id="xuexi9" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;爱亚卡普</span>
+					<input type="hidden" name="xuexi[]" id="xuexi9" value="">
+                    <span class="XZ"><img value = "1" data-value="胡曼斯（哈利）" data-id="xuexi10" src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;胡曼斯（哈利）</span>
+					<input type="hidden" name="xuexi[]" id="xuexi10" value="">
                     <span class="XZs"><img src="__TMPL__Public/images/weixuan.png" alt="">&nbsp;&nbsp;其他</span>
-                    <span class="XZ" id="SR" style="display:none;"><input type="text"placeholder="请填写您所钟爱的铭鸽血系"></span>
+                    <span class="XZ" id="SR" style="display:none;"><input type="text" name="xuexi[]" placeholder="请填写您所钟爱的铭鸽血系"></span>
                 </div>
             </div>
             <div class="servie" style="clear:right;">
                 <span class="DG"><img src="__TMPL__Public/images/wdg.png" alt=""></span>&nbsp;&nbsp;&nbsp;
                 <span class="TY">同意</span><span class="blue">“服务条款”</span><span>和</span><span class="blue">“隐私权相关政策”</span>
+				<input type='hidden' id="xieyi" value="0">
             </div>
             <input type="submit" class="QD" name="button" id="button" value="立即注册" />
         </div>

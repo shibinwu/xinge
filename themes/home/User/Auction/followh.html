@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/footer.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/personalcenter.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/FJ.css">
+    <script src="__TMPL__Public/js/jquery-1.10.2.min.js"></script>
+    <script src="__TMPL__Public/js/swiper.min.js"></script>
+    <script src="__TMPL__Public/js/index.js"></script>
+    <style>
+        .tab_content.show {display: block;}
+        .input{background:url(__TMPL__Public/images/weixuan.png);vertical-align:middle;-webkit-appearance:none;height:20px;width:20px;margin-left:6px;outline:none;}
+        input[type="checkbox"]:checked {background: url(__TMPL__Public/images/xuanze.png);}
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <tc_include file="Public:head" />
+        <!-- 轮播 -->
+        <div class="lunbo swiper-container">
+            <div class="img swiper-wrapper">
+                <div class="swiper swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public/images/SLIDER1BREEDER.png" alt="" srcset=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="zhezhao" style="background:url(__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
+        </div>
+        <!-- 中间内容 -->
+        <div class="DAOHANG" id="DAOHANG"><a href="{:U('Portal/index/index')}" style="color:#575756;font-size: 23px;">首页</a> > 个人中心</div>
+        <!-- 左侧导航 -->
+        <div class="DHLIST" id="DHLIST">
+            <ul class="tabs">
+                <li id="tab1" class="yiji fudai1 XUANZHONG">
+                    <a href="{:U('User/member/index')}"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li id="tab2" class="yiji XUANZHONG pmgls">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabdown.png" alt="" class="tabfx"></a>
+                </li>
+				<li class="pmgl">
+                    <a href="{:U('User/auction/followh')}"  class="xuanzhong">关注拍卖会</a>
+                    <a href="{:U('User/auction/followg')}">关注拍卖鸽</a>
+                    <a href="{:U('User/auction/index')}">正在竞拍中</a>
+                    <a href="{:U('User/auction/syccessj')}">成功的竞拍</a>
+                    <a href="{:U('User/auction/agent')}">代理出价管理</a>
+                </li>
+                <li id="tab3" class="yiji XUANZHONG">
+                    <a href="{:U('User/product/index')}"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <li id="tab4" class="yiji XUANZHONG">
+                    <a href="{:U('User/finance/index')}"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
+                </li>
+                <tc_include file="Public:memberkhfw" />
+            </ul>
+        </div>
+        <!-- 右侧 -->
+        <div class="products" id="products">
+            <!-- 关注拍卖会 -->
+            <div class="GZPMH">
+                <div class="HYBT4">
+                    <span class="span1">
+                                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;关注拍卖会
+                                </span>
+                </div>
+                <div class="TP">
+                    <img src="__TMPL__Public/images/pmlc.png" alt="">
+                </div>
+                <div class="TABS1">
+                    <div class="MC dddse">
+                        <span class="a">拍卖会名称</span>
+                        <span class="b">拍卖数量</span>
+                        <span class="c">结标时间</span>
+                    </div>
+                    <volist name="auctions" id="val" key="k">
+                        <div class="<if condition='$k eq 1'>MCNR<elseif condition='$k%2 eq 0'/>MCNR2 bgc<else/>MCNR3</if> MC_{$val['id']}">
+                            <span class="d">
+                                <!-- <img src="__TMPL__Public/images/weixuan.png" alt=""> -->
+                                <input class="input" name="cid" type="checkbox" value="{$val['id']}">
+                            </span>
+                            <span class="a <if condition='$k eq 1'>weidu</if>">{$val['name']}</span>
+                            <span class="b <if condition='$k eq 1'>weidu</if>">{$val['num']}</span>
+                            <span class="c <if condition='$k eq 1'>weidu</if>">{$val[end_time] | date="Y-m-d H:i:s",###}</span>
+                        </div>
+                    </volist>
+                    <!-- <div class="MCNR">
+                        <span class="d"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                        <span class="a  weidu">第1551期</span>
+                        <span class="b  weidu">5</span>
+                        <span class="c  weidu">48:56:32</span>
+                    </div>
+                    <div class="MCNR2 bgc">
+                        <span class="d"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                        <span class="a">第1551期</span>
+                        <span class="b">5</span>
+                        <span class="c">48:56:32</span>
+                    </div> -->
+                    <div class="MCNR4 dddse">
+                        <span class="d"><img src="__TMPL__Public/images/weixuan.png" alt=""></span>
+                        <span class="a">全选</span>
+                        <a href="javascript:void(0);" class="b auction">批量删除</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 清除浮动 -->
+        <div class="" style="clear:right;height:0;">
+        </div>
+        <!-- 底部 -->
+        <tc_include file="Public:footer" />
+    </div>
+    <!-- 右侧导航 -->
+</body>
+<script>
+    // 轮播控制
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 2000, //可选选项，自动滑动
+        pagination: '.swiper-pagination', //分页
+        paginationClickable: true,
+
+    })
+</script>
+<script>
+    // 选择框切换
+    $(function() {
+        var d = 0;
+        $('.d').click(function() {
+            if (d == 0) {
+                $(this).children('img').attr('src', '__TMPL__Public/images/xuanze.png');
+                d = 1;
+            } else {
+                $(this).children('img').attr('src', '__TMPL__Public/images/weixuan.png');
+                d = 0;
+            }
+        })
+        var l = 0;
+        $('.pmgls').click(function() {
+            if (l == 0) {
+                $(this).siblings('.pmgl').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
+                l = 1;
+            } else {
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.pmgl').hide().addClass('none');
+                l = 0;
+            }
+        })
+    });
+    $('.auction').click(function(){
+        var obj=document.getElementsByName('cid');
+        //取到对象数组后，我们来循环检测它是不是被选中
+        var c='';
+        for(var i=0; i<obj.length; i++){
+            if(obj[i].checked) c+=obj[i].value+','; //如果选中，将value添加到变量s中
+        }
+        if (!c) {
+            alert('请选择删除的药品');return false;
+        }
+        // console.log(c);
+        $.post("{:U('auction/delauction')}",'cid='+c,function(d){
+            console.log(1);
+            console.log(d);
+            return
+            if (d.code == 2) {alert(d.msg);return false;}
+            $.each(d,function(i,val){$('.MC_'+val).remove();})
+        },'json');
+    })
+</script>
+
+</html>

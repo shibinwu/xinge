@@ -39,91 +39,119 @@
             <div class="zhezhao" style="background:url(__TMPL__Public/images/balk.png) repeat;mix-blend-mode: multiply;"></div>
         </div>
         <!-- 中间内容 -->
-        <div class="DAOHANG" id="DAOHANG"><a href="{:U('Portal/index/index')}" style="color:#575756;font-size: 23px;">首页</a> > 个人中心</div>
+        <div class="DAOHANG" id="DAOHANG">首页 > 个人中心</div>
         <!-- 左侧导航 -->
         <div class="DHLIST" id="DHLIST">
             <ul class="tabs">
-                <li id="tab1" class="yiji fudai1 XUANZHONG">
-                    <a href="javascript:;"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                <li class="yiji XUANZHONG grzxs">
+                    <a href="javascript:;"><img src="__TMPL__Public/images/message.png" alt="">&nbsp;&nbsp;&nbsp;<span>信息管理</span><img src="__TMPL__Public/images/tabdown.png" alt="" class="tabfx"></a>
                 </li>
-                <li id="tab2" class="yiji XUANZHONG pmgls">
-                    <a href="javascript:;"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="../images/tabdown.png" alt="" class="tabfx"></a>
+                <li class="grzx">
+                    <a href="{:U('User/member/index')}" class="xuanzhong">会员首页</a>
+                    <a href="{:U('User/member/xggrxx')}">修改个人信息</a>
+                    <a href="{:U('User/member/mmfw')}">密码服务</a>
+                    <a href="{:U('User/member/znxx')}">站内信息</a>
+                    <a href="javascript:;">积分管理</a>
                 </li>
-                <li class="pmgl">
-                    <a href="./gzpmh.html">关注拍卖会</a>
-                    <a href="./gzpmg.html">关注拍卖鸽</a>
-                    <a href="./zzjpz.html" class="xuanzhong">正在竞拍中</a>
-                    <a href="./cgdjp.html">成功的竞拍</a>
-                    <a href="./dlcjgl.html">代理出价管理</a>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/auction/index')}"><img src="__TMPL__Public/images/paimaichui.png" alt="">&nbsp;&nbsp;&nbsp;<span>拍卖管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
                 </li>
-                <li id="tab3" class="yiji XUANZHONG">
-                    <a href="javascript:;"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/product/index')}"><img src="__TMPL__Public/images/chanpinguanli.png" alt="">&nbsp;&nbsp;&nbsp;<span>产品管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
                 </li>
-                <li id="tab4" class="yiji XUANZHONG">
-                    <a href="javascript:;"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
+                <li class="yiji XUANZHONG">
+                    <a href="{:U('User/finance/index')}"><img src="__TMPL__Public/images/caiwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>财务管理</span><img src="__TMPL__Public/images/tabright.png" alt="" class="tabfx"></a>
                 </li>
-                <li id="tab5" class="yiji XUANZHONG">
-                    <a href="javascript:;"><img src="__TMPL__Public/images/kehufuwu.png" alt="">&nbsp;&nbsp;&nbsp;<span>客户服务</span><img src="../images/tabright.png" alt="" class="tabfx"></a>
-                </li>
+                <tc_include file="Public:memberkhfw" />
             </ul>
         </div>
         <!-- 右侧 -->
         <div class="products" id="products">
-            <!-- 正在竞拍中 -->
-            <div class="ZZJPZ">
-                <div class="HYBT4">
+            <!-- 会员首页 -->
+            <div class="HYSY">
+                <div class="HYBT">
                     <span class="span1">
-                                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;正在竞拍中
-                                </span>
+                    <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;会员首页
+                </span>
+                    <span class="span2">
+                        您有（<strong>2</strong>）条未读站内消息，请注意查收！
+                    </span>
                 </div>
-                <div class="TP">
-                    <img src="__TMPL__Public/images/pmlc.png" alt="">
+                <div class="BD">
+                    <div><span class="JC">{$user['username']}</span>&nbsp;<span class="jieshao">欢迎回来！</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/rentou.png" alt="">&nbsp;真实姓名：</span>&nbsp;<span class="jieshao">{$user['realname']}</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/sj.png" alt="">&nbsp;手机号码：</span>&nbsp;<span class="jieshao">{$user['mobile']}</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/guojia.png" alt="">&nbsp;国籍信息：</span>&nbsp;<span class="jieshao">中国-（{$user['province']}）</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/guhua.png" alt="">&nbsp;备用电话：</span>&nbsp;<span class="jieshao">{$user['telephone']}</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/youxiang.png" alt="">&nbsp;电子邮箱：</span>&nbsp;<span class="jieshao">{$user['email']}</span></div>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/dizhi.png" alt="">&nbsp;详细地址：</span>&nbsp;<span class="jieshao">{$user['address']}</span></div>
+					<?php
+						foreach($user['xuexi'] as $k=>$val){
+							if($val == 1){
+								unset($user['xuexi'][$k]);
+							}
+						}
+					?>
+                    <div><span class="JCS"><img src="__TMPL__Public/images/gegege.png" alt="">&nbsp;钟爱的血系：</span>&nbsp;<span class="jieshao">{:implode(',',$user['xuexi'])}</span></div>
+                    <div class="XGXX"><a style="color:#FFF;" href="{:U('User/member/xggrxx')}">修改个人信息</a></div>
                 </div>
-                <div class="TABS1">
-                    <div class="MC dddse">
-                        <span class="a">所属目录</span>
-                        <span class="b">排序</span>
-                        <span class="c">环号</span>
-                        <span class="d">名称</span>
-                        <span class="e">我的最高出价</span>
-                        <span class="f">当前价格</span>
-                        <span class="g">剩余时间</span>
-                        <span class="h">操作</span>
+                <div class="XXK">
+                    <div class="kuang1">
+                        <div class="quan">0</div>&nbsp;&nbsp;&nbsp;<span>拍卖待付款</span>
                     </div>
-					<volist name="list" id="vo">
-						<if condition="$key%2">
-							<div class="MCNR">
-								<span class="a">{$vo['ztname']}</span>
-								<span class="b">K11</span>
-								<span class="c">{$vo['huanhao']}</span>
-								<span class="d">{$vo['gzname']}</span>
-								<span class="e">€{$vo['price']}</span>
-								<span class="f">€{$vo['zprice']}</span>
-								<span class="g">{$vo['times']}</span>
-								<span class="h">代理出价</span>
-							</div>
-						<else />
-							<div class="MCNR bgc1">
-								<span class="a">{$vo['ztname']}</span>
-								<span class="b">K11</span>
-								<span class="c">{$vo['huanhao']}</span>
-								<span class="d">{$vo['gzname']}</span>
-								<span class="e">€{$vo['price']}</span>
-								<span class="f">€{$vo['zprice']}</span>
-								<span class="g">{$vo['times']}</span>
-								<span class="h">代理出价</span>
-							</div>
-						</if>
-					</volist>
+                    <div class="kuang2">
+                        <div class="quan">0</div>&nbsp;&nbsp;&nbsp;<span>鸽药待付款</span>
+                    </div>
                 </div>
+                <div class="CKXQZ">
+                    <div class="CKXQ">
+                        <span class="ZHYE">账户余额：</span><span class="JGHS">0元</span>
+                        <div class="CKXQS">查看详情</div>
+                    </div>
+                    <div class="CKXQ2">
+                        <span class="ZHYE">保证金认证：</span><span class="JGHS">未通过</span>
+                        <div class="CKXQS">付款方式</div>
+                    </div>
+                </div>
+                <div class="HYBTS">
+                    <span class="span1">
+                        <img src="__TMPL__Public/images/huiyuanshouye.png" alt="">&nbsp;&nbsp;最新拍卖铭鸽
+                    </span>
+                    <span class="span2">
+                            <a href="javascript:;">更多 >></a>
+                    </span>
+                </div>
+                <ul class="GZLIST">
+                    <li>
+                        <img src="__TMPL__Public/images/HYSYGZ.png" alt="">
+                        <span>好黑号外孙X好黑号直女</span>
+                        <span>K1 B16-4254761</span>
+                    </li>
+                    <li>
+                        <img src="__TMPL__Public/images/HYSYGZ.png" alt="">
+                        <span>好黑号外孙X好黑号直女</span>
+                        <span>K1 B16-4254761</span>
+                    </li>
+                    <li>
+                        <img src="__TMPL__Public/images/HYSYGZ.png" alt="">
+                        <span>好黑号外孙X好黑号直女</span>
+                        <span>K1 B16-4254761</span>
+                    </li>
+                    <li>
+                        <img src="__TMPL__Public/images/HYSYGZ.png" alt="">
+                        <span>好黑号外孙X好黑号直女</span>
+                        <span>K1 B16-4254761</span>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- 清除浮动 -->
         <div class="" style="clear:right;height:0;">
         </div>
         <!-- 底部 -->
-        <tc_include file="Public:footer" />
+       <tc_include file="Public:footer" />
     </div>
+    <!-- 右侧导航 -->
 </body>
 <script>
     // 轮播控制
@@ -135,18 +163,19 @@
         })
         // 左侧tab栏切换
     jQuery(window).ready(function() {
-
         var l = 0;
-        $('.pmgls').click(function() {
+        $('.grzxs').click(function() {
             if (l == 0) {
-                $(this).siblings('.pmgl').show().removeClass('none');
-                $(this).children().children('.tabfx').attr('src', '../images/tabdown.png');
+                $(this).siblings('.grzx').show().removeClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabdown.png');
                 l = 1;
             } else {
-                $(this).children().children('.tabfx').attr('src', '../images/tabright.png');
-                $(this).siblings('.pmgl').hide().addClass('none');
+                $(this).children().children('.tabfx').attr('src', '__TMPL__Public/images/tabright.png');
+                $(this).siblings('.grzx').hide().addClass('none');
                 l = 0;
             }
+
+
         })
 
     });

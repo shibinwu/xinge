@@ -26,19 +26,6 @@
 						</tr>
 
 						<tr>
-							<th width="80">所属栏目</th>
-							<td>
-
-								<select name="post[cid]" value="{$post[cid]}" style="width:415px;">
-									<foreach name="data" item="vo" >
-										<option value="{$key}" <if condition="$post[cid] == $key"> selected="selected" </if>>{$vo}</option>
-									</foreach>
-								</select>
-
-							</td>
-						</tr>
-
-						<tr>
 							<th>链接地址</th>
 							<td>
 								<input type="text" name="post[weburl]" required value="{$post.weburl}" style="width: 400px" placeholder="请输入链接地址">请填写完整路径 如：http://www.baidu.com
@@ -70,26 +57,7 @@
 								</select>
 							</td>
 						</tr>
-						<tr>
-							<th>鸽主标签</th>
-							<td>
-								<ul>
-									<volist name="gezhu" id="gzs">
-										<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" <in name="gzs.name" value="$post.tags">checked</in> name="post[tags][{$gzs['id']}]" value="{$gzs['name']}">{$gzs['name']}</li>
-									</volist>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<th>赛事标签</th>
-							<td>
-								<ul>
-								<volist name="saishi" id="sss">
-									<li style="padding-right:21px;list-style-type:none;float:left;"><input type="checkbox" <in name="sss.name" value="$post.tags">checked</in>  name="post[tags][{$sss['id']}]" value="{$sss['name']}">{$sss['name']}</li>
-								</volist>
-								</ul>
-							</td>
-						</tr>
+
 						<tr>
 							<th>关键字</th>
 							<td>
@@ -134,13 +102,6 @@
 							</td>
 						</tr>
 						<tr>
-							<th><b>录入时间</b></th>
-						</tr>
-						<tr>
-							<td><input type="text" name="post[created_date]" value="{$post.created_date}" class="js-datetime" style="width: 160px;"></td>
-						</tr>
-
-						<tr>
 							<th><b>属性</b></th>
 						</tr>
 						<tr>
@@ -151,6 +112,30 @@
 							</td>
 						</tr>
 
+					</table>
+					<table class="table table-bordered">
+						<tr>
+							<th><b>鸽主标签</b></th>
+						</tr>
+						<tr>
+							<td>
+								<foreach name="gezhu" item="vo">
+									<label class="radio"><input type="checkbox" name="post[bid][{$vo['id']}]" <in name="vo.id" value="$post.bid">checked</in> value="{$vo['id']}" >{$vo['name']}</label>
+								</foreach>
+							</td>
+						</tr>
+					</table>
+					<table class="table table-bordered">
+						<tr>
+							<th><b>赛事标签</b></th>
+						</tr>
+						<tr>
+							<td>
+								<foreach name="saishi" item="vo">
+									<label class="radio"><input type="checkbox" name="post[bid][{$vo['id']}]" <in name="vo.id" value="$post.bid">checked</in> value="{$vo['id']}" >{$vo['name']}</label>
+								</foreach>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>

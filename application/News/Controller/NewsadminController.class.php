@@ -115,9 +115,6 @@ class NewsadminController extends AdminbaseController
 
         $this->display();
     }
-
-
-
     // 后台新闻添加
     public function newsadd()
     {
@@ -140,7 +137,6 @@ class NewsadminController extends AdminbaseController
         $this->assign('info',$info);
         $this->display();
     }
-
     // 后台新闻编辑
     public function newsedit()
     {
@@ -180,7 +176,6 @@ class NewsadminController extends AdminbaseController
         $this->assign('data', $data);
         $this->display();
     }
-
     // 后台新闻删除
     public function newsdelete()
     {
@@ -208,10 +203,6 @@ class NewsadminController extends AdminbaseController
     {
         $where = array();
         $request = I('request.');
-
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
         if (!empty($request['keyword'])) {
             $keyword = $request['keyword'];
             $where['title'] = array('like', "%$keyword%");
@@ -222,19 +213,9 @@ class NewsadminController extends AdminbaseController
         $page = $this->page($count, 20);
         $list = $this->article_model
             ->where($where)
-            ->order("id DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
             ->select();
-        $arr = array();
-        foreach ($list as $k => $val) {
-
-            $list[$k]['column'] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-            $arr[] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-        }
-        $arrs = array_unique($arr);
-
         $this->assign('list', $list);
-        $this->assign('arr', $arrs);
         $this->assign("page", $page->show('Admin'));
         $this->display();
     }
@@ -270,14 +251,12 @@ class NewsadminController extends AdminbaseController
         if (IS_POST) {
             $post_id = intval($_POST['post']['id']);
             $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
-            $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
-			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
-//            $img = new \Think\Image(); //实例化
-//            $img->open($_POST['post']['tpic']); //打开被处理的图片
-//            $img->thumb(100,100); //制作缩略图(100*100)
-//            $img->save($smallimg_path); //保存缩略图到服务器
             unset($_POST['post']['post_author']);
             $article = I("post.post");
+            if($article['bid']){
+                $bid =  implode(',',$article['bid']);
+                $article['bid'] = ','.$bid.',';
+            }
             if(!isset($article[tuijian])){
                 $article[tuijian] = 0;
             }elseif(!isset($article[zhiding])){
@@ -286,6 +265,7 @@ class NewsadminController extends AdminbaseController
                 $article[working] = 0;
             }
             $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['created_date'] = time();
             $result = $this->article_model->save($article);
             if ($result !== false) {
                 $this->success("保存成功！");
@@ -298,73 +278,33 @@ class NewsadminController extends AdminbaseController
         $id = I('get.id');
         $where['id'] = $id;
         $info = $this->article_model->where($where)->find();
-        $data = $this-> category_model ->where('pid = 0 AND channelid =1')->getField('id,name');
 		$labelMod = M('Label');
 		$gezhu = $labelMod->where('type=0')->select();
 		$saishi = $labelMod->where('type=1')->select();
 		$this->assign('gezhu', $gezhu);
 		$this->assign('saishi', $saishi);
         $this->assign('post', $info);
-        $this->assign('data', $data);
         $this->display();
-    }
-
-    // 后台铭鸽咨询删除
-    public function mgzxdelete()
-    {
-        if (isset($_GET['id'])) {
-            $id = I("get.id", 0, 'intval');
-            if ($this->article_model->where(array('id' => $id))->delete()) {
-                $this->success("删除成功！");
-            } else {
-                $this->error("删除失败！");
-            }
-        }
-
-        if (isset($_POST['ids'])) {
-            $ids = I('post.ids/a');
-
-            if ($this->article_model->where(array('id' => array('in', $ids)))->delete()) {
-                $this->success("删除成功！");
-            } else {
-                $this->error("删除失败！");
-            }
-        }
     }
     //后台名人铭系列表
     public function mrmxindex()
     {
         $where = array();
         $request = I('request.');
-
-        if (($request['status'] == '0') || ($request['status'] == 1)) {
-            $where['hiden'] = $request['status'];
-        }
         if (!empty($request['keyword'])) {
             $keyword = $request['keyword'];
             $where['title'] = array('like', "%$keyword%");
         }
         $where['l'] = LANG_SET;
-        $where['cid'] = 1;
+        $where['cid']= 1;
         $count = $this->article_model->where($where)->count();
         $page = $this->page($count, 20);
         $list = $this->article_model
             ->where($where)
-            ->order("id DESC")
             ->limit($page->firstRow . ',' . $page->listRows)
             ->select();
-        $arr = array();
-        foreach ($list as $k => $val) {
-
-            $list[$k]['column'] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-            $arr[] = $this->category_model->where(array('id' => $val['cid']))->getfield('name');
-        }
-        $arrs = array_unique($arr);
-
         $this->assign('list', $list);
-        $this->assign('arr', $arrs);
         $this->assign("page", $page->show('Admin'));
-
         $this->display();
     }
     // 后台名人铭系添加
@@ -394,19 +334,17 @@ class NewsadminController extends AdminbaseController
     }
 
     // 后台名人铭系编辑
-    public function mgmxedit()
+    public function mrmxedit()
     {
         if (IS_POST) {
             $post_id = intval($_POST['post']['id']);
             $_POST['post']['pics'] = sp_asset_relative_url($_POST['smeta']['thumb']);
-            $_POST['post']['country'] = implode(",",array_filter(array($_POST['post']['country1'],$_POST['post']['country2'],$_POST['post']['country3'])));
-			$_POST['post']['tags'] = implode(',',$_POST['post']['tags']);
-//            $img = new \Think\Image(); //实例化
-//            $img->open($_POST['post']['tpic']); //打开被处理的图片
-//            $img->thumb(100,100); //制作缩略图(100*100)
-//            $img->save($smallimg_path); //保存缩略图到服务器
             unset($_POST['post']['post_author']);
             $article = I("post.post");
+            if($article['bid']){
+                $bid =  implode(',',$article['bid']);
+                $article['bid'] = ','.$bid.',';
+            }
             if(!isset($article[tuijian])){
                 $article[tuijian] = 0;
             }elseif(!isset($article[zhiding])){
@@ -415,6 +353,7 @@ class NewsadminController extends AdminbaseController
                 $article[working] = 0;
             }
             $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['created_date'] = time();
             $result = $this->article_model->save($article);
             if ($result !== false) {
                 $this->success("保存成功！");
@@ -427,19 +366,17 @@ class NewsadminController extends AdminbaseController
         $id = I('get.id');
         $where['id'] = $id;
         $info = $this->article_model->where($where)->find();
-        $data = $this-> category_model ->where('pid = 0 AND channelid =1')->getField('id,name');
 		$labelMod = M('Label');
 		$gezhu = $labelMod->where('type=0')->select();
 		$saishi = $labelMod->where('type=1')->select();
 		$this->assign('gezhu', $gezhu);
 		$this->assign('saishi', $saishi);
         $this->assign('post', $info);
-        $this->assign('data', $data);
         $this->display();
     }
 
     // 后台名人铭系删除
-    public function mrmxdelete()
+    public function mrmgdelete()
     {
         if (isset($_GET['id'])) {
             $id = I("get.id", 0, 'intval');
@@ -648,6 +585,29 @@ class NewsadminController extends AdminbaseController
         $this->display();
     }
 
+    // 后台欧洲战报删除
+    public function ozzbxqdelete()
+    {
+        if (isset($_GET['id'])) {
+            $id = I("get.id", 0, 'intval');
+            if ($this->ozzbxq_model->where(array('id' => $id))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+
+        if (isset($_POST['ids'])) {
+            $ids = I('post.ids/a');
+
+            if ($this->ozzbxq_model->where(array('id' => array('in', $ids)))->delete()) {
+                $this->success("删除成功！");
+            } else {
+                $this->error("删除失败！");
+            }
+        }
+    }
+//后台亚洲战报列表显示
     public function yzzbindex()
     {
         $where = array();
@@ -693,6 +653,44 @@ class NewsadminController extends AdminbaseController
         $this->assign('saishi', $saishi);
         $this->assign('data',$data);
 
+        $this->display();
+    }
+
+    // 后台亚洲战报编辑
+    public function yzzbedit()
+    {
+        if (IS_POST) {
+            $post_id = intval($_POST['post']['id']);
+            $_POST['post']['pic'] = sp_asset_relative_url($_POST['smeta']['thumb']);
+            $_POST['post']['created_by'] = get_current_admin_id();
+            $article = I("post.post");
+            $article['content'] = htmlspecialchars_decode($article['content']);
+            $article['addtime'] = time();
+
+            $result = $this->ozzbxq_model->save($article);
+            if ($result !== false) {
+                $this->success("保存成功！");
+            } else {
+                $this->error("保存失败！");
+            }
+            exit;
+        }
+        $where = array();
+        $id = I('get.id');
+
+        $where['id'] = $id;
+        $info = $this->yzzb_model->where($where)->find();
+
+        $data = $this->year_model->where(array('type'=>1))->order('yname desc')->getField('id,yname',true);
+
+        //标签
+        $labelMod = M('Label');
+        $gezhu = $labelMod->where('type=0')->select();
+        $saishi = $labelMod->where('type=1')->select();
+        $this->assign('gezhu', $gezhu);
+        $this->assign('saishi', $saishi);
+        $this->assign('post', $info);
+        $this->assign('data', $data);
         $this->display();
     }
 }
